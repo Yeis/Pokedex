@@ -90,7 +90,7 @@ CREATE TABLE Usuario
 	[Password] VARCHAR(25),
 	[Privileges] VARCHAR(20)
 )
-CREATE table LogData
+CREATE TABLE LogData
 (
 	id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
 	Tnombre VARCHAR(100),
