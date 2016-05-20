@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PokedexFinalProject.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,8 +17,20 @@ namespace PokedexFinalProject.Controllers
             return View();
         }
         //Index despues de login incorrecto 
-        public ActionResult IndexString(string mensaje)
+        [HttpPost]
+        public ActionResult Index(LoginViewModels model)
         {
+            //logica del login 
+            SharedInstance.AppUser = BL.Login(model.Username, model.Password);
+            if (SharedInstance.AppUser == null)
+            {
+                //el usuario fue incorrecto
+                return RedirectToAction("Index", new { mensaje = "Oops EL usuario no existe!" });
+            }
+            else
+            {
+                //el usuario fue correcto 
+            }
             return View();
         }
 
@@ -42,6 +55,13 @@ namespace PokedexFinalProject.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult Register(RegisterViewModels model)
+        {
+            //logica de registro 
+            return View();
+        }
+
     }
 }
       

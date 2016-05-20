@@ -20,10 +20,11 @@ namespace PokedexFinalProject
         public LocalUser Login(string username, string password)
         {  
             Starttime = DateTime.Now.Millisecond;
-
+            //Buscamos primero en Mongo
             Usuario usuario = FindMongo(username, password);
             if (usuario == null)
             {
+                //BUscamos en SQL 
                 usuario = FindSQL(username, password);
                 if (usuario != null)
                 {
@@ -79,7 +80,11 @@ namespace PokedexFinalProject
             var users = from u in collections.AsQueryable<Usuario>()
                         where u.Username == username && u.Password == pass
                         select u;
-            return users.ToList<Usuario>().First();
+            if (users.Count() != 0)
+            {
+                return users.ToList<Usuario>().First();
+            }
+            return null;
         }
               public IEnumerable<SelectListItem> GetOptions()
         {

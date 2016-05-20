@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PokedexFinalProject.Models
 {
-    public class Register
+    public class RegisterViewModels
     {
         [Required]
         public string Name { get; set;}
