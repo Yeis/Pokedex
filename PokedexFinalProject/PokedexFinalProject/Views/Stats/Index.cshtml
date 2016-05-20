@@ -25,7 +25,7 @@
         switch (Model.partialName)
         {
             case "ActiveUsersWeek":
-                Html.Action("ActiveUsersWeek", new { weeks = Model.ActiveUsersWeek });
+                Html.RenderPartial("~/Views/Shared/ActiveUsersWeek.cshtml", new { weeks = Model.ActiveUsersWeek });
                 break;
             case "ActiveUsersMonth":
                 Html.RenderPartial("~/Views/Shared/ActiveUsersMonth.cshtml", Model.ActiveUsersMonth);
