@@ -16,7 +16,7 @@ namespace PokedexFinalProject.Controllers
             return View();
         }
         //Index despues de login incorrecto 
-        public ActionResult Index(string mensaje)
+        public ActionResult IndexString(string mensaje)
         {
             return View();
         }
@@ -29,7 +29,7 @@ namespace PokedexFinalProject.Controllers
             if (SharedInstance.AppUser == null)
             {
                 //el usuario fue incorrecto
-                return RedirectToAction("Index", new { mensaje = "Oops EL usuario no existe!" })
+                return RedirectToAction("Index", new { mensaje = "Oops EL usuario no existe!" });
             }
             else
             {
