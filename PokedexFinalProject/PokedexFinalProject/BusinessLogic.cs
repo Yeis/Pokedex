@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace PokedexFinalProject
 {
@@ -56,6 +57,19 @@ namespace PokedexFinalProject
         {
                // context.LogDatas.Add(log);
                 //context.SaveChanges();
+        }
+
+        public IEnumerable<SelectListItem> GetOptions()
+        {
+            IEnumerable<SelectListItem> options = new[]
+                {
+                new SelectListItem { Value = "0" , Text= ""},
+                new SelectListItem {Value = "1" , Text = "Active Users Week" },
+                new SelectListItem {Value = "2" , Text = "Active Users Month" }
+
+            };
+
+            return options;
         }
     }
 }

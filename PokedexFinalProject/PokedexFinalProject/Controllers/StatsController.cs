@@ -13,27 +13,11 @@ namespace PokedexFinalProject.Controllers
         BusinessLogic BL = new BusinessLogic();
         // GET: Stats
         [HttpGet]
-        public ActionResult Index(StatsViewModel Model , bool diferente )
+        public ActionResult Index( )
         {
-           // if (Model.Selectedid < 1)
-            //{
                 var model = new StatsViewModel();
-                model.Options = new[]
-                {
-                new SelectListItem {Value = "1" , Text = "Active Users Week" },
-                new SelectListItem {Value = "2" , Text = "Active Users Month" }
-
-            };
+                  model.Options = BL.GetOptions();
                 return View(model);
-            //}
-            if (true)
-            {
-
-            }
-            else
-            {
-                return View(model);
-            }
             //ListItem item = new ListItem();
             //List<ActiveUsers_Month_Result> temp = BL.Acitve_Users_Month();
         }
@@ -41,22 +25,36 @@ namespace PokedexFinalProject.Controllers
         [HttpPost]
         public ActionResult Index(StatsViewModel model)
         {
+            model.Options = BL.GetOptions();
+
             switch (model.Selectedid)
             {
                 case 1:
                     model.partialName = "ActiveUsersWeek";
                     model.ActiveUsersWeek = BL.Acitve_Users_Week();
-                    return RedirectToAction("Index", model);
+                    break;
                 case 2:
                     model.partialName = "ActiveUsersMonth";
                     model.ActiveUsersMonth = BL.Acitve_Users_Month();
-                    return RedirectToAction("Index", model);
+                    break;
                 default:
                     break;
             }
 
-            return View();
+            return View(model);
         }
-      
+
+
+        public PartialViewResult ActiveUsersWeek(IEnumerable<PokedexFinalProject.ActiveUsers_Week_Result> weeks)
+        {
+            return PartialView(weeks);
+        }
+
+        public PartialViewResult ActiveUsersMonth(IEnumerable<PokedexFinalProject.ActiveUsers_Month_Result> months)
+        {
+            return PartialView(months);
+        }
+
+
     }
 }

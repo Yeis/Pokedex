@@ -382,7 +382,8 @@
     <Content Include="Views\Stats\Index.cshtml" />
     <Content Include="Views\Stats\View.cshtml" />
     <Content Include="Views\Stats\ActiveUsersWeek.cshtml" />
-    <Content Include="Views\Stats\ActiveUsersMonth.cshtml" />
+    <Content Include="Views\Shared\ActiveUsersMonth.cshtml" />
+    <Content Include="Views\Stats\SetStats.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
