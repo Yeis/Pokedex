@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace PokedexFinalProject.Models
@@ -79,6 +80,19 @@ namespace PokedexFinalProject.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        public string Name { get; set; }
+
+        [Required]
+        public string LastName { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
+        public DateTime DoB { get; set; }
+
+        [Required]
+        public string Username { get; set; }
     }
 
     public class ResetPasswordViewModel
