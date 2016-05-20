@@ -1,0 +1,39 @@
+﻿@using PokedexFinalProject.Models;
+@model StatsViewModel
+@using System.Web.UI.WebControls;
+@{
+    ViewBag.Title = "Index";
+}
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <dl>
+            <dt>
+                @Html.LabelFor(x => x.Selectedid)
+            </dt>
+            <dd>
+                @Html.DropDownListFor(x => x.Selectedid, Model.Options)
+            </dd>
+        </dl>
+    </fieldset>
+
+    <input type="submit" value="Search" />
+}
+
+<div id="partial-table" >
+
+@{ 
+        switch (Model.partialName)
+        {
+            case "ActiveUsersWeek":
+                Html.Partial("ActiveUsersWeek", Model.ActiveUsersWeek);
+                break;
+            case "ActiveUsersMonth":
+                Html.Partial("ActiveUsersMonth", Model.ActiveUsersMonth);
+                break;
+            default:
+            break;
+        }
+    }
+</div>
+
