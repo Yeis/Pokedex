@@ -30,6 +30,10 @@
             case "ActiveUsersMonth":
                 Html.RenderPartial("~/Views/Shared/ActiveUsersMonth.cshtml", Model.ActiveUsersMonth);
                 break;
+            case "SP_ConexionesActivas":
+                Html.RenderPartial("~/Views/Shared/ConexionesActivas.cshtml", Model.ActiveConnections);
+
+                break;
             default:
                 break;
         }

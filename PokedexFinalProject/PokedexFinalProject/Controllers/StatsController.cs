@@ -37,6 +37,26 @@ namespace PokedexFinalProject.Controllers
                     model.partialName = "ActiveUsersMonth";
                     model.ActiveUsersMonth = BL.Acitve_Users_Month();
                     break;
+                case 3:
+                    model.partialName = "ActiveUsersMonth";
+                    model.ActiveUsersMonth = BL.Acitve_Users_Month();
+                    break;
+                case 4:
+                    model.partialName = "ActiveUsersMonth";
+                    model.ActiveUsersMonth = BL.Acitve_Users_Month();
+                    break;
+                case 5:
+                    model.partialName = "SP_ConexionesActivas";
+                    model.ActiveConnections = BL.GetActiveConnections();
+                    break;
+                case 6:
+                    model.partialName = "ActiveUsersMonth";
+                    model.ActiveUsersMonth = BL.Acitve_Users_Month();
+                    break;
+                case 7:
+                    model.partialName = "ActiveUsersMonth";
+                    model.ActiveUsersMonth = BL.Acitve_Users_Month();
+                    break;
                 default:
                     break;
             }

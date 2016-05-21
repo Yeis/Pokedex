@@ -51,6 +51,17 @@ namespace PokedexFinalProject
          
             
         }
+        public List<SP_ConexionesActivas_Result> GetActiveConnections()
+        {
+            Starttime = DateTime.Now.Millisecond;
+            List<SP_ConexionesActivas_Result> result = context.SP_ConexionesActivas().ToList();
+            Endtime = DateTime.Now.Millisecond;
+
+            AddLog(new LogData() { nombre = "SP_ConexionesActivas", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
+            return result;
+
+
+        }
         public List<ActiveUsers_Month_Result> Acitve_Users_Month()
         {
                 Starttime = DateTime.Now.Millisecond;
@@ -66,8 +77,18 @@ namespace PokedexFinalProject
                 List<ActiveUsers_Week_Result> result = context.ActiveUsers_Week().ToList();
                 Endtime = DateTime.Now.Millisecond;
 
-                AddLog(new LogData() { id = 10, nombre = "ActiveUsers_Week", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
+                AddLog(new LogData() { nombre = "ActiveUsers_Week", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
                 return result;
+        }
+        public GetPokemonDetail_Result GetPokemonDetails(int id)
+        {
+            Starttime = DateTime.Now.Millisecond;
+            GetPokemonDetail_Result result = context.GetPokemonDetail(id).FirstOrDefault();
+            Endtime = DateTime.Now.Millisecond;
+
+            AddLog(new LogData() { nombre = "GetPokemonDetail", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
+            return result;
+
         }
 
         public void LogOut()
@@ -77,6 +98,7 @@ namespace PokedexFinalProject
         }
         public void AddLog(LogData log )
         {
+            log.id = context.LogDatas.Count() + 1;
                context.LogDatas.Add(log);
                 context.SaveChanges();
         }
@@ -99,13 +121,19 @@ namespace PokedexFinalProject
             }
             return null;
         }
-              public IEnumerable<SelectListItem> GetOptions()
+        public IEnumerable<SelectListItem> GetOptions()
         {
             IEnumerable<SelectListItem> options = new[]
                 {
                 new SelectListItem { Value = "0" , Text= ""},
                 new SelectListItem {Value = "1" , Text = "Active Users Week" },
-                new SelectListItem {Value = "2" , Text = "Active Users Month" }
+                new SelectListItem {Value = "2" , Text = "Active Users Month" },
+                new SelectListItem {Value = "3" , Text = "Active Users Month" },
+                new SelectListItem { Value = "4" , Text= "SP Range By Hours"},
+                new SelectListItem {Value = "5" , Text = "Active DB Connections" },
+                new SelectListItem {Value = "6" , Text = "DB Tables with Count" },
+                new SelectListItem {Value = "7" , Text = "Table Columns" }
+
 
             };
 
