@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="PokedexModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="PokedexModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errors Found During Generation:
 warning 6002: The table/view 'Pokedex.dbo.Evolucion' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Evolucion">
@@ -306,9 +306,9 @@ warning 6002: The table/view 'Pokedex.dbo.GetAllPokemon' does not have a primary
           <Parameter Name="Userid" Type="int" Mode="In" />
         </Function>
         <EntityContainer Name="PokedexModelStoreContainer">
-          <EntitySet Name="LogData" EntityType="Self.LogData" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Evolucion" EntityType="Self.Evolucion" store:Type="Tables" store:Schema="dbo">
+          <EntitySet Name="LogData" EntityType="Self.LogData" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Evolucion" EntityType="Self.Evolucion" store:Type="Tables" store:Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
     [Evolucion].[EvolucionID] AS [EvolucionID], 
     [Evolucion].[PokemonID] AS [PokemonID], 
@@ -318,14 +318,14 @@ warning 6002: The table/view 'Pokedex.dbo.GetAllPokemon' does not have a primary
     [Evolucion].[descripcion] AS [descripcion]
     FROM [dbo].[Evolucion] AS [Evolucion]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="Habilidad" EntityType="Self.Habilidad" store:Type="Tables" store:Schema="dbo">
+          <EntitySet Name="Habilidad" EntityType="Self.Habilidad" store:Type="Tables" store:Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
     [Habilidad].[HabilidadID] AS [HabilidadID], 
     [Habilidad].[Name] AS [Name], 
     [Habilidad].[Descripcion] AS [Descripcion]
     FROM [dbo].[Habilidad] AS [Habilidad]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="Juegos" EntityType="Self.Juegos" store:Type="Tables" store:Schema="dbo">
+          <EntitySet Name="Juegos" EntityType="Self.Juegos" store:Type="Tables" store:Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
     [Juegos].[JuegoID] AS [JuegoID], 
     [Juegos].[Nombre] AS [Nombre], 
@@ -334,7 +334,7 @@ warning 6002: The table/view 'Pokedex.dbo.GetAllPokemon' does not have a primary
     [Juegos].[Region] AS [Region]
     FROM [dbo].[Juegos] AS [Juegos]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="Moves" EntityType="Self.Moves" store:Type="Tables" store:Schema="dbo">
+          <EntitySet Name="Moves" EntityType="Self.Moves" store:Type="Tables" store:Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
     [Moves].[MoveID] AS [MoveID], 
     [Moves].[TipoID] AS [TipoID], 
@@ -345,7 +345,7 @@ warning 6002: The table/view 'Pokedex.dbo.GetAllPokemon' does not have a primary
     [Moves].[Generacion] AS [Generacion]
     FROM [dbo].[Moves] AS [Moves]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="Pokemon" EntityType="Self.Pokemon" store:Type="Tables" store:Schema="dbo">
+          <EntitySet Name="Pokemon" EntityType="Self.Pokemon" store:Type="Tables" store:Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
     [Pokemon].[PokemonID] AS [PokemonID], 
     [Pokemon].[Nombre] AS [Nombre], 
@@ -357,7 +357,7 @@ warning 6002: The table/view 'Pokedex.dbo.GetAllPokemon' does not have a primary
     [Pokemon].[HabilidadID] AS [HabilidadID]
     FROM [dbo].[Pokemon] AS [Pokemon]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="Stat" EntityType="Self.Stat" store:Type="Tables" store:Schema="dbo">
+          <EntitySet Name="Stat" EntityType="Self.Stat" store:Type="Tables" store:Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
     [Stat].[StatID] AS [StatID], 
     [Stat].[PokemonID] AS [PokemonID], 
@@ -369,13 +369,13 @@ warning 6002: The table/view 'Pokedex.dbo.GetAllPokemon' does not have a primary
     [Stat].[SplDefense] AS [SplDefense]
     FROM [dbo].[Stat] AS [Stat]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="Tipo" EntityType="Self.Tipo" store:Type="Tables" store:Schema="dbo">
+          <EntitySet Name="Tipo" EntityType="Self.Tipo" store:Type="Tables" store:Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
     [Tipo].[TipoID] AS [TipoID], 
     [Tipo].[Nombre] AS [Nombre]
     FROM [dbo].[Tipo] AS [Tipo]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="Usuario" EntityType="Self.Usuario" store:Type="Tables" store:Schema="dbo">
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" store:Type="Tables" store:Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
     [Usuario].[UserID] AS [UserID], 
     [Usuario].[FirstName] AS [FirstName], 
@@ -387,7 +387,7 @@ warning 6002: The table/view 'Pokedex.dbo.GetAllPokemon' does not have a primary
     [Usuario].[Admin] AS [Admin]
     FROM [dbo].[Usuario] AS [Usuario]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="GetAllPokemon" EntityType="Self.GetAllPokemon" store:Type="Views" store:Schema="dbo">
+          <EntitySet Name="GetAllPokemon" EntityType="Self.GetAllPokemon" store:Type="Views" store:Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
     [GetAllPokemon].[PokemonID] AS [PokemonID], 
     [GetAllPokemon].[Nombre] AS [Nombre], 
@@ -404,7 +404,7 @@ warning 6002: The table/view 'Pokedex.dbo.GetAllPokemon' does not have a primary
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="PokedexModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="PokedexModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
         <EntityType Name="LogData">
           <Key>
             <PropertyRef Name="id" />
@@ -422,7 +422,7 @@ warning 6002: The table/view 'Pokedex.dbo.GetAllPokemon' does not have a primary
           </Key>
           <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
@@ -431,7 +431,7 @@ warning 6002: The table/view 'Pokedex.dbo.GetAllPokemon' does not have a primary
             <PropertyRef Name="EvolucionID" />
             <PropertyRef Name="PokemonID" />
           </Key>
-          <Property Name="EvolucionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EvolucionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="PokemonID" Type="Int32" Nullable="false" />
           <Property Name="AntID" Type="Int32" />
           <Property Name="SigId" Type="Int32" />
@@ -442,7 +442,7 @@ warning 6002: The table/view 'Pokedex.dbo.GetAllPokemon' does not have a primary
           <Key>
             <PropertyRef Name="HabilidadID" />
           </Key>
-          <Property Name="HabilidadID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HabilidadID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="Name" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
@@ -450,7 +450,7 @@ warning 6002: The table/view 'Pokedex.dbo.GetAllPokemon' does not have a primary
           <Key>
             <PropertyRef Name="JuegoID" />
           </Key>
-          <Property Name="JuegoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JuegoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Año" Type="DateTime" Precision="3" />
           <Property Name="Generacion" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
@@ -460,7 +460,7 @@ warning 6002: The table/view 'Pokedex.dbo.GetAllPokemon' does not have a primary
           <Key>
             <PropertyRef Name="MoveID" />
           </Key>
-          <Property Name="MoveID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MoveID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="TipoID" Type="Int32" />
           <Property Name="Nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="Accuracy" Type="Int32" />
@@ -477,7 +477,7 @@ warning 6002: The table/view 'Pokedex.dbo.GetAllPokemon' does not have a primary
             <PropertyRef Name="Generacion" />
             <PropertyRef Name="TipoID" />
           </Key>
-          <Property Name="PokemonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PokemonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="Nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Peso" Type="Int32" Nullable="false" />
           <Property Name="Altura" Type="Double" Nullable="false" />
@@ -491,7 +491,7 @@ warning 6002: The table/view 'Pokedex.dbo.GetAllPokemon' does not have a primary
             <PropertyRef Name="StatID" />
             <PropertyRef Name="PokemonID" />
           </Key>
-          <Property Name="StatID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="PokemonID" Type="Int32" Nullable="false" />
           <Property Name="HP" Type="Int32" />
           <Property Name="Attack" Type="Int32" />
@@ -504,7 +504,7 @@ warning 6002: The table/view 'Pokedex.dbo.GetAllPokemon' does not have a primary
           <Key>
             <PropertyRef Name="TipoID" />
           </Key>
-          <Property Name="TipoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="Nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Usuario">
@@ -513,7 +513,7 @@ warning 6002: The table/view 'Pokedex.dbo.GetAllPokemon' does not have a primary
             <PropertyRef Name="Username" />
             <PropertyRef Name="Password" />
           </Key>
-          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="DOB" Type="DateTime" Precision="3" />
@@ -531,7 +531,7 @@ warning 6002: The table/view 'Pokedex.dbo.GetAllPokemon' does not have a primary
             <PropertyRef Name="Generacion" />
             <PropertyRef Name="TipoID" />
           </Key>
-          <Property Name="PokemonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PokemonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="Nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Peso" Type="Int32" Nullable="false" />
           <Property Name="Altura" Type="Double" Nullable="false" />
@@ -540,7 +540,7 @@ warning 6002: The table/view 'Pokedex.dbo.GetAllPokemon' does not have a primary
           <Property Name="TipoID2" Type="Int32" />
           <Property Name="HabilidadID" Type="Int32" />
         </EntityType>
-        <EntityContainer Name="PokedexEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="PokedexEntities" annotation:LazyLoadingEnabled="true" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
           <EntitySet Name="LogDatas" EntityType="Self.LogData" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Evolucions" EntityType="Self.Evolucion" />
@@ -1140,22 +1140,22 @@ warning 6002: The table/view 'Pokedex.dbo.GetAllPokemon' does not have a primary
     </edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
-  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
-    <Connection>
-      <DesignerInfoPropertySet>
-        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
-      </DesignerInfoPropertySet>
-    </Connection>
-    <Options>
-      <DesignerInfoPropertySet>
-        <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
-      </DesignerInfoPropertySet>
-    </Options>
+  <edmx:Designer>
+    <edmx:Connection>
+      <edmx:DesignerInfoPropertySet>
+        <edmx:DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </edmx:DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <edmx:DesignerInfoPropertySet>
+        <edmx:DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <edmx:DesignerProperty Name="EnablePluralization" Value="true" />
+        <edmx:DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <edmx:DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <edmx:DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </edmx:DesignerInfoPropertySet>
+    </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
-    <Diagrams></Diagrams>
-  </Designer>
+    <edmx:Diagrams />
+  </edmx:Designer>
 </edmx:Edmx>

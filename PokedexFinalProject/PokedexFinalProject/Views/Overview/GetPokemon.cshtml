@@ -1,0 +1,25 @@
+﻿@model PokedexFinalProject.Pokemon
+@{ 
+    List<Pokemon> listPokemon = new List<Pokemon>();
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GetPokemon</title>
+</head>
+<body>
+    <div> 
+        @{ 
+            foreach(Pokemon pok in listPokemon)
+            {
+                <div class="col-sm-1">
+
+                </div>
+            }
+        }
+    </div>
+</body>
+</html>
