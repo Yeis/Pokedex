@@ -8,7 +8,8 @@ CREATE TABLE Pokemon(
 	Generacion INT NOT NULL,
 	TipoID INT NOT NULL,
 	TipoID2 INT,
-	HabilidadID INT
+	HabilidadID INT,
+	pathImg VARCHAR(500)
 )
 
 CREATE TABLE Stat(

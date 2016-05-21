@@ -485,6 +485,7 @@
     <Content Include="Views\Login\Register.cshtml" />
     <Content Include="Views\Stat\Stat.cshtml" />
     <Content Include="Views\Overview\Index.cshtml" />
+    <Content Include="Views\Shared\ActiveUsersWeek.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
