@@ -10,18 +10,13 @@
 namespace PokedexFinalProject
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Pokemon
+    public partial class SP_ListaIndices_Result
     {
-        public int PokemonID { get; set; }
-        public string Nombre { get; set; }
-        public int Peso { get; set; }
-        public double Altura { get; set; }
-        public int Generacion { get; set; }
-        public int TipoID { get; set; }
-        public Nullable<int> TipoID2 { get; set; }
-        public Nullable<int> HabilidadID { get; set; }
-        public string pathImg { get; set; }
+        public string Database_Name { get; set; }
+        public string Schema_Name { get; set; }
+        public string Table_Name { get; set; }
+        public string Index_Name { get; set; }
+        public string Index_Type { get; set; }
     }
 }

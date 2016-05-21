@@ -89,8 +89,8 @@ CREATE TABLE Usuario
 	email VARCHAR(100),
 	DoB DATETIME,
 	Username VARCHAR(100),
-	[Password] VARCHAR(25),
-	[Privileges] VARCHAR(20)
+	Password VARCHAR(25),
+	Admin INT
 )
 CREATE TABLE LogData
 (

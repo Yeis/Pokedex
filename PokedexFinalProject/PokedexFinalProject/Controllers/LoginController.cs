@@ -34,7 +34,7 @@ namespace PokedexFinalProject.Controllers
                 //el usuario fue correcto 
                 return RedirectToAction("Index","Overview");
             }
-            return View();
+          
         }
 
         //[HttpPost]

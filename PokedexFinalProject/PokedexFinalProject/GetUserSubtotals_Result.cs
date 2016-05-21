@@ -10,18 +10,11 @@
 namespace PokedexFinalProject
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Pokemon
+    public partial class GetUserSubtotals_Result
     {
-        public int PokemonID { get; set; }
-        public string Nombre { get; set; }
-        public int Peso { get; set; }
-        public double Altura { get; set; }
-        public int Generacion { get; set; }
-        public int TipoID { get; set; }
-        public Nullable<int> TipoID2 { get; set; }
-        public Nullable<int> HabilidadID { get; set; }
-        public string pathImg { get; set; }
+        public string Username { get; set; }
+        public Nullable<int> Admin { get; set; }
+        public Nullable<int> Column1 { get; set; }
     }
 }

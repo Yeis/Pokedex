@@ -28,7 +28,7 @@ namespace PokedexFinalProject
                 Usuario SQLuser = FindSQL(username, password);
                 if (SQLuser != null)
                 {
-                    CreateMongo(SQLuser.FirstName, SQLuser.LastName, SQLuser.Password, SQLuser.Admin.Value, SQLuser.Username, SQLuser.Email, SQLuser.DOB.Value);
+                    CreateMongo(SQLuser.FirstName, SQLuser.LastName, SQLuser.Password, SQLuser.Admin.Value, SQLuser.Username, SQLuser.Email, SQLuser.DOB.Value , SQLuser.UserID);
                     AddLog(new LogData() { nombre = SQLuser.Username, tipo = "Login", fecha = DateTime.Now, UserId = SQLuser.UserID, exec_time = (Endtime - Starttime) });
 
                     return new LocalUser(SQLuser.UserID, SQLuser.FirstName, SQLuser.LastName, SQLuser.DOB, SQLuser.Username, SQLuser.Password, SQLuser.Email, SQLuser.Admin, false);
@@ -110,7 +110,7 @@ namespace PokedexFinalProject
             };
 
             return options;}
-        static void CreateMongo(string FirstName, string LastName, string pass, int Admin, string Username, string mail, DateTime DOB)
+        static void CreateMongo(string FirstName, string LastName, string pass, int Admin, string Username, string mail, DateTime DOB , int userid)
         {
             var mongo = new MongoClient("mongodb://localhost:27017");
             var db = mongo.GetDatabase("users");
@@ -122,7 +122,8 @@ namespace PokedexFinalProject
                 Email = mail,
                 Admin = Admin,
                 Username = Username,
-                DOB = DOB
+                DOB = DOB,
+                UserID = userid
             };
             var collections = db.GetCollection<Usuario>("users");
             collections.InsertOne(user);

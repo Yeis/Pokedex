@@ -472,5 +472,90 @@ namespace PokedexFinalProject
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPByUser_Result>("SPByUser", useridParameter);
         }
+    
+        public virtual ObjectResult<GetSPByHour_Result> GetSPByHour(Nullable<System.DateTime> date1, Nullable<System.DateTime> date2)
+        {
+            var date1Parameter = date1.HasValue ?
+                new ObjectParameter("date1", date1) :
+                new ObjectParameter("date1", typeof(System.DateTime));
+    
+            var date2Parameter = date2.HasValue ?
+                new ObjectParameter("date2", date2) :
+                new ObjectParameter("date2", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetSPByHour_Result>("GetSPByHour", date1Parameter, date2Parameter);
+        }
+    
+        public virtual ObjectResult<GetUserSubtotals_Result> GetUserSubtotals()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetUserSubtotals_Result>("GetUserSubtotals");
+        }
+    
+        public virtual ObjectResult<SP_ConexionesActivas_Result> SP_ConexionesActivas()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_ConexionesActivas_Result>("SP_ConexionesActivas");
+        }
+    
+        public virtual ObjectResult<SP_InfoSp_Result> SP_InfoSp()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_InfoSp_Result>("SP_InfoSp");
+        }
+    
+        public virtual ObjectResult<SP_Lista_Mil_Registros_Result> SP_Lista_Mil_Registros()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_Lista_Mil_Registros_Result>("SP_Lista_Mil_Registros");
+        }
+    
+        public virtual ObjectResult<SP_Lista_Tablas_Result> SP_Lista_Tablas()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_Lista_Tablas_Result>("SP_Lista_Tablas");
+        }
+    
+        public virtual ObjectResult<SP_ListaColumnas_Result> SP_ListaColumnas(string tabla)
+        {
+            var tablaParameter = tabla != null ?
+                new ObjectParameter("Tabla", tabla) :
+                new ObjectParameter("Tabla", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_ListaColumnas_Result>("SP_ListaColumnas", tablaParameter);
+        }
+    
+        public virtual ObjectResult<SP_ListaIndices_Result> SP_ListaIndices()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_ListaIndices_Result>("SP_ListaIndices");
+        }
+    
+        public virtual ObjectResult<SP_ListaViews_Result> SP_ListaViews()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_ListaViews_Result>("SP_ListaViews");
+        }
+    
+        public virtual ObjectResult<SPCount_Result> SPCount()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPCount_Result>("SPCount");
+        }
+    
+        public virtual ObjectResult<SPExecAverage_Result> SPExecAverage()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPExecAverage_Result>("SPExecAverage");
+        }
+    
+        public virtual ObjectResult<SPInRange_Result> SPInRange(Nullable<int> lowlimit, Nullable<int> highlimit)
+        {
+            var lowlimitParameter = lowlimit.HasValue ?
+                new ObjectParameter("lowlimit", lowlimit) :
+                new ObjectParameter("lowlimit", typeof(int));
+    
+            var highlimitParameter = highlimit.HasValue ?
+                new ObjectParameter("highlimit", highlimit) :
+                new ObjectParameter("highlimit", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPInRange_Result>("SPInRange", lowlimitParameter, highlimitParameter);
+        }
+    
+        public virtual ObjectResult<string> UnusedSP()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UnusedSP");
+        }
     }
 }

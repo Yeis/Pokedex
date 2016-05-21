@@ -10,18 +10,14 @@
 namespace PokedexFinalProject
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Pokemon
+    public partial class SP_ConexionesActivas_Result
     {
-        public int PokemonID { get; set; }
-        public string Nombre { get; set; }
-        public int Peso { get; set; }
-        public double Altura { get; set; }
-        public int Generacion { get; set; }
-        public int TipoID { get; set; }
-        public Nullable<int> TipoID2 { get; set; }
-        public Nullable<int> HabilidadID { get; set; }
-        public string pathImg { get; set; }
+        public string Database_Name { get; set; }
+        public string loginame { get; set; }
+        public string hostname { get; set; }
+        public string status { get; set; }
+        public string program_name { get; set; }
+        public System.DateTime login_time { get; set; }
     }
 }
