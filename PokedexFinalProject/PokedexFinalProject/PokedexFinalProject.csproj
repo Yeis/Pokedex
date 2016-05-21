@@ -260,6 +260,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Register.cs" />
     <Compile Include="Move.cs">
       <DependentUpon>PokedexEntitiesSQLServer.tt</DependentUpon>
     </Compile>
