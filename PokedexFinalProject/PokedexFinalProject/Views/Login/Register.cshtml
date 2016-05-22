@@ -1,0 +1,90 @@
+﻿@model PokedexFinalProject.Models.Register
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <style>
+        /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+        .row.content {
+            height: 450px;
+        }
+
+        /* Set gray background color and 100% height */
+        .sidenav {
+            padding-top: 20px;
+            background-color: #f1f1f1;
+            height: 100%;
+        }
+
+        /* Set black background color, white text and some padding */
+        footer {
+            background-color: #555;
+            color: white;
+            padding: 15px;
+        }
+
+        }
+    </style>
+    <title>Index</title>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Pokédex", "Index", "Home", new { area = "" }, new { @class = "navbar-brand", style = "color: #ffffff" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li style="color:white">@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Pokémon", "About", "Home")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div id="Register">
+        <h3>Login to your Pokédex!</h3>
+        <div class="row">
+
+            <div class="col-sm-2">
+                @using (Html.BeginForm())
+                {
+                    <p>Name:</p>
+                    <p> @Html.TextBoxFor(x => x.Name)</p>
+                    <p>Last Name:</p>
+                    <p>@Html.TextBoxFor(x => x.LastName)</p>
+                    <p>Date of Birth:</p>
+                    <p>@Html.TextBoxFor(x => x.DoB)</p>
+                    <p>Email:</p>
+                    <p>@Html.TextBoxFor(x => x.Email)</p>
+                    <p>Username:</p>
+                    <p>@Html.TextBoxFor(x => x.Username)</p>
+                    <p>Password:</p>
+                    <p> @Html.PasswordFor(x => x.LastName)</p>
+                    
+
+                    <input type="submit" value="Login" />
+                }
+            </div>
+          
+            <div class="col-sm-2">
+                <img src="http://cdn.bulbagarden.net/upload/thumb/c/ca/092Gastly.png/250px-092Gastly.png" />
+            </div>
+        </div>
+    </div> 
+</body>
+</html>

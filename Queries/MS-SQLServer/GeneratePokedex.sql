@@ -1,102 +1,105 @@
-ALTER table Pokemon(
-	PokemonID int Identity(1,1) not null primary key,
-	Nombre varchar(20) not null,
-	Peso int not null,
-	Altura float not null,
-	Generacion int not null,
-	TipoID int not null,
-	TipoID2 int,
-	HabilidadID int
+CREATE DATABASE Pokedex
+USE Pokedex
+CREATE TABLE Pokemon(
+	PokemonID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	Nombre VARCHAR(20) NOT NULL,
+	Peso INT NOT NULL,
+	Altura FLOAT NOT NULL,
+	Generacion INT NOT NULL,
+	TipoID INT NOT NULL,
+	TipoID2 INT,
+	HabilidadID INT
 )
 
-ALTER table Stat(
-	StatID int Identity(1,1) not null  PRIMARY KEY,
-	PokemonID int not null,
-	HP int,
-	Attack int,
-	Defense int,
-	Speed int,
-	SplAttack int,
-	SplDefense int
+CREATE TABLE Stat(
+	StatID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	PokemonID INT NOT NULL,
+	HP INT,
+	Attack INT,
+	Defense INT,
+	Speed INT,
+	SplAttack INT,
+	SplDefense INT
 )
 
-ALTER table Juegos(
-	JuegoID int  PRIMARY KEY,
-	Nombre varchar(100),
-	Año datetime,
-	Generacion varchar(10),
-	Region varchar(25)
+CREATE TABLE Juegos(
+	JuegoID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	Nombre VARCHAR(100),
+	Año DATETIME,
+	Generacion VARCHAR(10),
+	Region VARCHAR(25)
 )
 
-ALTER table Tipo(
-	TipoID int identity(1,1)  PRIMARY KEY, 
-	Nombre varchar(25),
-	Generacion varchar(10)
+CREATE TABLE Tipo(
+	TipoID INT IDENTITY(1,1) NOT NULL PRIMARY KEY, 
+	Nombre VARCHAR(25),
+	Generacion VARCHAR(10)
 )
 
-ALTER table Moves(
-	MoveID int identity(1,1)  PRIMARY KEY,
-	TipoID int,
-	Nombre varchar(25),
-	Accuracy int,
-	Power int,
-	PowerPoints int,
-	Generacion int
+CREATE TABLE Moves(
+	MoveID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	TipoID INT,
+	Nombre VARCHAR(25),
+	Accuracy INT,
+	[Power] INT,
+	PowerPoints INT,
+	Generacion INT
 )
 
-ALTER table JuegosRelacion(
-	JuegoRelID  int PRIMARY KEY,
-	PokemonID int,
-	JuegoID int
+CREATE TABLE JuegosRelacion(
+	JuegoRelID  INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	PokemonID INT,
+	JuegoID INT
 )
 
-ALTER table TipoRelacion(
-	TipoID int  PRIMARY KEY,
-	Ventaja varchar(25),
-	DetailVentaja varchar(max),
-	Debilidad varchar(25),
-	DetailDebilidad varchar(max)
+CREATE TABLE TipoRelacion(
+	TipoID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	Ventaja VARCHAR(25),
+	DetailVentaja VARCHAR(MAX),
+	Debilidad VARCHAR(25),
+	DetailDebilidad VARCHAR(MAX)
 )
 
-ALTER table Evolucion(
-	EvolucionID int identity(1,1)  PRIMARY KEY,
-	PokemonID int not null,
-	AntID int,
-	SigId int,
-	status varchar(max),
-	descripcion varchar(max)
+CREATE TABLE Evolucion(
+	EvolucionID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	PokemonID INT NOT NULL,
+	AntID INT,
+	SigId INT,
+	status VARCHAR(MAX),
+	descripcion VARCHAR(MAX)
 )
 
-ALTER table Habilidad(
-	HabilidadID int Identity(1,1)  PRIMARY KEY,
-	Name varchar(15),
-	Descripcion varchar(200)
+CREATE TABLE Habilidad(
+	HabilidadID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	Name VARCHAR(15),
+	Descripcion VARCHAR(200)
 )
 
-ALTER table MovesRelacion(
-	MovRelID int PRIMARY KEY ,
-	PokemonID int, 
-	MoveID int
+CREATE TABLE MovesRelacion(
+	MovRelID INT IDENTITY(1,1) NOT NULL PRIMARY KEY ,
+	PokemonID INT, 
+	MoveID INT
 )
-ALTER table Usuario
+
+CREATE TABLE Usuario
 (
-	UserId int  PRIMARY KEY,
-	Nombre varchar(100) ,
-	Apellido varchar(100),
-	email varchar(100),
-	DoB datetime,
-	Username varchar(100),
-	Password varchar(25),
-	Privileges varchar(20)
+	UserId INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	Nombre VARCHAR(100) ,
+	Apellido VARCHAR(100),
+	email VARCHAR(100),
+	DoB DATETIME,
+	Username VARCHAR(100),
+	[Password] VARCHAR(25),
+	[Privileges] VARCHAR(20)
 )
-CREATE table LogData
+CREATE TABLE LogData
 (
-	id int  PRIMARY KEY,
-	Tnombre varchar(100),
-	tipo  varchar(50),
-	fecha datetime,
-	exec_time int null,
-	UserId  int null 
+	id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	nombre VARCHAR(100),
+	tipo  VARCHAR(50),
+	fecha DATETIME,
+	exec_time INT NULL,
+	UserId  INT NULL 
 
 )
 ALTER TABLE LogData ALTER 

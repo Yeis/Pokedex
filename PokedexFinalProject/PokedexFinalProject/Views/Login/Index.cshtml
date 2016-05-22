@@ -1,0 +1,62 @@
+﻿@model LocalUser
+@{
+
+}
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8"> 
+   
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <style>
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+  }
+    </style>
+    <title>Index</title>
+</head>
+<body>
+    <div id="Login" >
+        <h3>Login to your Pokédex!</h3>
+        <div class="row">
+            
+            <div class="col-sm-4">
+                @using (Html.BeginForm())
+                {
+                    <p>Username:</p>
+                    <p> @Html.TextBoxFor(x => x.Username)</p>
+                    <p>Password:</p>
+                    <p> @Html.PasswordFor(x => x.Password)</p>
+                    <input type="submit" value="Login" />
+                }
+            </div>
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <img src="http://vignette2.wikia.nocookie.net/pokemon/images/b/b1/025Pikachu_XY_anime_3.png/revision/latest?cb=20140902050035" />
+            </div>
+        </div>
+    </div> 
+   
+
+</body>
+</html>
