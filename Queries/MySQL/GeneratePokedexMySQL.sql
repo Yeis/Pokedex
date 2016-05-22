@@ -8,7 +8,8 @@ create table Pokemon(
 	Generacion int not null,
 	TipoID int not null,
 	TipoID2 int,
-	HabilidadID int
+	HabilidadID int,
+    PathImg varchar(500)
 );
 
 create table Stat(
