@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,41 +8,94 @@ namespace PokedexFinalProject
 {
     public class BusinessLogic
     {
+        int Starttime;
+        int Endtime;
+        PokedexEntities context;
         public BusinessLogic()
         {
-
+            context = new PokedexEntities();
         }
 
         public LocalUser Login(string username, string password)
-        {
-            using (var context = new PokedexEntities())
-            {
-                int startime = DateTime.Now.Millisecond;
-                IQueryable<Usuario> usuario = context.Usuarios.Where(u => u.Username == username && u.Password == password);
-                int endtime = DateTime.Now.Millisecond;
-                List<Usuario> user = new List<Usuario>(usuario);
+        {  
+            Starttime = DateTime.Now.Millisecond;
 
-                //checamos si las credenciales fueron correctas 
-                if (user.Count > 0)
+            Usuario usuario = FindMongo(username, password);
+            if (usuario == null)
+            {
+                usuario = FindSQL(username, password);
+                if (usuario != null)
                 {
-                    LogData log = new LogData()
-                    {
-                        nombre = user[0].Username,
-                        tipo = "Login",
-                        fecha = DateTime.Now,
-                        UserId = user[0].UserID,
-                        exec_time = (endtime - startime)
-                    };
-                    
-                    context.LogDatas.Add(log);
-                    context.SaveChanges();
-                    return new LocalUser(user[0].UserID, user[0].FirstName, user[0].LastName, user[0].DOB, user[0].Username, user[0].Password, user[0].Email, user[0].Admin, false);
-                }
-                else
-                {
-                    return null;
+                    CreateMongo(usuario.FirstName,usuario.LastName,usuario.Password,usuario.Admin.Value,usuario.Username,usuario.Email,usuario.DOB.Value);
                 }
             }
+            Endtime = DateTime.Now.Millisecond;
+            //checamos si las credenciales fueron correctas 
+            if (usuario != null)
+            {
+                AddLog(new LogData() {  nombre = usuario.Username, tipo = "Login", fecha = DateTime.Now, UserId = usuario.UserID , exec_time = (Endtime - Starttime)});
+                return new LocalUser(usuario.UserID, usuario.FirstName, usuario.LastName, usuario.DOB, usuario.Username, usuario.Password, usuario.Email, usuario.Admin, false);
+            }
+            else
+            {
+                return null;
+            }
+            
+        }
+        public List<ActiveUsers_Month_Result> Acitve_Users_Month()
+        {
+                Starttime = DateTime.Now.Millisecond;
+                List<ActiveUsers_Month_Result> result = context.ActiveUsers_Month().ToList();
+                Endtime = DateTime.Now.Millisecond;
+               
+                AddLog(new LogData() {   id= 10, nombre = "ActiveUsers_Month", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
+                return result;
+        }
+        public List<ActiveUsers_Week_Result> Acitve_Users_Week()
+        {
+                Starttime = DateTime.Now.Millisecond;
+                List<ActiveUsers_Week_Result> result = context.ActiveUsers_Week().ToList();
+                Endtime = DateTime.Now.Millisecond;
+
+                AddLog(new LogData() { id = 10, nombre = "ActiveUsers_Week", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
+                return result;
+        }
+        public void AddLog(LogData log )
+        {
+               // context.LogDatas.Add(log);
+                //context.SaveChanges();
+        }
+        public Usuario FindSQL(string username, string password) 
+        {
+            Usuario user = context.Usuarios.Where(u => u.Username == username && u.Password == password).FirstOrDefault(); 
+            return user;
+        }
+        public Usuario FindMongo(string username, string pass)
+        {
+            var mongo = new MongoClient("mongodb://localhost:27017");
+            var db = mongo.GetDatabase("users");
+            var collections = db.GetCollection<Usuario>("users");
+            var users = from u in collections.AsQueryable<Usuario>()
+                        where u.Username == username && u.Password == pass
+                        select u;
+            return users.ToList<Usuario>().First();
+        }
+        static void CreateMongo(string FirstName, string LastName, string pass, int Admin, string Username, string mail, DateTime DOB)
+        {
+            var mongo = new MongoClient("mongodb://localhost:27017");
+            var db = mongo.GetDatabase("users");
+            var user = new Usuario
+            {
+                FirstName = FirstName,
+                LastName = LastName,
+                Password = pass,
+                Email = mail,
+                Admin = Admin,
+                Username = Username,
+                DOB = DOB
+            };
+            var collections = db.GetCollection<Usuario>("users");
+            collections.InsertOne(user);
         }
     }
 }

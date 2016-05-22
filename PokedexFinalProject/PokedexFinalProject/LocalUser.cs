@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using MongoDB.Bson;
 
 namespace PokedexFinalProject
 {
@@ -17,6 +18,7 @@ namespace PokedexFinalProject
         public string Password { get; set; }
         public string Email { get; set; }
         public int? Admin { get; set; }
+        ObjectId Id { get; set; }
         // FALSE IGUAL MS-SQLSERVER   TRUE = MYSQL 
         public bool Connection { get; set; }
 
