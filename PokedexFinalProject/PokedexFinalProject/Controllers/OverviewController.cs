@@ -8,6 +8,7 @@ namespace PokedexFinalProject.Controllers
 {
     public class OverviewController : Controller
     {
+        PokedexEntities context;
         // GET: Overview
         public ActionResult Index()
         {
@@ -18,9 +19,11 @@ namespace PokedexFinalProject.Controllers
         {
             return View();
         }
-
-        public ActionResult GetDetails()
+        [HttpGet]
+        public ActionResult GetDetails(/*int id*/)
         {
+            //context = new PokedexEntities();
+            //var test = context.GetPokemonDetail(id);
             return View();
         }
     }

@@ -1,6 +1,6 @@
 ﻿@{ 
-    bool _login = false;
-    int admon = 0;
+    bool _login = true;
+    int admon = 1;
 }
 <!DOCTYPE html>
 <html>
@@ -35,7 +35,7 @@
                     {
                         <ul class="nav navbar-nav">
                             <li>@Html.ActionLink("Home", "Index", "Overview")</li>
-                            <li>@Html.ActionLink("Pokémon", "About", "Home")</li>
+                            <li>@Html.ActionLink("Pokémon", "GetPokemon", "Overview")</li>
                             @{
                                 if (admon == 1)
                                 {

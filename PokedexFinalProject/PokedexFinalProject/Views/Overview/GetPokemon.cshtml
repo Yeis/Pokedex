@@ -12,12 +12,23 @@
     <title>GetPokemon</title>
 </head>
 <body>
-    <div> 
+    
+    <div>
+        <div class="col-sm-1">
+
+            <li>@Html.ActionLink("Bulbasaur", "GetDetails", "Overview")</li>
+            
+        </div>
+        <div class="col-sm-1">
+            <li>@Html.ActionLink("Charmander", "GetDetails", "Overview", new {id = "2" },null)</li>
+        </div>
+         
         @{ 
             foreach(Pokemon pok in listPokemon)
             {
                 <div class="col-sm-1">
-                    <p>pok.Nombre</p>
+
+                    <li>@Html.ActionLink(pok.Nombre, "GetDetails", "Overview")</li>
                 </div>
             }
         }

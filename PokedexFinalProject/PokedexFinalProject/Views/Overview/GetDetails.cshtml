@@ -1,6 +1,6 @@
 ﻿@model PokedexFinalProject.Pokemon
 @{
-    
+    //Model.TipoID2 = 2;
 }
 
 <!DOCTYPE html>
@@ -15,10 +15,48 @@
     <div class="col-sm-8"> 
         <div class="row">
             <div class="col-sm-3">
-                <p>Imagen Pokimon</p>
+                <img src="http://cdn.bulbagarden.net/upload/thumb/2/21/001Bulbasaur.png/250px-001Bulbasaur.png" />
 
             </div>
+           
+                @*if (Model.TipoID2 != null)
+                {
+                    <div class="col-sm-3">
 
+                        <p>Nombre</p>
+                        <p>Peso</p>
+                        <p>Altura</p>
+                        <p>Tipo 1</p>
+                        <p>Tipo 2</p>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-sm-3">
+
+                        <p>Nombre</p>
+                        <p>Peso</p>
+                        <p>Altura</p>
+                        <p>Tipo 1</p>
+                    </div>
+                }
+
+            }*@
+            <div class="col-sm-3"></div>
+            <div class="col-sm-3">
+
+                <h3>#001</h3>
+                <h3>Nombre: Bulbasaur</h3>
+                <h3>Peso: 6.9 kg</h3>
+                <h3>Altura: 0.7 m</h3>
+            </div>
+            <div class="col-sm-3">
+
+                <h3>Tipo1: Grass</h3>
+                <h3>Tipo2: Poison</h3>
+                <h3>Generacion: 1</h3>
+                <h3>Habilidad: Chlorophyll</h3>
+            </div>
         </div>
     </div>
     <div class="col-sm-2"></div>

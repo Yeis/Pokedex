@@ -246,10 +246,16 @@
     <Compile Include="GetPokemonEvolutions_Result.cs">
       <DependentUpon>PokedexEntitiesSQLServer.tt</DependentUpon>
     </Compile>
+    <Compile Include="GetSPByHour_Result.cs">
+      <DependentUpon>PokedexEntitiesSQLServer.tt</DependentUpon>
+    </Compile>
     <Compile Include="GetTypeRelations_Result.cs">
       <DependentUpon>PokedexEntitiesSQLServer.tt</DependentUpon>
     </Compile>
     <Compile Include="GetUserContains_Result.cs">
+      <DependentUpon>PokedexEntitiesSQLServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetUserSubtotals_Result.cs">
       <DependentUpon>PokedexEntitiesSQLServer.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
@@ -300,6 +306,36 @@
     <Compile Include="SPByUser_Result.cs">
       <DependentUpon>PokedexEntitiesSQLServer.tt</DependentUpon>
     </Compile>
+    <Compile Include="SPCount_Result.cs">
+      <DependentUpon>PokedexEntitiesSQLServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SPExecAverage_Result.cs">
+      <DependentUpon>PokedexEntitiesSQLServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SPInRange_Result.cs">
+      <DependentUpon>PokedexEntitiesSQLServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_ConexionesActivas_Result.cs">
+      <DependentUpon>PokedexEntitiesSQLServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_InfoSp_Result.cs">
+      <DependentUpon>PokedexEntitiesSQLServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_ListaColumnas_Result.cs">
+      <DependentUpon>PokedexEntitiesSQLServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_ListaIndices_Result.cs">
+      <DependentUpon>PokedexEntitiesSQLServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_ListaViews_Result.cs">
+      <DependentUpon>PokedexEntitiesSQLServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_Lista_Mil_Registros_Result.cs">
+      <DependentUpon>PokedexEntitiesSQLServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_Lista_Tablas_Result.cs">
+      <DependentUpon>PokedexEntitiesSQLServer.tt</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="Stat.cs">
       <DependentUpon>PokedexEntitiesSQLServer.tt</DependentUpon>
@@ -334,6 +370,7 @@
       <DependentUpon>PokedexEntitiesSQLServer.edmx</DependentUpon>
       <LastGenOutput>PokedexEntitiesSQLServer.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="PokedexEntitiesSQLServer.edmx.sql" />
     <Content Include="PokedexEntitiesSQLServer.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>PokedexEntitiesSQLServer.edmx</DependentUpon>
