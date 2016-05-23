@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{ 
+    bool _login = false;
+    int admon = 0;
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -6,11 +10,7 @@
     <title>@ViewBag.Title - Pokédex</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <script type="text/javascript">
-    $(function () { // will trigger when the document is ready
-       $('.datepicker').datepicker(); //Initialise any date pickers
-    });
-    </script>
+
     <style>
         
         li{
@@ -27,14 +27,27 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Pokédex", "Index", "Home", new { area = "" }, new { @class = "navbar-brand", style = "color: #ffffff" })
+                @Html.ActionLink("Pokédex", "Index", "Overview", new { area = "" }, new { @class = "navbar-brand", style = "color: #ffffff" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Overview")</li>
-                    <li>@Html.ActionLink("Pokémon", "About", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
+                @{
+                    if (_login == true)
+                    {
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Home", "Index", "Overview")</li>
+                            <li>@Html.ActionLink("Pokémon", "About", "Home")</li>
+                            @{
+                                if (admon == 1)
+                                {
+                                    <li>@Html.ActionLink("STATS", "Index", "Stat")</li>
+                                }
+                            }
+                           
+                        </ul>
+                        @Html.Partial("_LoginPartial")
+                    }
+                }
+                
             </div>
         </div>
     </div>
@@ -45,11 +58,6 @@
             <div class="col-sm-4">
                 <p>Property of The Pokemon Company.</p>
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/The_Pok%C3%A9mon_Company_International_logo.svg/255px-The_Pok%C3%A9mon_Company_International_logo.svg.png">
-            </div>
-            <div>
-                <ul>
-                    <li>@Html.ActionLink("STATS", "Index", "Stat")</li>
-                </ul>
             </div>
         </footer>
     </div>

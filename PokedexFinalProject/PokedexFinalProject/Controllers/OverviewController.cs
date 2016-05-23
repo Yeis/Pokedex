@@ -13,5 +13,10 @@ namespace PokedexFinalProject.Controllers
         {
             return View();
         }
+
+        public ActionResult GetPokemon()
+        {
+            return View();
+        }
     }
 }
