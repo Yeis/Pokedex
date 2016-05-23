@@ -21,5 +21,6 @@ namespace PokedexFinalProject
         public int TipoID { get; set; }
         public Nullable<int> TipoID2 { get; set; }
         public Nullable<int> HabilidadID { get; set; }
+        public string pathImg { get; set; }
     }
 }

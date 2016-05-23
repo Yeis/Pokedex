@@ -14,6 +14,8 @@ namespace PokedexFinalProject.Controllers
         // GET: Login
         public ActionResult Index(string mensaje)
         {
+
+            var poke = BL.GetPokemonDetails(2);
             ViewBag.Message = mensaje;
             return View();
         }

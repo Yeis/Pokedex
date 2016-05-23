@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Ruth\Documents\Cetys\SEXTO\BASE DE DATOS\PROYECTO FINAL\PROYECTO\PokedexFinalProject\PokedexFinalProject\PokedexEntitiesSQLServer.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Yeis\Documents\Pokedex\PokedexFinalProject\PokedexFinalProject\Model.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

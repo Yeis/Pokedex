@@ -338,6 +338,19 @@ namespace PokedexFinalProject
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetPokemonEvolutions_Result>("GetPokemonEvolutions", pokeIDParameter);
         }
     
+        public virtual ObjectResult<GetSPByHour_Result> GetSPByHour(Nullable<System.DateTime> date1, Nullable<System.DateTime> date2)
+        {
+            var date1Parameter = date1.HasValue ?
+                new ObjectParameter("date1", date1) :
+                new ObjectParameter("date1", typeof(System.DateTime));
+    
+            var date2Parameter = date2.HasValue ?
+                new ObjectParameter("date2", date2) :
+                new ObjectParameter("date2", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetSPByHour_Result>("GetSPByHour", date1Parameter, date2Parameter);
+        }
+    
         public virtual ObjectResult<GetTypeRelations_Result> GetTypeRelations(Nullable<int> id)
         {
             var idParameter = id.HasValue ?
@@ -354,6 +367,11 @@ namespace PokedexFinalProject
                 new ObjectParameter("patron", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetUserContains_Result>("GetUserContains", patronParameter);
+        }
+    
+        public virtual ObjectResult<GetUserSubtotals_Result> GetUserSubtotals()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetUserSubtotals_Result>("GetUserSubtotals");
         }
     
         public virtual ObjectResult<InactiveUsers_Month_Result> InactiveUsers_Month()
@@ -380,6 +398,11 @@ namespace PokedexFinalProject
                 new ObjectParameter("definition", typeof(byte[]));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual ObjectResult<SP_ConexionesActivas_Result> SP_ConexionesActivas()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_ConexionesActivas_Result>("SP_ConexionesActivas");
         }
     
         public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
@@ -442,60 +465,6 @@ namespace PokedexFinalProject
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
         }
     
-        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var new_diagramnameParameter = new_diagramname != null ?
-                new ObjectParameter("new_diagramname", new_diagramname) :
-                new ObjectParameter("new_diagramname", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
-        }
-    
-        public virtual int sp_upgraddiagrams()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
-        }
-    
-        public virtual ObjectResult<SPByUser_Result> SPByUser(Nullable<int> userid)
-        {
-            var useridParameter = userid.HasValue ?
-                new ObjectParameter("Userid", userid) :
-                new ObjectParameter("Userid", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPByUser_Result>("SPByUser", useridParameter);
-        }
-    
-        public virtual ObjectResult<GetSPByHour_Result> GetSPByHour(Nullable<System.DateTime> date1, Nullable<System.DateTime> date2)
-        {
-            var date1Parameter = date1.HasValue ?
-                new ObjectParameter("date1", date1) :
-                new ObjectParameter("date1", typeof(System.DateTime));
-    
-            var date2Parameter = date2.HasValue ?
-                new ObjectParameter("date2", date2) :
-                new ObjectParameter("date2", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetSPByHour_Result>("GetSPByHour", date1Parameter, date2Parameter);
-        }
-    
-        public virtual ObjectResult<GetUserSubtotals_Result> GetUserSubtotals()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetUserSubtotals_Result>("GetUserSubtotals");
-        }
-    
-        public virtual ObjectResult<SP_ConexionesActivas_Result> SP_ConexionesActivas()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_ConexionesActivas_Result>("SP_ConexionesActivas");
-        }
-    
         public virtual ObjectResult<SP_InfoSp_Result> SP_InfoSp()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_InfoSp_Result>("SP_InfoSp");
@@ -528,6 +497,37 @@ namespace PokedexFinalProject
         public virtual ObjectResult<SP_ListaViews_Result> SP_ListaViews()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_ListaViews_Result>("SP_ListaViews");
+        }
+    
+        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var new_diagramnameParameter = new_diagramname != null ?
+                new ObjectParameter("new_diagramname", new_diagramname) :
+                new ObjectParameter("new_diagramname", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
+        }
+    
+        public virtual int sp_upgraddiagrams()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
+        }
+    
+        public virtual ObjectResult<SPByUser_Result> SPByUser(Nullable<int> userid)
+        {
+            var useridParameter = userid.HasValue ?
+                new ObjectParameter("Userid", userid) :
+                new ObjectParameter("Userid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPByUser_Result>("SPByUser", useridParameter);
         }
     
         public virtual ObjectResult<SPCount_Result> SPCount()
