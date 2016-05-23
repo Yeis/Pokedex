@@ -1,6 +1,7 @@
 ﻿@model PokedexFinalProject.Pokemon
 @{ 
     List<Pokemon> listPokemon = new List<Pokemon>();
+   
 }
 
 <!DOCTYPE html>
@@ -16,7 +17,7 @@
             foreach(Pokemon pok in listPokemon)
             {
                 <div class="col-sm-1">
-
+                    <p>pok.Nombre</p>
                 </div>
             }
         }

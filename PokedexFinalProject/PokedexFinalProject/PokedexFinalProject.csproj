@@ -483,6 +483,7 @@
     <Content Include="Views\Stat\Stat.cshtml" />
     <Content Include="Views\Overview\Index.cshtml" />
     <Content Include="Views\Overview\GetPokemon.cshtml" />
+    <Content Include="Views\Overview\GetDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
