@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace PokedexFinalProject
 {
@@ -19,10 +20,11 @@ namespace PokedexFinalProject
         public LocalUser Login(string username, string password)
         {  
             Starttime = DateTime.Now.Millisecond;
-
+            //Buscamos primero en Mongo
             Usuario usuario = FindMongo(username, password);
             if (usuario == null)
             {
+                //BUscamos en SQL 
                 usuario = FindSQL(username, password);
                 if (usuario != null)
                 {
@@ -65,7 +67,7 @@ namespace PokedexFinalProject
                // context.LogDatas.Add(log);
                 //context.SaveChanges();
         }
-        public Usuario FindSQL(string username, string password) 
+ public Usuario FindSQL(string username, string password) 
         {
             Usuario user = context.Usuarios.Where(u => u.Username == username && u.Password == password).FirstOrDefault(); 
             return user;
@@ -78,8 +80,23 @@ namespace PokedexFinalProject
             var users = from u in collections.AsQueryable<Usuario>()
                         where u.Username == username && u.Password == pass
                         select u;
-            return users.ToList<Usuario>().First();
+            if (users.Count() != 0)
+            {
+                return users.ToList<Usuario>().First();
+            }
+            return null;
         }
+              public IEnumerable<SelectListItem> GetOptions()
+        {
+            IEnumerable<SelectListItem> options = new[]
+                {
+                new SelectListItem { Value = "0" , Text= ""},
+                new SelectListItem {Value = "1" , Text = "Active Users Week" },
+                new SelectListItem {Value = "2" , Text = "Active Users Month" }
+
+            };
+
+            return options;}
         static void CreateMongo(string FirstName, string LastName, string pass, int Admin, string Username, string mail, DateTime DOB)
         {
             var mongo = new MongoClient("mongodb://localhost:27017");

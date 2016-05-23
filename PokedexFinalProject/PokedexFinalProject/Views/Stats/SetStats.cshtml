@@ -20,19 +20,19 @@
     <input type="submit" value="Search" />
 }
 
-<div id="Partial-view">
+<div id="partial-table">
+
     @{
         switch (Model.partialName)
         {
             case "ActiveUsersWeek":
-                Html.RenderPartial("~/Views/Shared/ActiveUsersWeek.cshtml", Model.ActiveUsersWeek );
+                Html.Partial("ActiveUsersWeek", Model.ActiveUsersWeek);
                 break;
             case "ActiveUsersMonth":
-                Html.RenderPartial("~/Views/Shared/ActiveUsersMonth.cshtml", Model.ActiveUsersMonth);
+                Html.Partial("ActiveUsersMonth", Model.ActiveUsersMonth);
                 break;
             default:
                 break;
         }
     }
 </div>
-
