@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="PokedexModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="PokedexModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errors Found During Generation:
 warning 6002: The table/view 'Pokedex.dbo.Evolucion' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Evolucion">
@@ -97,6 +97,7 @@ warning 6002: The table/view 'Pokedex.dbo.Pokemon' does not have a primary key d
           <Property Name="TipoID" Type="int" Nullable="false" />
           <Property Name="TipoID2" Type="int" />
           <Property Name="HabilidadID" Type="int" />
+          <Property Name="pathImg" Type="varchar" MaxLength="500" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'Pokedex.dbo.Stat' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -265,12 +266,17 @@ warning 6002: The table/view 'Pokedex.dbo.GetAllPokemon' does not have a primary
         <Function Name="GetPokemonEvolutions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PokeID" Type="int" Mode="In" />
         </Function>
+        <Function Name="GetSPByHour" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="date1" Type="datetime" Mode="In" />
+          <Parameter Name="date2" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="GetTypeRelations" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
         </Function>
         <Function Name="GetUserContains" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="patron" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="GetUserSubtotals" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="InactiveUsers_Month" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -278,6 +284,7 @@ warning 6002: The table/view 'Pokedex.dbo.GetAllPokemon' does not have a primary
           <Parameter Name="version" Type="int" Mode="In" />
           <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
         </Function>
+        <Function Name="SP_ConexionesActivas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -296,6 +303,14 @@ warning 6002: The table/view 'Pokedex.dbo.GetAllPokemon' does not have a primary
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_InfoSp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_Lista_Mil_Registros" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_Lista_Tablas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_ListaColumnas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Tabla" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SP_ListaIndices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_ListaViews" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -305,10 +320,17 @@ warning 6002: The table/view 'Pokedex.dbo.GetAllPokemon' does not have a primary
         <Function Name="SPByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Userid" Type="int" Mode="In" />
         </Function>
+        <Function Name="SPCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SPExecAverage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SPInRange" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="lowlimit" Type="int" Mode="In" />
+          <Parameter Name="highlimit" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UnusedSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="PokedexModelStoreContainer">
-          <EntitySet Name="LogData" EntityType="Self.LogData" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Evolucion" EntityType="Self.Evolucion" store:Type="Tables" store:Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+          <EntitySet Name="LogData" EntityType="Self.LogData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Evolucion" EntityType="Self.Evolucion" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Evolucion].[EvolucionID] AS [EvolucionID], 
     [Evolucion].[PokemonID] AS [PokemonID], 
@@ -318,14 +340,14 @@ warning 6002: The table/view 'Pokedex.dbo.GetAllPokemon' does not have a primary
     [Evolucion].[descripcion] AS [descripcion]
     FROM [dbo].[Evolucion] AS [Evolucion]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="Habilidad" EntityType="Self.Habilidad" store:Type="Tables" store:Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+          <EntitySet Name="Habilidad" EntityType="Self.Habilidad" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Habilidad].[HabilidadID] AS [HabilidadID], 
     [Habilidad].[Name] AS [Name], 
     [Habilidad].[Descripcion] AS [Descripcion]
     FROM [dbo].[Habilidad] AS [Habilidad]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="Juegos" EntityType="Self.Juegos" store:Type="Tables" store:Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+          <EntitySet Name="Juegos" EntityType="Self.Juegos" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Juegos].[JuegoID] AS [JuegoID], 
     [Juegos].[Nombre] AS [Nombre], 
@@ -334,7 +356,7 @@ warning 6002: The table/view 'Pokedex.dbo.GetAllPokemon' does not have a primary
     [Juegos].[Region] AS [Region]
     FROM [dbo].[Juegos] AS [Juegos]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="Moves" EntityType="Self.Moves" store:Type="Tables" store:Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+          <EntitySet Name="Moves" EntityType="Self.Moves" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Moves].[MoveID] AS [MoveID], 
     [Moves].[TipoID] AS [TipoID], 
@@ -345,7 +367,7 @@ warning 6002: The table/view 'Pokedex.dbo.GetAllPokemon' does not have a primary
     [Moves].[Generacion] AS [Generacion]
     FROM [dbo].[Moves] AS [Moves]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="Pokemon" EntityType="Self.Pokemon" store:Type="Tables" store:Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+          <EntitySet Name="Pokemon" EntityType="Self.Pokemon" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Pokemon].[PokemonID] AS [PokemonID], 
     [Pokemon].[Nombre] AS [Nombre], 
@@ -354,10 +376,11 @@ warning 6002: The table/view 'Pokedex.dbo.GetAllPokemon' does not have a primary
     [Pokemon].[Generacion] AS [Generacion], 
     [Pokemon].[TipoID] AS [TipoID], 
     [Pokemon].[TipoID2] AS [TipoID2], 
-    [Pokemon].[HabilidadID] AS [HabilidadID]
+    [Pokemon].[HabilidadID] AS [HabilidadID], 
+    [Pokemon].[pathImg] AS [pathImg]
     FROM [dbo].[Pokemon] AS [Pokemon]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="Stat" EntityType="Self.Stat" store:Type="Tables" store:Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+          <EntitySet Name="Stat" EntityType="Self.Stat" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Stat].[StatID] AS [StatID], 
     [Stat].[PokemonID] AS [PokemonID], 
@@ -369,13 +392,13 @@ warning 6002: The table/view 'Pokedex.dbo.GetAllPokemon' does not have a primary
     [Stat].[SplDefense] AS [SplDefense]
     FROM [dbo].[Stat] AS [Stat]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="Tipo" EntityType="Self.Tipo" store:Type="Tables" store:Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+          <EntitySet Name="Tipo" EntityType="Self.Tipo" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Tipo].[TipoID] AS [TipoID], 
     [Tipo].[Nombre] AS [Nombre]
     FROM [dbo].[Tipo] AS [Tipo]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="Usuario" EntityType="Self.Usuario" store:Type="Tables" store:Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Usuario].[UserID] AS [UserID], 
     [Usuario].[FirstName] AS [FirstName], 
@@ -387,7 +410,7 @@ warning 6002: The table/view 'Pokedex.dbo.GetAllPokemon' does not have a primary
     [Usuario].[Admin] AS [Admin]
     FROM [dbo].[Usuario] AS [Usuario]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="GetAllPokemon" EntityType="Self.GetAllPokemon" store:Type="Views" store:Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+          <EntitySet Name="GetAllPokemon" EntityType="Self.GetAllPokemon" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [GetAllPokemon].[PokemonID] AS [PokemonID], 
     [GetAllPokemon].[Nombre] AS [Nombre], 
@@ -400,8 +423,7 @@ warning 6002: The table/view 'Pokedex.dbo.GetAllPokemon' does not have a primary
     FROM [dbo].[GetAllPokemon] AS [GetAllPokemon]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PokedexModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
@@ -485,6 +507,7 @@ warning 6002: The table/view 'Pokedex.dbo.GetAllPokemon' does not have a primary
           <Property Name="TipoID" Type="Int32" Nullable="false" />
           <Property Name="TipoID2" Type="Int32" />
           <Property Name="HabilidadID" Type="Int32" />
+          <Property Name="pathImg" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Stat">
           <Key>
@@ -603,7 +626,7 @@ warning 6002: The table/view 'Pokedex.dbo.GetAllPokemon' does not have a primary
             <Parameter Name="SplDefense" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="CreateType">
-            <Parameter Name="Name" Mode="In" Type="String" />
+          <Parameter Name="Name" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="CreateTypeRelation">
             <Parameter Name="ID" Mode="In" Type="Int32" />
@@ -623,25 +646,25 @@ warning 6002: The table/view 'Pokedex.dbo.GetAllPokemon' does not have a primary
           <FunctionImport Name="GetLoginDays" ReturnType="Collection(PokedexModel.GetLoginDays_Result)" />
           <FunctionImport Name="GetLoginHours" ReturnType="Collection(PokedexModel.GetLoginHours_Result)" />
           <FunctionImport Name="GetPokemonByGame" ReturnType="Collection(PokedexModel.GetPokemonByGame_Result)">
-            <Parameter Name="GameID" Mode="In" Type="Int32" />
+          <Parameter Name="GameID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetPokemonById" ReturnType="Collection(PokedexModel.GetPokemonById_Result)">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
+          <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetPokemonByName" ReturnType="Collection(PokedexModel.GetPokemonByName_Result)">
-            <Parameter Name="Name" Mode="In" Type="String" />
+          <Parameter Name="Name" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetPokemonDetail" ReturnType="Collection(PokedexModel.GetPokemonDetail_Result)">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
+          <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetPokemonEvolutions" ReturnType="Collection(PokedexModel.GetPokemonEvolutions_Result)">
-            <Parameter Name="PokeID" Mode="In" Type="Int32" />
+          <Parameter Name="PokeID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetTypeRelations" ReturnType="Collection(PokedexModel.GetTypeRelations_Result)">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
+          <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetUserContains" ReturnType="Collection(PokedexModel.GetUserContains_Result)">
-            <Parameter Name="patron" Mode="In" Type="String" />
+          <Parameter Name="patron" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="InactiveUsers_Month" ReturnType="Collection(PokedexModel.InactiveUsers_Month_Result)" />
           <FunctionImport Name="sp_alterdiagram">
@@ -675,8 +698,29 @@ warning 6002: The table/view 'Pokedex.dbo.GetAllPokemon' does not have a primary
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
           <FunctionImport Name="SPByUser" ReturnType="Collection(PokedexModel.SPByUser_Result)">
-            <Parameter Name="Userid" Mode="In" Type="Int32" />
+          <Parameter Name="Userid" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="GetSPByHour" ReturnType="Collection(PokedexModel.GetSPByHour_Result)">
+            <Parameter Name="date1" Mode="In" Type="DateTime" />
+            <Parameter Name="date2" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="GetUserSubtotals" ReturnType="Collection(PokedexModel.GetUserSubtotals_Result)" />
+          <FunctionImport Name="SP_ConexionesActivas" ReturnType="Collection(PokedexModel.SP_ConexionesActivas_Result)" />
+          <FunctionImport Name="SP_InfoSp" ReturnType="Collection(PokedexModel.SP_InfoSp_Result)" />
+          <FunctionImport Name="SP_Lista_Mil_Registros" ReturnType="Collection(PokedexModel.SP_Lista_Mil_Registros_Result)" />
+          <FunctionImport Name="SP_Lista_Tablas" ReturnType="Collection(PokedexModel.SP_Lista_Tablas_Result)" />
+          <FunctionImport Name="SP_ListaColumnas" ReturnType="Collection(PokedexModel.SP_ListaColumnas_Result)">
+            <Parameter Name="Tabla" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_ListaIndices" ReturnType="Collection(PokedexModel.SP_ListaIndices_Result)" />
+          <FunctionImport Name="SP_ListaViews" ReturnType="Collection(PokedexModel.SP_ListaViews_Result)" />
+          <FunctionImport Name="SPCount" ReturnType="Collection(PokedexModel.SPCount_Result)" />
+          <FunctionImport Name="SPExecAverage" ReturnType="Collection(PokedexModel.SPExecAverage_Result)" />
+          <FunctionImport Name="SPInRange" ReturnType="Collection(PokedexModel.SPInRange_Result)">
+            <Parameter Name="lowlimit" Mode="In" Type="Int32" />
+            <Parameter Name="highlimit" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UnusedSP" ReturnType="Collection(String)" />
         </EntityContainer>
         <ComplexType Name="ActiveUsers_Month_Result">
           <Property Type="Int32" Name="UserID" Nullable="false" />
@@ -803,6 +847,68 @@ warning 6002: The table/view 'Pokedex.dbo.GetAllPokemon' does not have a primary
           <Property Type="DateTime" Name="fecha" Nullable="true" Precision="23" />
           <Property Type="Int32" Name="exec_time" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="GetSPByHour_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="tipo" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="fecha" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="exec_time" Nullable="true" />
+          <Property Type="Int32" Name="UserId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetUserSubtotals_Result">
+          <Property Type="String" Name="Username" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="Admin" Nullable="true" />
+          <Property Type="Int32" Name="Column1" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_ConexionesActivas_Result">
+          <Property Type="String" Name="Database_Name" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="loginame" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="hostname" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="status" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="program_name" Nullable="false" MaxLength="128" />
+          <Property Type="DateTime" Name="login_time" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="SP_InfoSp_Result">
+          <Property Type="String" Name="ProcName" Nullable="true" MaxLength="128" />
+          <Property Type="Int64" Name="execution_count" Nullable="true" />
+          <Property Type="Int32" Name="objectid" Nullable="true" />
+          <Property Type="DateTime" Name="last_execution_time" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="SP_Lista_Mil_Registros_Result">
+          <Property Type="String" Name="name" Nullable="false" MaxLength="128" />
+          <Property Type="Int64" Name="Numero_de_registros" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_Lista_Tablas_Result">
+          <Property Type="String" Name="Table_Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int64" Name="Numero_de_registros" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_ListaColumnas_Result">
+          <Property Type="String" Name="TABLE_NAME" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="COLUMN_NAME" Nullable="true" MaxLength="128" />
+        </ComplexType>
+        <ComplexType Name="SP_ListaIndices_Result">
+          <Property Type="String" Name="Database_Name" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Schema_Name" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="Table_Name" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="Index_Name" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Index_Type" Nullable="true" MaxLength="60" />
+        </ComplexType>
+        <ComplexType Name="SP_ListaViews_Result">
+          <Property Type="String" Name="View_Name" Nullable="false" MaxLength="128" />
+          <Property Type="DateTime" Name="create_date" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="SPCount_Result">
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="TimesRunned" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SPExecAverage_Result">
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Column1" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SPInRange_Result">
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="TimesRunned" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -880,6 +986,7 @@ warning 6002: The table/view 'Pokedex.dbo.GetAllPokemon' does not have a primary
           <EntitySetMapping Name="Pokemons">
             <EntityTypeMapping TypeName="PokedexModel.Pokemon">
               <MappingFragment StoreEntitySet="Pokemon">
+                <ScalarProperty Name="pathImg" ColumnName="pathImg" />
                 <ScalarProperty Name="PokemonID" ColumnName="PokemonID" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Peso" ColumnName="Peso" />
@@ -1135,6 +1242,117 @@ warning 6002: The table/view 'Pokedex.dbo.GetAllPokemon' does not have a primary
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetSPByHour" FunctionName="PokedexModel.Store.GetSPByHour">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PokedexModel.GetSPByHour_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="exec_time" ColumnName="exec_time" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetUserSubtotals" FunctionName="PokedexModel.Store.GetUserSubtotals">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PokedexModel.GetUserSubtotals_Result">
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Admin" ColumnName="Admin" />
+                <ScalarProperty Name="Column1" ColumnName="Column1" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_ConexionesActivas" FunctionName="PokedexModel.Store.SP_ConexionesActivas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PokedexModel.SP_ConexionesActivas_Result">
+                <ScalarProperty Name="Database_Name" ColumnName="Database_Name" />
+                <ScalarProperty Name="loginame" ColumnName="loginame" />
+                <ScalarProperty Name="hostname" ColumnName="hostname" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="program_name" ColumnName="program_name" />
+                <ScalarProperty Name="login_time" ColumnName="login_time" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_InfoSp" FunctionName="PokedexModel.Store.SP_InfoSp">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PokedexModel.SP_InfoSp_Result">
+                <ScalarProperty Name="ProcName" ColumnName="ProcName" />
+                <ScalarProperty Name="execution_count" ColumnName="execution_count" />
+                <ScalarProperty Name="objectid" ColumnName="objectid" />
+                <ScalarProperty Name="last_execution_time" ColumnName="last_execution_time" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_Lista_Mil_Registros" FunctionName="PokedexModel.Store.SP_Lista_Mil_Registros">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PokedexModel.SP_Lista_Mil_Registros_Result">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="Numero_de_registros" ColumnName="Numero de registros" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_Lista_Tablas" FunctionName="PokedexModel.Store.SP_Lista_Tablas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PokedexModel.SP_Lista_Tablas_Result">
+                <ScalarProperty Name="Table_Name" ColumnName="Table_Name" />
+                <ScalarProperty Name="Numero_de_registros" ColumnName="Numero de registros" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_ListaColumnas" FunctionName="PokedexModel.Store.SP_ListaColumnas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PokedexModel.SP_ListaColumnas_Result">
+                <ScalarProperty Name="TABLE_NAME" ColumnName="TABLE_NAME" />
+                <ScalarProperty Name="COLUMN_NAME" ColumnName="COLUMN_NAME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_ListaIndices" FunctionName="PokedexModel.Store.SP_ListaIndices">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PokedexModel.SP_ListaIndices_Result">
+                <ScalarProperty Name="Database_Name" ColumnName="Database_Name" />
+                <ScalarProperty Name="Schema_Name" ColumnName="Schema_Name" />
+                <ScalarProperty Name="Table_Name" ColumnName="Table_Name" />
+                <ScalarProperty Name="Index_Name" ColumnName="Index_Name" />
+                <ScalarProperty Name="Index_Type" ColumnName="Index_Type" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_ListaViews" FunctionName="PokedexModel.Store.SP_ListaViews">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PokedexModel.SP_ListaViews_Result">
+                <ScalarProperty Name="View_Name" ColumnName="View_Name" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPCount" FunctionName="PokedexModel.Store.SPCount">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PokedexModel.SPCount_Result">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="TimesRunned" ColumnName="TimesRunned" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPExecAverage" FunctionName="PokedexModel.Store.SPExecAverage">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PokedexModel.SPExecAverage_Result">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="Column1" ColumnName="Column1" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPInRange" FunctionName="PokedexModel.Store.SPInRange">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PokedexModel.SPInRange_Result">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="TimesRunned" ColumnName="TimesRunned" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UnusedSP" FunctionName="PokedexModel.Store.UnusedSP" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

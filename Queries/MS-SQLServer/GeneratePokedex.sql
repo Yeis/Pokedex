@@ -8,7 +8,8 @@ CREATE TABLE Pokemon(
 	Generacion INT NOT NULL,
 	TipoID INT NOT NULL,
 	TipoID2 INT,
-	HabilidadID INT
+	HabilidadID INT,
+	pathImg VARCHAR(500)
 )
 
 CREATE TABLE Stat(
@@ -88,8 +89,8 @@ CREATE TABLE Usuario
 	email VARCHAR(100),
 	DoB DATETIME,
 	Username VARCHAR(100),
-	[Password] VARCHAR(25),
-	[Privileges] VARCHAR(20)
+	Password VARCHAR(25),
+	Admin INT
 )
 CREATE TABLE LogData
 (

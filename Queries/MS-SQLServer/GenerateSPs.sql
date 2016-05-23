@@ -269,3 +269,236 @@ Select * from Tipo
 inner join TipoRelacion on @Id = TipoRelacion.TipoID
 GO
 
+-- STATISTICS 
+
+--1  sp in range by hour 
+Create Procedure GetSPByHour
+@date1 datetime,
+@date2 datetime
+as
+Select * from LogData 
+Where LogData.tipo = 'SP' and LogData.fecha between @date1 and @date2
+
+-- SP (2)
+
+CREATE PROCEDURE SP_ConexionesActivas
+AS
+SELECT DB_NAME(dbid) as Database_Name, loginame,hostname,  status, program_name, login_time
+FROM sys.sysprocesses
+WHERE dbid > 0
+AND DB_NAME(dbid) = 'Pokedex'
+GO
+
+-- SP (3)
+
+CREATE PROCEDURE SP_Lista_Tablas
+AS
+SELECT DISTINCT T.name AS Table_Name, P.[ROWS] AS "Numero de registros"
+FROM SYS.tables T 
+INNER JOIN Sys.partitions P ON T.object_id = p.object_id
+ORDER BY [Numero de registros]DESC
+GO
+
+-- SP (4)
+
+ CREATE PROCEDURE SP_ListaColumnas @Tabla nvarchar(50)
+ AS
+ SELECT TABLE_NAME, COLUMN_NAME
+ FROM Pokedex.INFORMATION_SCHEMA.COLUMNS
+ WHERE TABLE_NAME = @Tabla
+ GO
+ -- SP (5)
+ 
+ CREATE PROCEDURE SP_ListaIndices
+ AS
+ SELECT DB_NAME() AS Database_Name,
+ sc.name AS Schema_Name,
+ obj.name AS Table_Name,
+ ind.name AS Index_Name,
+ ind.type_desc AS Index_Type
+ FROM sys.indexes ind
+ INNER JOIN sys.objects obj ON ind.object_id = obj.object_id
+ INNER JOIN sys.schemas sc ON obj.schema_id = sc.schema_id
+ WHERE ind.name IS NOT NULL
+ AND obj.type = 'U'
+ ORDER BY obj.name, ind.type
+ GO
+ 
+ --SP (6)
+ CREATE PROCEDURE SP_ListaViews
+ AS
+ SELECT name AS View_Name, create_date
+ FROM sys.views
+ GO
+ --SP (7)
+
+CREATE PROCEDURE SP_InfoSp
+AS
+ SELECT top 1 * FROM
+    (SELECT OBJECT_NAME(s2.objectid) AS ProcName,
+        MAX(execution_count) AS execution_count,s2.objectid,
+        MAX(last_execution_time) AS last_execution_time
+FROM sys.dm_exec_query_stats AS s1
+CROSS APPLY sys.dm_exec_sql_text(sql_handle) AS s2
+GROUP BY OBJECT_NAME(s2.objectid),s2.objectid) x
+WHERE OBJECTPROPERTYEX(x.objectid,'IsProcedure') = 1
+AND EXISTS (SELECT 1 FROM sys.procedures s
+            WHERE s.is_ms_shipped = 0
+            AND s.name = x.ProcName )
+ORDER BY execution_count DESC
+
+SELECT TOP 1* FROM(SELECT OBJECT_NAME(s2.objectid) AS ProcName,
+        MAX(execution_count) AS execution_count,s2.objectid,
+        MAX(last_execution_time) AS last_execution_time
+FROM sys.dm_exec_query_stats AS s1
+CROSS APPLY sys.dm_exec_sql_text(sql_handle) AS s2
+GROUP BY OBJECT_NAME(s2.objectid),s2.objectid) x
+WHERE OBJECTPROPERTYEX(x.objectid,'IsProcedure') = 1
+AND EXISTS (SELECT 1 FROM sys.procedures s
+            WHERE s.is_ms_shipped = 0
+            AND s.name = x.ProcName )
+          
+ORDER BY execution_count DESC 
+GO
+ 
+--SP (8)
+CREATE PROCEDURE SP_Lista_Mil_Registros
+AS
+SELECT DISTINCT T.name, P.[ROWS] AS "Numero de registros"
+FROM SYS.tables T 
+INNER JOIN Sys.partitions P ON T.object_id = p.object_id
+WHERE P.[rows] > 1000
+ORDER BY [Numero de registros]DESC
+GO
+
+
+
+
+--9 lista de sp ejecutados en un rango entre 100 a 250 
+CREATE PROCEDURE SPInRange @lowlimit int , @highlimit int 
+AS
+SELECT nombre , COUNT(nombre) as TimesRunned from LogData 
+GROUP BY nombre 
+HAVING COUNT(nombre) BETWEEN @lowlimit AND @highlimit
+
+ GO
+
+
+ -- 10 SP que no han sido usados 
+CREATE PROCEDURE UnusedSP 
+AS
+SELECT SPECIFIC_NAME as Name 
+  FROM Pokedex.information_schema.routines 
+ WHERE SPECIFIC_NAME   NOT IN 
+ (SELECT DISTINCT nombre FROM LogData WHERE tipo = 'SP')
+GO
+
+
+-- 11.1  Promedio 
+CREATE PROCEDURE SPExecAverage
+ AS
+
+ SELECT nombre , AVG(exec_time) FROM LogData
+ GROUP BY nombre
+GO
+
+
+--11.2  Cantidad de ejecuciones 
+ CREATE PROCEDURE SPCount 
+ AS
+ SELECT nombre , COUNT(nombre) as TimesRunned from LogData
+ GROUP BY nombre
+ GO
+
+
+ -- 12.1 Usuarios activos por semana
+ CREATE PROCEDURE ActiveUsers_Week 
+AS
+
+DECLARE @curdate DATETIME
+DECLARE @lastweek DATETIME 
+SET @curdate = GETDATE()
+SET @lastweek = DATEADD(DAY,-7,@curdate)
+PRINT 'SEARCHING BETWEEN ' 
+PRINT @curdate
+PRINT 'AND'
+PRINT @lastweek
+SELECT * FROM Usuario WHERE UserId  IN 
+(SELECT DISTINCT UserId FROM LogData WHERE Tipo = 'Login' and fecha BETWEEN @lastweek AND @curdate )
+
+
+GO
+ --12.2 Usuarios activos por mes 
+ 
+CREATE PROCEDURE ActiveUsers_Month  
+AS
+
+DECLARE @curdate DATETIME
+DECLARE @lastmonth DATETIME 
+SET @curdate = GETDATE()
+SET @lastmonth = DATEADD(MONTH,-1,@curdate)
+PRINT 'SEARCHING BETWEEN ' 
+PRINT @curdate
+PRINT 'AND'
+PRINT @lastmonth
+SELECT * FROM Usuario WHERE UserId  IN 
+(SELECT DISTINCT UserId FROM LogData WHERE Tipo = 'Login' and fecha BETWEEN @lastmonth AND @curdate )
+
+
+GO
+ -- 12.3 Usuarios inactivos en el ultimo mes 
+CREATE PROCEDURE InactiveUsers_Month
+AS
+DECLARE @curdate DATETIME
+DECLARE @lastmonth DATETIME 
+SET @curdate = GETDATE()
+SET @lastmonth = DATEADD(MONTH,-1,@curdate)
+PRINT 'SEARCHING BETWEEN ' 
+PRINT @curdate
+PRINT 'AND'
+PRINT @lastmonth
+SELECT * FROM Usuario WHERE UserId NOT IN 
+(SELECT DISTINCT UserId FROM LogData WHERE Tipo = 'Login' and fecha BETWEEN @lastmonth AND @curdate )
+GO
+ --12.4 dias en los que mas se acceden la aplicacion
+ CREATE PROCEDURE GetLoginDays
+AS
+
+SELECT DATENAME(DW,fecha) AS Dia , COUNT(UserId) as Cantidad FROM LogData WHERE Tipo = 'Login'
+GROUP BY DATENAME(DW,fecha)
+GO 
+
+--12.5 horas en las que mas acceden a la applicacion
+
+CREATE PROCEDURE GetLoginHours
+AS
+SELECT DATENAME(HOUR,fecha) AS Hora , COUNT(UserId) FROM LogData WHERE Tipo = 'Login'
+GROUP BY DATENAME(HOUR,fecha)
+GO
+
+--12.6 lista de SP ejecutados por usuario 
+CREATE PROCEDURE SPByUser @Userid int
+AS
+SELECT  nombre , fecha ,exec_time FROM LogData WHERE tipo = 'SP' AND UserId = @Userid
+GO
+
+
+--12.7 lista de usuarios por rol con subtotales 
+CREATE PROCEDURE GetUserSubtotals
+AS
+
+SELECT Username , Admin   , COUNT(Admin) FROM Usuario
+GROUP BY   Admin ,    Username WITH ROLLUP   
+
+
+GO
+
+
+
+ -- 13 Busqueda de Usuarios por Contains 
+ CREATE PROCEDURE GetUserContains @patron varchar(25)
+AS
+
+SELECT * FROM Usuario WHERE Username LIKE '%'+@patron+'%'
+
+GO
