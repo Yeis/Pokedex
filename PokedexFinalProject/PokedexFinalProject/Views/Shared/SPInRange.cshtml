@@ -1,0 +1,21 @@
+﻿@model PokedexFinalProject.Models.SPRangeViewModel
+
+@using (Html.BeginForm("SPRange", "Stats", FormMethod.Post))
+{
+    <p>Limite Inferior:</p>
+    <p> @Html.TextBoxFor(x => x.limite_inferior)</p>
+                    <p>Limite Superior:</p>
+                    <p> @Html.TextBoxFor(x => x.limite_superior)</p>
+                    <input type="submit" value="Buscar" />
+}
+
+
+@{
+    if (Model._SPRange != null)
+    {
+        Html.RenderPartial("~/Views/Shared/SPRangeList.cshtml", Model._SPRange);
+
+    }
+
+
+}

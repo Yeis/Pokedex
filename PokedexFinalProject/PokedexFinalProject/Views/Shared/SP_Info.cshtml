@@ -1,0 +1,38 @@
+﻿@model IEnumerable<PokedexFinalProject.SP_InfoSp_Result>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProcName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.execution_count)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.objectid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.last_execution_time)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProcName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.execution_count)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.objectid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.last_execution_time)
+        </td>
+>
+    </tr>
+}
+
+</table>

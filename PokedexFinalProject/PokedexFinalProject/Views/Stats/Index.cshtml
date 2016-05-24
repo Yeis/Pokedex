@@ -4,7 +4,7 @@
 @{
     ViewBag.Title = "Index";
 }
-@using (Html.BeginForm())
+@using (Html.BeginForm("Index","Stats",FormMethod.Post))
 {
     <fieldset>
         <dl>
@@ -32,7 +32,57 @@
                 break;
             case "SP_ConexionesActivas":
                 Html.RenderPartial("~/Views/Shared/ConexionesActivas.cshtml", Model.ActiveConnections);
-
+                break;
+            case "DBIndexes":
+                Html.RenderPartial("~/Views/Shared/DBIndexes.cshtml", Model.Indexes);
+                break;
+            case "SPRangeHours":
+                Html.RenderPartial("~/Views/Shared/SPbyHour.cshtml", Model._SPbyHourViewModel);
+                break;
+            case "TableColumns":
+                Html.RenderPartial("~/Views/Shared/Columns.cshtml", Model._ColumnsViewModel);
+                break;
+            case "TablesWithCounts":
+                Html.RenderPartial("~/Views/Shared/Tablas.cshtml", Model.Tablas);
+                break;
+            case "Tables1000":
+                Html.RenderPartial("~/Views/Shared/Tablas1000.cshtml", Model.TablasMil);
+                break;
+            case "Views":
+                Html.RenderPartial("~/Views/Shared/Views.cshtml", Model.Vistas);
+                break;
+            case "MaxMin_SP":
+                Html.RenderPartial("~/Views/Shared/SP_Info.cshtml", Model.MaxMinSP);
+                break;
+            case "SPRange":
+                Html.RenderPartial("~/Views/Shared/SPInRange.cshtml", Model._SPRangeViewModel);
+                break;
+            case "UnusedSP":
+                // Html.RenderPartial("~/Views/Shared/SP_Info.cshtml", Model.MaxMinSP);
+                break;
+            case "ExecAvg":
+                Html.RenderPartial("~/Views/Shared/SPExecAverage.cshtml", Model.ExecAverage);
+                break;
+            case "ExecCount":
+                Html.RenderPartial("~/Views/Shared/SPCount.cshtml", Model.SPCounts);
+                break;
+            case "InactiveUsers":
+                Html.RenderPartial("~/Views/Shared/InactiveUsers.cshtml", Model.Inactive);
+                break;
+            case "HotDays":
+                Html.RenderPartial("~/Views/Shared/HotDays.cshtml", Model.Dias);
+                break;
+            case "HotHours":
+                Html.RenderPartial("~/Views/Shared/HotHours.cshtml", Model.Horas);
+                break;
+            case "SPByUser":
+                Html.RenderPartial("~/Views/Shared/SPByUser.cshtml", Model._SPByUserViewModel);
+                break;
+            case "GetUserSubtotals":
+                Html.RenderPartial("~/Views/Shared/GetUserSubtotals.cshtml", Model.Subtotals);
+                break;
+            case "GetUserContains":
+                Html.RenderPartial("~/Views/Shared/GetUserContains.cshtml", Model._GetUserContains);
                 break;
             default:
                 break;
