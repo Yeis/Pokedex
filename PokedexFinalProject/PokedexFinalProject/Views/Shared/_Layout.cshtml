@@ -36,10 +36,11 @@
                         <ul class="nav navbar-nav">
                             <li>@Html.ActionLink("Home", "Index", "Overview")</li>
                             <li>@Html.ActionLink("Pokémon", "GetPokemon", "Overview")</li>
+                            <li>@Html.ActionLink("Types", "GetTypes", "Overview")</li>
                             @{
                                 if (admon == 1)
                                 {
-                                    <li>@Html.ActionLink("STATS", "Index", "Stat")</li>
+                                    <li>@Html.ActionLink("STATS", "Index    ", "Stats")</li>
                                 }
                             }
                            

@@ -1,7 +1,5 @@
-﻿@model PokedexFinalProject.Pokemon
-@{ 
-    List<Pokemon> listPokemon = new List<Pokemon>();
-   
+﻿@model  List<Pokemon> 
+@{    
 }
 
 <!DOCTYPE html>
@@ -13,22 +11,13 @@
 </head>
 <body>
     
-    <div>
-        <div class="col-sm-1">
-
-            <li>@Html.ActionLink("Bulbasaur", "GetDetails", "Overview")</li>
-            
-        </div>
-        <div class="col-sm-1">
-            <li>@Html.ActionLink("Charmander", "GetDetails", "Overview", new {id = "2" },null)</li>
-        </div>
-         
+    <div>         
         @{ 
-            foreach(Pokemon pok in listPokemon)
+            foreach(Pokemon pok in Model)
             {
                 <div class="col-sm-1">
 
-                    <li>@Html.ActionLink(pok.Nombre, "GetDetails", "Overview")</li>
+                    <li>@Html.ActionLink(pok.Nombre, "GetDetails", "Overview", new { id = pok.PokemonID}, null)</li>
                 </div>
             }
         }

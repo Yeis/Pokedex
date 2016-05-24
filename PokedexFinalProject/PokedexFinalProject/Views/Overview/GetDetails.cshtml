@@ -1,4 +1,5 @@
-﻿@model PokedexFinalProject.Pokemon
+﻿@using PokedexFinalProject.Models
+@model PokemonViewModel
 @{
     //Model.TipoID2 = 2;
 }
@@ -18,47 +19,45 @@
                 <img src="http://cdn.bulbagarden.net/upload/thumb/2/21/001Bulbasaur.png/250px-001Bulbasaur.png" />
 
             </div>
-           
-                @*if (Model.TipoID2 != null)
-                {
-                    <div class="col-sm-3">
-
-                        <p>Nombre</p>
-                        <p>Peso</p>
-                        <p>Altura</p>
-                        <p>Tipo 1</p>
-                        <p>Tipo 2</p>
-                    </div>
-                }
-                else
-                {
-                    <div class="col-sm-3">
-
-                        <p>Nombre</p>
-                        <p>Peso</p>
-                        <p>Altura</p>
-                        <p>Tipo 1</p>
-                    </div>
-                }
-
-            }*@
+            
             <div class="col-sm-3"></div>
             <div class="col-sm-3">
 
-                <h3>#001</h3>
-                <h3>Nombre: Bulbasaur</h3>
-                <h3>Peso: 6.9 kg</h3>
-                <h3>Altura: 0.7 m</h3>
+                <h3># @Model.detail.PokemonID</h3>
+                <h3>Nombre: @Model.detail.Nombre</h3>
+                <h3>Peso: @Model.detail.Peso kg</h3>
+                <h3>Altura: @Model.detail.Altura m</h3>
             </div>
             <div class="col-sm-3">
 
-                <h3>Tipo1: Grass</h3>
-                <h3>Tipo2: Poison</h3>
-                <h3>Generacion: 1</h3>
-                <h3>Habilidad: Chlorophyll</h3>
+                <h3>Tipo1: @Model.nameTipo1</h3>
+                @if (Model.nameTipo2 != null) { 
+                    <h3>Tipo2: @Model.nameTipo2</h3>
+                }
+                else { 
+                    <h3>  </h3>
+                }
+                <h3>Generacion: @Model.detail.Generacion</h3>
+                <h3>Habilidad: @Model.nameHab</h3>
+            </div>
+            <div>
+                @if (Model.ant != null)
+                {
+                    <h3> Evolucion anterior: @Html.ActionLink(Model.ant.Nombre, "GetDetails", "Overview", new { id = Model.ant.PokemonID }, null)</h3>
+                }
+                @if (Model.sig != null)
+                {
+                    <h3> Evolucion siguiente: @Html.ActionLink(Model.sig.Nombre,"GetDetails", "Overview", new { id = Model.sig.PokemonID }, null)</h3>
+                }
+
             </div>
         </div>
     </div>
     <div class="col-sm-2"></div>
 </body>
 </html>
+
+<script type="text/javascript">
+    getType()
+
+</script>

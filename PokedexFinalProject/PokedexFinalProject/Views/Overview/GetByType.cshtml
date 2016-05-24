@@ -1,0 +1,40 @@
+﻿@using PokedexFinalProject.Models;
+@model GetTypesViewModel
+
+@{
+    ViewBag.Title = "GetByType";
+    string imgpath = "";    
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GetByTypes</title>
+</head>
+<body>
+    <br />
+    <br />
+    <center><h2>Weak against: @Model.typeRelation.Debilidad || Strong against: @Model.typeRelation.Ventaja </h2></center> 
+    <br />
+    <br />
+   
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-9">
+            @{
+
+                foreach (GetPokemonByType_Result pok in Model.listPok)
+                {
+                    imgpath = pok.pathImg;
+                    <div class="col-sm-4">
+                        <img src="@Url.Content(imgpath)" height="150" width="150" />
+                        <li>@Html.ActionLink(pok.Nombre, "GetDetails", "Overview", new { id = pok.PokemonID }, null)</li>
+                    </div>
+                }
+            }
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+</body>
+</html>
+

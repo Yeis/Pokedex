@@ -26,7 +26,7 @@ Create procedure CreateEvolution
 AS
 
 Insert into Evolucion(
-	PokemonID,
+	PokeID,
 	AntID,
 	SigId,
 	status,
@@ -65,7 +65,7 @@ Create Procedure CreateGameRelation
 @PokeID int,
 @GameID int
 as
-insert into JuegosRelacion(PokemonID, JuegoID)values(@PokeID, @GameID)
+insert into JuegosRelacion(PokeID, GameID)values(@PokeID, @GameID)
 GO
 
 
@@ -78,7 +78,7 @@ create procedure CreateMove
  @Generation int
  as
  insert into Moves(
-	TipoID,
+	TpMovID,
 	Nombre,
 	Accuracy,
 	Power, 
@@ -99,8 +99,8 @@ Create Procedure CreateMoveRelation
 @MoveID int
 as
 insert into MovesRelacion(
-	PokemonID, 
-	MoveID)
+	PokeID, 
+	MvID)
 values(
 	@PokeID, 
 	@MoveID)
@@ -128,9 +128,9 @@ insert into Pokemon(
 	Peso, 
 	Altura, 
 	Generacion, 
-	TipoID, 
-	TipoID2, 
-	HabilidadID) 
+	TpID, 
+	TpID2, 
+	HabID) 
 values
 	(@Nombre,
 	@Peso,
@@ -140,7 +140,7 @@ values
 	@TipoID2,
 	@HabilidadID)
 insert into Stat(
-	PokemonID,
+	PokeID,
 	HP,
 	Attack,
 	Defense,
@@ -178,7 +178,7 @@ Create procedure CreateTypeRelation
 @DetailDebilidad varchar(max)
 as 
 insert into TipoRelacion (
-	TipoID, 
+	TpRelID, 
 	Ventaja, 
 	DetailVentaja, 
 	Debilidad, 
@@ -213,14 +213,19 @@ insert into Usuario values(
 	0)
 GO
 
-
+CREATE PROCEDURE GetMoveRelation
+@PokeID int 
+as 
+select * from Moves m
+inner join MovesRelacion mvrel on MoveID = MvId
+where mvrel.PokeID = @PokeID
 
 CREATE Procedure GetPokemonByGame
 @GameID int
 as
 select * from Juegos J 
-inner join JuegosRelacion on J.JuegoID = JuegosRelacion.JuegoID
-inner join Pokemon p on p.PokemonID = JuegosRelacion.PokemonID
+inner join JuegosRelacion on J.JuegoID = JuegosRelacion.GameID
+inner join Pokemon p on p.PokemonID = JuegosRelacion.PokeID
 where J.JuegoID = @GameID
 GO
 
@@ -242,13 +247,18 @@ Select * from Pokemon p
 where p.Nombre = @Name
 GO
 
+create procedure GetPokemonByType
+@TID int
+as
+select * from Pokemon p 
+where p.TpID = @TID OR P.TpID2 = @TID;
 
 CREATE Procedure GetPokemonDetail
 @Id int
 as
 select * from Pokemon p
 inner join Stat s
-on p.PokemonID = s.PokemonID
+on p.PokemonID = s.PokeID
 where p.PokemonID = @Id
 GO
 
@@ -258,7 +268,7 @@ Create Procedure GetPokemonEvolutions
 @PokeID int
 as
 select * from Evolucion
-where PokemonID = @PokeID
+where PokeID = @PokeID
 GO
 
 
@@ -266,8 +276,9 @@ Create procedure GetTypeRelations
 @Id int
 as 
 Select * from Tipo
-inner join TipoRelacion on @Id = TipoRelacion.TipoID
+inner join TipoRelacion on @Id = TipoRelacion.TpRelID
 GO
+
 
 -- STATISTICS 
 
