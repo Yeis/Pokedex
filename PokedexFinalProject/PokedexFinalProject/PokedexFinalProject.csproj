@@ -225,25 +225,16 @@
     <Compile Include="Evolucion.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="GetAllPokemon.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="GetLoginDays_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="GetLoginHours_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="GetPokemonByGame_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="GetPokemonById_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="GetPokemonByName_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GetPokemonDetail_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="GetPokemonEvolutions_Result.cs">
@@ -271,6 +262,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Juego.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JuegosRelacion.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="LocalUser.cs" />
@@ -304,6 +298,9 @@
     <Compile Include="Models\SPRangeViewModel.cs" />
     <Compile Include="Models\StatsViewModel.cs" />
     <Compile Include="Move.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MovesRelacion.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Pokemon.cs">
@@ -348,10 +345,10 @@
     <Compile Include="Stat.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagram.cs">
+    <Compile Include="Tipo.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Tipo.cs">
+    <Compile Include="TipoRelacion.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Usuario.cs">
@@ -529,13 +526,11 @@
     <Content Include="Views\Shared\ConexionesActivas.cshtml" />
     <Content Include="Views\Shared\DBIndexes.cshtml" />
     <Content Include="Views\Shared\SPbyHour.cshtml" />
-    <Content Include="Views\Shared\SPbyHourList.cshtml" />
     <Content Include="Views\Shared\Columns.cshtml" />
     <Content Include="Views\Shared\ColumnsList.cshtml" />
     <Content Include="Views\Shared\Tablas.cshtml" />
     <Content Include="Views\Shared\Tablas1000.cshtml" />
     <Content Include="Views\Shared\Views.cshtml" />
-    <Content Include="Views\Shared\SP_Info.cshtml" />
     <Content Include="Views\Shared\SPInRange.cshtml" />
     <Content Include="Views\Shared\SPRangeList.cshtml" />
     <Content Include="Views\Shared\SPCount.cshtml" />
@@ -548,6 +543,9 @@
     <Content Include="Views\Shared\GetUserContains.cshtml" />
     <Content Include="Views\Shared\GetUserContainsList.cshtml" />
     <Content Include="Views\Shared\SPByUserList.cshtml" />
+    <Content Include="Views\Shared\SPbyHourList.cshtml" />
+    <Content Include="Views\Shared\UnusedSP.cshtml" />
+    <Content Include="Views\Shared\SP_Info.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -337,7 +337,7 @@ GO
 
 CREATE PROCEDURE SP_InfoSp
 AS
-SELECT  nombre , count(nombre) FROM LogData
+SELECT  nombre , count(nombre) as Cantidad FROM LogData
 WHERE tipo = 'SP'
 GROUP BY nombre
 ORDER BY count(nombre) DESC

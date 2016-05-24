@@ -12,15 +12,12 @@ namespace PokedexFinalProject
     using System;
     using System.Collections.Generic;
     
-    public partial class Stat
+    public partial class TipoRelacion
     {
-        public int StatID { get; set; }
-        public int PokeID { get; set; }
-        public Nullable<int> HP { get; set; }
-        public Nullable<int> Attack { get; set; }
-        public Nullable<int> Defense { get; set; }
-        public Nullable<int> Speed { get; set; }
-        public Nullable<int> SplAttack { get; set; }
-        public Nullable<int> SplDefense { get; set; }
+        public int TpRelID { get; set; }
+        public string Ventaja { get; set; }
+        public string DetailVentaja { get; set; }
+        public string Debilidad { get; set; }
+        public string DetailDebilidad { get; set; }
     }
 }

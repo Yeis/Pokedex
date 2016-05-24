@@ -3,16 +3,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ProcName)
+            @Html.DisplayNameFor(model => model.nombre)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.execution_count)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.objectid)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.last_execution_time)
+            @Html.DisplayNameFor(model => model.Cantidad)
         </th>
         <th></th>
     </tr>
@@ -20,18 +14,12 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.ProcName)
+            @Html.DisplayFor(modelItem => item.nombre)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.execution_count)
+            @Html.DisplayFor(modelItem => item.Cantidad)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.objectid)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.last_execution_time)
-        </td>
->
+
     </tr>
 }
 

@@ -6,5 +6,15 @@
                     <p> @Html.TextBoxFor(x => x.Hour1)</p>
                     <p>Segunda Hora:</p>
                     <p> @Html.TextBoxFor(x => x.Hour2)</p>
-                    <input type="submit" value="Login" />
+                    <input type="submit" value="Buscar" />
+}
+
+@{
+    if (Model.SPByHour != null)
+    {
+        Html.RenderPartial("~/Views/Shared/SPByHourList.cshtml", Model.SPByHour);
+
+    }
+
+
 }

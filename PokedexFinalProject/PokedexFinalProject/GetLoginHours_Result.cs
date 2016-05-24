@@ -14,6 +14,6 @@ namespace PokedexFinalProject
     public partial class GetLoginHours_Result
     {
         public string Hora { get; set; }
-        public Nullable<int> Column1 { get; set; }
+        public Nullable<int> Cantidad { get; set; }
     }
 }

@@ -45,7 +45,7 @@ namespace PokedexFinalProject.Controllers
                     model.Indexes = BL.GetIndexes();
                     break;
                 case 4:
-                    //Estadisticas 1  NO PROBADO 
+                    //Estadisticas 1  
                     model.partialName = "SPRangeHours";
                     model._SPbyHourViewModel = new SPbyHourViewModel();
                     break;
@@ -85,12 +85,12 @@ namespace PokedexFinalProject.Controllers
                     model._SPRangeViewModel = new SPRangeViewModel();
                     break;
                 case 12:
-                    //Estadisticas 10 NO PROBADO 
+                    //Estadisticas 10  
                     model.partialName = "UnusedSP";
-                    model.MaxMinSP = BL.MaxMinSP();
+                    model.Unused = BL.UnusedSP();
                     break;
                 case 13:
-                    //Estadisticas 11.1 ACTUALIZAR
+                    //Estadisticas 11.1 
                     model.partialName = "ExecAvg";
                     model.ExecAverage = BL.ExecAvg();
                     break;
@@ -110,7 +110,7 @@ namespace PokedexFinalProject.Controllers
                     model.Dias = BL.HotDays();
                     break;
                 case 17:
-                    //Estadisticas 12.4 ACTUALIZAR 
+                    //Estadisticas 12.4  
                     model.partialName = "HotHours";
                     model.Horas = BL.HotHours();
                     break;
@@ -120,7 +120,7 @@ namespace PokedexFinalProject.Controllers
                     model._SPByUserViewModel = new SPByUserViewModel();
                     break;
                 case 19:
-                    //Estadisticas 12.7 ACTUALIZAR 
+                    //Estadisticas 12.7  
                     model.partialName = "GetUserSubtotals";
                     model.Subtotals = BL.GetUsersSubtotals();
                     break;
@@ -137,9 +137,13 @@ namespace PokedexFinalProject.Controllers
             return View(model);
         }
         public ActionResult SPByHour(SPbyHourViewModel model)
-        {
-            model.SPByHour = BL.GetSPbyHour(int.Parse(model.Hour1), int.Parse(model.Hour2));
-            return PartialView("SPbyHourList", model.SPByHour);
+        { 
+            model.SPByHour = BL.GetSPbyHour(int.Parse(model.Hour1),int.Parse(model.Hour2));
+            StatsViewModel temp = new StatsViewModel();
+            temp._SPbyHourViewModel = model;
+            temp.Options = BL.GetOptions();
+            temp.partialName = "SPRangeHours";
+            return View("Index", temp);        
         }
         public ActionResult Columns(ColumnsViewModel model)
         {

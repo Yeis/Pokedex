@@ -32,6 +32,7 @@ namespace PokedexFinalProject.Models
         public IEnumerable<InactiveUsers_Month_Result> Inactive { get; set; }
         public IEnumerable<SPCount_Result> SPCounts { get; set; }
         public IEnumerable<GetUserSubtotals_Result> Subtotals { get; set; }
+        public IEnumerable<string> Unused { get; set; }
 
         //  public IEnumerable<UnusedSP_> Vistas { get; set; }
         public GetUserContains _GetUserContains { get; set; }

@@ -14,13 +14,13 @@ namespace PokedexFinalProject
     
     public partial class Usuario
     {
-        public int UserID { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public Nullable<System.DateTime> DOB { get; set; }
+        public int UserId { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
+        public string email { get; set; }
+        public Nullable<System.DateTime> DoB { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-        public string Email { get; set; }
         public Nullable<int> Admin { get; set; }
     }
 }

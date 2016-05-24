@@ -58,7 +58,7 @@
                 Html.RenderPartial("~/Views/Shared/SPInRange.cshtml", Model._SPRangeViewModel);
                 break;
             case "UnusedSP":
-                // Html.RenderPartial("~/Views/Shared/SP_Info.cshtml", Model.MaxMinSP);
+                Html.RenderPartial("~/Views/Shared/UnusedSP.cshtml", Model.Unused);
                 break;
             case "ExecAvg":
                 Html.RenderPartial("~/Views/Shared/SPExecAverage.cshtml", Model.ExecAverage);
