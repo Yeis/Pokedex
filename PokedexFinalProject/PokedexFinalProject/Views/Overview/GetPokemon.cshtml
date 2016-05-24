@@ -1,4 +1,4 @@
-﻿@model PokedexFinalProject.Pokemon
+﻿@model  List<Pokemon> 
 @{ 
     List<Pokemon> listPokemon = new List<Pokemon>();
    
@@ -24,11 +24,11 @@
         </div>
          
         @{ 
-            foreach(Pokemon pok in listPokemon)
+            foreach(Pokemon pok in Model)
             {
                 <div class="col-sm-1">
 
-                    <li>@Html.ActionLink(pok.Nombre, "GetDetails", "Overview")</li>
+                    <li>@Html.ActionLink(pok.Nombre, "GetDetails", "Overview", new { id = pok.PokemonID}, null)</li>
                 </div>
             }
         }
