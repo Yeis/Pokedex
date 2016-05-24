@@ -213,7 +213,12 @@ insert into Usuario values(
 	0)
 GO
 
-
+CREATE PROCEDURE GetMoveRelation
+@PokeID int 
+as 
+select * from Move m
+inner join MoveRelation mvrel on MoveID = MvId
+where mvrel.PokeID = @PokeID
 
 CREATE Procedure GetPokemonByGame
 @GameID int

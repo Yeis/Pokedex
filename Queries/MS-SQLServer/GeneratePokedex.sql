@@ -6,15 +6,15 @@ CREATE TABLE Pokemon(
 	Peso INT NOT NULL,
 	Altura FLOAT NOT NULL,
 	Generacion INT NOT NULL,
-	TipoID INT NOT NULL,
-	TipoID2 INT,
-	HabilidadID INT,
+	TpID INT NOT NULL,
+	TpID2 INT,
+	HabID INT,
 	pathImg VARCHAR(500)
 )
 
 CREATE TABLE Stat(
 	StatID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-	PokemonID INT NOT NULL,
+	PokeID INT NOT NULL,
 	HP INT,
 	Attack INT,
 	Defense INT,
@@ -38,7 +38,7 @@ CREATE TABLE Tipo(
 
 CREATE TABLE Moves(
 	MoveID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-	TipoID INT,
+	TpMovID INT,
 	Nombre VARCHAR(25),
 	Accuracy INT,
 	[Power] INT,
@@ -48,12 +48,12 @@ CREATE TABLE Moves(
 
 CREATE TABLE JuegosRelacion(
 	JuegoRelID  INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-	PokemonID INT,
-	JuegoID INT
+	PokeID INT,
+	GameID INT
 )
 
 CREATE TABLE TipoRelacion(
-	TipoID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	TpRelID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
 	Ventaja VARCHAR(25),
 	DetailVentaja VARCHAR(MAX),
 	Debilidad VARCHAR(25),
@@ -62,7 +62,7 @@ CREATE TABLE TipoRelacion(
 
 CREATE TABLE Evolucion(
 	EvolucionID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-	PokemonID INT NOT NULL,
+	PokeID INT NOT NULL,
 	AntID INT,
 	SigId INT,
 	status VARCHAR(MAX),
@@ -77,8 +77,8 @@ CREATE TABLE Habilidad(
 
 CREATE TABLE MovesRelacion(
 	MovRelID INT IDENTITY(1,1) NOT NULL PRIMARY KEY ,
-	PokemonID INT, 
-	MoveID INT
+	PokeID INT, 
+	MvID INT
 )
 
 CREATE TABLE Usuario
