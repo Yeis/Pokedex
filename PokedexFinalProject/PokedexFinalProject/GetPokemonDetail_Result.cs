@@ -18,12 +18,12 @@ namespace PokedexFinalProject
         public int Peso { get; set; }
         public double Altura { get; set; }
         public int Generacion { get; set; }
-        public int TipoID { get; set; }
-        public Nullable<int> TipoID2 { get; set; }
-        public Nullable<int> HabilidadID { get; set; }
+        public int TpID { get; set; }
+        public Nullable<int> TpID2 { get; set; }
+        public Nullable<int> HabID { get; set; }
         public string pathImg { get; set; }
         public int StatID { get; set; }
-        public int PokemonID1 { get; set; }
+        public int PokeID { get; set; }
         public Nullable<int> HP { get; set; }
         public Nullable<int> Attack { get; set; }
         public Nullable<int> Defense { get; set; }

@@ -15,7 +15,7 @@ namespace PokedexFinalProject
     public partial class Move
     {
         public int MoveID { get; set; }
-        public Nullable<int> TipoID { get; set; }
+        public Nullable<int> TpID { get; set; }
         public string Nombre { get; set; }
         public Nullable<int> Accuracy { get; set; }
         public Nullable<int> Power { get; set; }

@@ -14,7 +14,7 @@ namespace PokedexFinalProject
     public partial class GetPokemonEvolutions_Result
     {
         public int EvolucionID { get; set; }
-        public int PokemonID { get; set; }
+        public int PokeID { get; set; }
         public Nullable<int> AntID { get; set; }
         public Nullable<int> SigId { get; set; }
         public string status { get; set; }

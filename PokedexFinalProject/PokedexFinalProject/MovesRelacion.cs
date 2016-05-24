@@ -12,15 +12,10 @@ namespace PokedexFinalProject
     using System;
     using System.Collections.Generic;
     
-    public partial class Stat
+    public partial class MovesRelacion
     {
-        public int StatID { get; set; }
-        public int PokeID { get; set; }
-        public Nullable<int> HP { get; set; }
-        public Nullable<int> Attack { get; set; }
-        public Nullable<int> Defense { get; set; }
-        public Nullable<int> Speed { get; set; }
-        public Nullable<int> SplAttack { get; set; }
-        public Nullable<int> SplDefense { get; set; }
+        public int MovRelID { get; set; }
+        public Nullable<int> PokeID { get; set; }
+        public Nullable<int> MvID { get; set; }
     }
 }

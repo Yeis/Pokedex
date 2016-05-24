@@ -15,7 +15,7 @@ namespace PokedexFinalProject
     public partial class Evolucion
     {
         public int EvolucionID { get; set; }
-        public int PokemonID { get; set; }
+        public int PokeID { get; set; }
         public Nullable<int> AntID { get; set; }
         public Nullable<int> SigId { get; set; }
         public string status { get; set; }
