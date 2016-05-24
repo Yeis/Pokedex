@@ -18,16 +18,17 @@ namespace PokedexFinalProject
         public Nullable<System.DateTime> Año { get; set; }
         public string Generacion { get; set; }
         public string Region { get; set; }
-        public Nullable<int> PokemonID { get; set; }
-        public Nullable<int> JuegoID1 { get; set; }
-        public int PokemonID1 { get; set; }
+        public int JuegoRelID { get; set; }
+        public Nullable<int> PokeID { get; set; }
+        public Nullable<int> GameID { get; set; }
+        public int PokemonID { get; set; }
         public string Nombre1 { get; set; }
         public int Peso { get; set; }
         public double Altura { get; set; }
         public int Generacion1 { get; set; }
-        public int TipoID { get; set; }
-        public Nullable<int> TipoID2 { get; set; }
-        public Nullable<int> HabilidadID { get; set; }
+        public int TpID { get; set; }
+        public Nullable<int> TpID2 { get; set; }
+        public Nullable<int> HabID { get; set; }
         public string pathImg { get; set; }
     }
 }

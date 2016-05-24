@@ -10,14 +10,17 @@
 namespace PokedexFinalProject
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class sysdiagram
+    public partial class GetPokemonByType_Result
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int PokemonID { get; set; }
+        public string Nombre { get; set; }
+        public int Peso { get; set; }
+        public double Altura { get; set; }
+        public int Generacion { get; set; }
+        public int TpID { get; set; }
+        public Nullable<int> TpID2 { get; set; }
+        public Nullable<int> HabID { get; set; }
+        public string pathImg { get; set; }
     }
 }

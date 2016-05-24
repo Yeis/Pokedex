@@ -12,15 +12,10 @@ namespace PokedexFinalProject
     using System;
     using System.Collections.Generic;
     
-    public partial class GetAllPokemon
+    public partial class MovesRelacion
     {
-        public int PokemonID { get; set; }
-        public string Nombre { get; set; }
-        public int Peso { get; set; }
-        public double Altura { get; set; }
-        public int Generacion { get; set; }
-        public int TipoID { get; set; }
-        public Nullable<int> TipoID2 { get; set; }
-        public Nullable<int> HabilidadID { get; set; }
+        public int MovRelID { get; set; }
+        public Nullable<int> PokeID { get; set; }
+        public Nullable<int> MvID { get; set; }
     }
 }

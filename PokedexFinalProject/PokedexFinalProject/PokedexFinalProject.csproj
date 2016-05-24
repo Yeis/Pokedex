@@ -205,10 +205,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActiveUsers_Month_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="ActiveUsers_Week_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -223,74 +223,65 @@
     <Compile Include="Controllers\OverviewController.cs" />
     <Compile Include="Controllers\StatsController.cs" />
     <Compile Include="Evolucion.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GetAllPokemon.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="GetLoginDays_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="GetLoginHours_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetMoveRelation_Result.cs">
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="GetPokemonByGame_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="GetPokemonById_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="GetPokemonByName_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetPokemonByType_Result.cs">
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="GetPokemonDetail_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="GetPokemonEvolutions_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="GetSPByHour_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="GetTypeRelations_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="GetUserContains_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="GetUserSubtotals_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Habilidad.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="InactiveUsers_Month_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Juego.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JuegosRelacion.cs">
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="LocalUser.cs" />
     <Compile Include="LogData.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model.edmx</DependentUpon>
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -299,58 +290,76 @@
     <Compile Include="Models\RegisterViewModels.cs" />
     <Compile Include="Models\StatsViewModel.cs" />
     <Compile Include="Move.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MovesRelacion.cs">
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PokedexEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PokedexEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PokedexEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PokedexEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PokedexEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Pokemon.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SharedInstance.cs" />
     <Compile Include="SPByUser_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="SPCount_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="SPExecAverage_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="SPInRange_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_ConexionesActivas_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_InfoSp_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_ListaColumnas_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_ListaIndices_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_ListaViews_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_Lista_Mil_Registros_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_Lista_Tablas_Result.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="Stat.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagram.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Tipo.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoRelacion.cs">
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Usuario.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>PokedexEntities.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -368,15 +377,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Model.Context.tt">
+    <Content Include="PokedexEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model.edmx</DependentUpon>
-      <LastGenOutput>Model.Context.cs</LastGenOutput>
+      <DependentUpon>PokedexEntities.edmx</DependentUpon>
+      <LastGenOutput>PokedexEntities.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model.tt">
+    <Content Include="PokedexEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model.edmx</DependentUpon>
-      <LastGenOutput>Model.cs</LastGenOutput>
+      <DependentUpon>PokedexEntities.edmx</DependentUpon>
+      <LastGenOutput>PokedexEntities.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
@@ -392,12 +401,12 @@
     <Content Include="Content\bootstrap-datepicker.standalone.css.map" />
     <Content Include="Content\bootstrap-datepicker.min.css.map" />
     <Content Include="Content\bootstrap-datepicker.css.map" />
-    <EntityDeploy Include="Model.edmx">
+    <EntityDeploy Include="PokedexEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model.Designer.cs</LastGenOutput>
+      <LastGenOutput>PokedexEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Model.edmx.diagram">
-      <DependentUpon>Model.edmx</DependentUpon>
+    <Content Include="PokedexEntities.edmx.diagram">
+      <DependentUpon>PokedexEntities.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\DatePicker.js" />
@@ -522,6 +531,10 @@
     <Content Include="Views\Shared\ActiveUsersWeek.cshtml" />
     <Content Include="Views\Stats\Index.cshtml" />
     <Content Include="Views\Shared\ConexionesActivas.cshtml" />
+    <Content Include="Views\Overview\GetDetails.cshtml" />
+    <Content Include="Views\Overview\GetPokemon.cshtml" />
+    <Content Include="Views\Overview\GetTypes.cshtml" />
+    <Content Include="Views\Overview\GetByType.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

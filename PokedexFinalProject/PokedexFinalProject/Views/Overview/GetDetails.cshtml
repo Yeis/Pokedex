@@ -1,6 +1,7 @@
 ﻿@model GetPokemonDetail_Result
+
 @{
-    //Model.TipoID2 = 2;
+  
 }
 
 <!DOCTYPE html>
@@ -9,18 +10,26 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>GetDetails</title>
+    <style>
+        img {
+            border-color:#000000;
+            border-style: solid;
+            border-width:medium;
+        }
+
+
+    </style>
 </head>
 <body>
-    <div class="col-sm-2"></div>
-    <div class="col-sm-8"> 
-        <div class="row">
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-sm-9" >
             <div class="col-sm-3">
-                <img src="http://cdn.bulbagarden.net/upload/thumb/2/21/001Bulbasaur.png/250px-001Bulbasaur.png" />
-
+                <img src="@Url.Content(@Model.pathImg)" height="250" width="250" />
             </div>
-            
             <div class="col-sm-3"></div>
-            <div class="col-sm-3">
+            <div class="col-sm-3" >
 
                 <h3># @Model.PokemonID</h3>
                 <h3>Nombre: @Model.Nombre</h3>
@@ -28,14 +37,18 @@
                 <h3>Altura: @Model.Altura m</h3>
             </div>
             <div class="col-sm-3">
-
-                <h3>Tipo1:<script>     function getType(id) {
-         return "success"
-     }</script></h3>
-                @if (Model.TpID2 != null) { 
+                @{ 
+                    
+                }
+                <h3>
+                    Tipo1:@Model.TpID
+                    @*<script> function getType(id) {  return "success" }</script>*@
+                </h3>
+                @if (Model.TpID2 != null)
+                {
                     <h3>Tipo2: @Model.TpID2</h3>
                 }
-                else { 
+                else {
                     <h3> </h3>
                 }
                 <h3>Generacion: @Model.Generacion</h3>
@@ -43,7 +56,8 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-2"></div>
+    <br />
+    <br />
 </body>
 </html>
 

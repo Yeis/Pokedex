@@ -1,23 +1,23 @@
-﻿@model  List<Pokemon> 
-@{ 
-    string imgpath = "";
-
+﻿@model List< GetPokemonByType_Result>
+@{
+    ViewBag.Title = "GetByType";
+    string imgpath = "";    
 }
-
-<!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>GetPokemon</title>
+    <title>GetByTypes</title>
 </head>
 <body>
+    <br />
+    <br />
     <div class="row">
         <div class="col-sm-2"></div>
         <div class="col-sm-9">
             @{
 
-                foreach (Pokemon pok in Model)
+                foreach (GetPokemonByType_Result pok in Model)
                 {
                     imgpath = pok.pathImg;
                     <div class="col-sm-4">
@@ -31,3 +31,4 @@
     </div>
 </body>
 </html>
+

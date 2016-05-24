@@ -27,17 +27,18 @@ namespace PokedexFinalProject
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<LogData> LogDatas { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Evolucion> Evolucions { get; set; }
         public virtual DbSet<Habilidad> Habilidads { get; set; }
         public virtual DbSet<Juego> Juegos { get; set; }
+        public virtual DbSet<JuegosRelacion> JuegosRelacions { get; set; }
+        public virtual DbSet<LogData> LogDatas { get; set; }
         public virtual DbSet<Move> Moves { get; set; }
+        public virtual DbSet<MovesRelacion> MovesRelacions { get; set; }
         public virtual DbSet<Pokemon> Pokemons { get; set; }
         public virtual DbSet<Stat> Stats { get; set; }
         public virtual DbSet<Tipo> Tipoes { get; set; }
+        public virtual DbSet<TipoRelacion> TipoRelacions { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
-        public virtual DbSet<GetAllPokemon> GetAllPokemons { get; set; }
     
         public virtual ObjectResult<ActiveUsers_Month_Result> ActiveUsers_Month()
         {
@@ -293,6 +294,15 @@ namespace PokedexFinalProject
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetLoginHours_Result>("GetLoginHours");
         }
     
+        public virtual ObjectResult<GetMoveRelation_Result> GetMoveRelation(Nullable<int> pokeID)
+        {
+            var pokeIDParameter = pokeID.HasValue ?
+                new ObjectParameter("PokeID", pokeID) :
+                new ObjectParameter("PokeID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetMoveRelation_Result>("GetMoveRelation", pokeIDParameter);
+        }
+    
         public virtual ObjectResult<GetPokemonByGame_Result> GetPokemonByGame(Nullable<int> gameID)
         {
             var gameIDParameter = gameID.HasValue ?
@@ -318,6 +328,15 @@ namespace PokedexFinalProject
                 new ObjectParameter("Name", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetPokemonByName_Result>("GetPokemonByName", nameParameter);
+        }
+    
+        public virtual ObjectResult<GetPokemonByType_Result> GetPokemonByType(Nullable<int> tID)
+        {
+            var tIDParameter = tID.HasValue ?
+                new ObjectParameter("TID", tID) :
+                new ObjectParameter("TID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetPokemonByType_Result>("GetPokemonByType", tIDParameter);
         }
     
         public virtual ObjectResult<GetPokemonDetail_Result> GetPokemonDetail(Nullable<int> id)
@@ -379,90 +398,9 @@ namespace PokedexFinalProject
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<InactiveUsers_Month_Result>("InactiveUsers_Month");
         }
     
-        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
-    
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
-        }
-    
         public virtual ObjectResult<SP_ConexionesActivas_Result> SP_ConexionesActivas()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_ConexionesActivas_Result>("SP_ConexionesActivas");
-        }
-    
-        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
-    
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
-        }
-    
-        public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual int sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual int sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
         }
     
         public virtual ObjectResult<SP_InfoSp_Result> SP_InfoSp()
@@ -497,28 +435,6 @@ namespace PokedexFinalProject
         public virtual ObjectResult<SP_ListaViews_Result> SP_ListaViews()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_ListaViews_Result>("SP_ListaViews");
-        }
-    
-        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var new_diagramnameParameter = new_diagramname != null ?
-                new ObjectParameter("new_diagramname", new_diagramname) :
-                new ObjectParameter("new_diagramname", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
-        }
-    
-        public virtual int sp_upgraddiagrams()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
     
         public virtual ObjectResult<SPByUser_Result> SPByUser(Nullable<int> userid)
