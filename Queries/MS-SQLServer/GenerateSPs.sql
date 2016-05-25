@@ -220,6 +220,10 @@ select * from Moves m
 inner join MovesRelacion mvrel on MoveID = MvId
 where mvrel.PokeID = @PokeID
 
+GO
+
+
+
 CREATE Procedure GetPokemonByGame
 @GameID int
 as
@@ -252,6 +256,7 @@ create procedure GetPokemonByType
 as
 select * from Pokemon p 
 where p.TpID = @TID OR P.TpID2 = @TID;
+GO
 
 CREATE Procedure GetPokemonDetail
 @Id int
