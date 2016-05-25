@@ -237,6 +237,12 @@
     <Compile Include="GetPokemonByName_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="GetPokemonByType_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetPokemonDetail_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="GetPokemonEvolutions_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -487,7 +493,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -522,7 +530,6 @@
     <Content Include="Views\Login\Register.cshtml" />
     <Content Include="Views\Overview\Index.cshtml" />
     <Content Include="Views\Shared\ActiveUsersWeek.cshtml" />
-    <Content Include="Views\Stats\Index.cshtml" />
     <Content Include="Views\Shared\ConexionesActivas.cshtml" />
     <Content Include="Views\Shared\DBIndexes.cshtml" />
     <Content Include="Views\Shared\SPbyHour.cshtml" />
@@ -546,6 +553,7 @@
     <Content Include="Views\Shared\SPbyHourList.cshtml" />
     <Content Include="Views\Shared\UnusedSP.cshtml" />
     <Content Include="Views\Shared\SP_Info.cshtml" />
+    <Content Include="Views\Stats\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

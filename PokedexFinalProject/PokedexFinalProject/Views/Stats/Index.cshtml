@@ -1,10 +1,10 @@
-﻿@using PokedexFinalProject.Models;
+﻿@using System.Web.UI.WebControls;
+@using PokedexFinalProject.Models;
 @model StatsViewModel
-@using System.Web.UI.WebControls;
 @{
     ViewBag.Title = "Index";
 }
-@using (Html.BeginForm("Index","Stats",FormMethod.Post))
+@using (Html.BeginForm("Index", "Stats", FormMethod.Post))
 {
     <fieldset>
         <dl>
@@ -21,11 +21,11 @@
 }
 
 <div id="Partial-view">
-    @*@{
+    @{
         switch (Model.partialName)
         {
             case "ActiveUsersWeek":
-                Html.RenderPartial("~/Views/Shared/ActiveUsersWeek.cshtml", Model.ActiveUsersWeek );
+                Html.RenderPartial("~/Views/Shared/ActiveUsersWeek.cshtml", Model.ActiveUsersWeek);
                 break;
             case "ActiveUsersMonth":
                 Html.RenderPartial("~/Views/Shared/ActiveUsersMonth.cshtml", Model.ActiveUsersMonth);
@@ -87,6 +87,8 @@
             default:
                 break;
         }
-    }*@
+    }
 </div>
+
+
 

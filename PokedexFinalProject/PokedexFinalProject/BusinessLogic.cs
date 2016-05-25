@@ -52,12 +52,15 @@ namespace PokedexFinalProject
          
             
         }
-        //public List<SP_ConexionesActivas_Result> GetActiveConnections()
-        //{
-        //    Starttime = DateTime.Now.Millisecond;
-        //    List<SP_ConexionesActivas_Result> result = context.SP_ConexionesActivas().ToList();
-        //    Endtime = DateTime.Now.Millisecond;
+        public List<SP_ConexionesActivas_Result> GetActiveConnections()
+        {
+            Starttime = DateTime.Now.Millisecond;
+            List<SP_ConexionesActivas_Result> result = context.SP_ConexionesActivas().ToList();
+            Endtime = DateTime.Now.Millisecond;
+            AddLog(new LogData() { nombre = "SP_ConexionesActivas", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
+            return result;
 
+        }
         internal IEnumerable<SP_ListaIndices_Result> GetIndexes()
         {
             Starttime = DateTime.Now.Millisecond;
