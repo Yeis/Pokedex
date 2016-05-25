@@ -1,4 +1,6 @@
-﻿@model List< GetPokemonByType_Result>
+﻿@using PokedexFinalProject.Models;
+@model GetTypesViewModel
+
 @{
     ViewBag.Title = "GetByType";
     string imgpath = "";    
@@ -12,12 +14,16 @@
 <body>
     <br />
     <br />
+    <center><h2>Weak against: @Model.typeRelation.Debilidad || Strong against: @Model.typeRelation.Ventaja </h2></center> 
+    <br />
+    <br />
+   
     <div class="row">
         <div class="col-sm-2"></div>
         <div class="col-sm-9">
             @{
 
-                foreach (GetPokemonByType_Result pok in Model)
+                foreach (GetPokemonByType_Result pok in Model.listPok)
                 {
                     imgpath = pok.pathImg;
                     <div class="col-sm-4">

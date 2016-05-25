@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PokedexFinalProject.Models;
 
 namespace PokedexFinalProject.Controllers
 {
@@ -37,8 +38,9 @@ namespace PokedexFinalProject.Controllers
         [HttpGet]
         public ActionResult GetByType(int id)
         {
-            var pokemon = context.GetPokemonByType(id).ToList();
-            return View(pokemon.ToList());
+            //var pokemon = context.GetPokemonByType(id).ToList();
+            var tipos = new GetTypesViewModel(id);
+            return View(tipos);
         }
     }
 }

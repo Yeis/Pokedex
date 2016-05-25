@@ -64,6 +64,11 @@ namespace PokedexFinalProject.Controllers
             return View(model);
         }
 
+        public ActionResult SetStats()
+        {
+            return View();
+        }
+
 
         public PartialViewResult ActiveUsersWeek(IEnumerable<PokedexFinalProject.ActiveUsers_Week_Result> weeks)
         {
