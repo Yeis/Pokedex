@@ -1,7 +1,5 @@
 ﻿@model  List<Pokemon> 
-@{ 
-    string imgpath = "";
-
+@{    
 }
 
 <!DOCTYPE html>
@@ -12,22 +10,17 @@
     <title>GetPokemon</title>
 </head>
 <body>
-    <div class="row">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-9">
-            @{
+    
+    <div>         
+        @{ 
+            foreach(Pokemon pok in Model)
+            {
+                <div class="col-sm-1">
 
-                foreach (Pokemon pok in Model)
-                {
-                    imgpath = pok.pathImg;
-                    <div class="col-sm-4">
-                        <img src="@Url.Content(imgpath)" height="150" width="150" />
-                        <li>@Html.ActionLink(pok.Nombre, "GetDetails", "Overview", new { id = pok.PokemonID }, null)</li>
-                    </div>
-                }
+                    <li>@Html.ActionLink(pok.Nombre, "GetDetails", "Overview", new { id = pok.PokemonID}, null)</li>
+                </div>
             }
-        </div>
-        <div class="col-sm-2"></div>
+        }
     </div>
 </body>
 </html>

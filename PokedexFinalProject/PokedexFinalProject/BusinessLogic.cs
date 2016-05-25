@@ -51,17 +51,17 @@ namespace PokedexFinalProject
          
             
         }
-        public List<SP_ConexionesActivas_Result> GetActiveConnections()
-        {
-            Starttime = DateTime.Now.Millisecond;
-            List<SP_ConexionesActivas_Result> result = context.SP_ConexionesActivas().ToList();
-            Endtime = DateTime.Now.Millisecond;
+        //public List<SP_ConexionesActivas_Result> GetActiveConnections()
+        //{
+        //    Starttime = DateTime.Now.Millisecond;
+        //    List<SP_ConexionesActivas_Result> result = context.SP_ConexionesActivas().ToList();
+        //    Endtime = DateTime.Now.Millisecond;
 
-            AddLog(new LogData() { nombre = "SP_ConexionesActivas", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
-            return result;
+        //    AddLog(new LogData() { nombre = "SP_ConexionesActivas", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
+        //    return result;
 
 
-        }
+        //}
         public List<ActiveUsers_Month_Result> Acitve_Users_Month()
         {
                 Starttime = DateTime.Now.Millisecond;

@@ -25,41 +25,41 @@ namespace PokedexFinalProject.Controllers
         [HttpPost]
         public ActionResult Index(StatsViewModel model)
         {
-            model.Options = BL.GetOptions();
+            //model.Options = BL.GetOptions();
 
-            switch (model.Selectedid)
-            {
-                case 1:
-                    model.partialName = "ActiveUsersWeek";
-                    model.ActiveUsersWeek = BL.Acitve_Users_Week();
-                    break;
-                case 2:
-                    model.partialName = "ActiveUsersMonth";
-                    model.ActiveUsersMonth = BL.Acitve_Users_Month();
-                    break;
-                case 3:
-                    model.partialName = "ActiveUsersMonth";
-                    model.ActiveUsersMonth = BL.Acitve_Users_Month();
-                    break;
-                case 4:
-                    model.partialName = "ActiveUsersMonth";
-                    model.ActiveUsersMonth = BL.Acitve_Users_Month();
-                    break;
-                case 5:
-                    model.partialName = "SP_ConexionesActivas";
-                    model.ActiveConnections = BL.GetActiveConnections();
-                    break;
-                case 6:
-                    model.partialName = "ActiveUsersMonth";
-                    model.ActiveUsersMonth = BL.Acitve_Users_Month();
-                    break;
-                case 7:
-                    model.partialName = "ActiveUsersMonth";
-                    model.ActiveUsersMonth = BL.Acitve_Users_Month();
-                    break;
-                default:
-                    break;
-            }
+            //switch (model.Selectedid)
+            //{
+            //    case 1:
+            //        model.partialName = "ActiveUsersWeek";
+            //        model.ActiveUsersWeek = BL.Acitve_Users_Week();
+            //        break;
+            //    case 2:
+            //        model.partialName = "ActiveUsersMonth";
+            //        model.ActiveUsersMonth = BL.Acitve_Users_Month();
+            //        break;
+            //    case 3:
+            //        model.partialName = "ActiveUsersMonth";
+            //        model.ActiveUsersMonth = BL.Acitve_Users_Month();
+            //        break;
+            //    case 4:
+            //        model.partialName = "ActiveUsersMonth";
+            //        model.ActiveUsersMonth = BL.Acitve_Users_Month();
+            //        break;
+            //    case 5:
+            //        model.partialName = "SP_ConexionesActivas";
+            //        model.ActiveConnections = BL.GetActiveConnections();
+            //        break;
+            //    case 6:
+            //        model.partialName = "ActiveUsersMonth";
+            //        model.ActiveUsersMonth = BL.Acitve_Users_Month();
+            //        break;
+            //    case 7:
+            //        model.partialName = "ActiveUsersMonth";
+            //        model.ActiveUsersMonth = BL.Acitve_Users_Month();
+            //        break;
+            //    default:
+            //        break;
+            //}
 
             return View(model);
         }
