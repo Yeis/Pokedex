@@ -12,14 +12,12 @@ namespace PokedexFinalProject
     using System;
     using System.Collections.Generic;
     
-    public partial class Move
+    public partial class TipoRelacion
     {
-        public int MoveID { get; set; }
-        public Nullable<int> TpMovID { get; set; }
-        public string Nombre { get; set; }
-        public Nullable<int> Accuracy { get; set; }
-        public Nullable<int> Power { get; set; }
-        public Nullable<int> PowerPoints { get; set; }
-        public Nullable<int> Generacion { get; set; }
+        public int TpRelID { get; set; }
+        public string Ventaja { get; set; }
+        public string DetailVentaja { get; set; }
+        public string Debilidad { get; set; }
+        public string DetailDebilidad { get; set; }
     }
 }

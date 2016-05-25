@@ -15,7 +15,7 @@ namespace PokedexFinalProject
     {
         public int TipoID { get; set; }
         public string Nombre { get; set; }
-        public int TpID { get; set; }
+        public int TpRelID { get; set; }
         public string Ventaja { get; set; }
         public string DetailVentaja { get; set; }
         public string Debilidad { get; set; }

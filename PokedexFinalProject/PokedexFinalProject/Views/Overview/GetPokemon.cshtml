@@ -1,7 +1,5 @@
 ﻿@model  List<Pokemon> 
-@{ 
-    List<Pokemon> listPokemon = new List<Pokemon>();
-   
+@{    
 }
 
 <!DOCTYPE html>
@@ -13,16 +11,7 @@
 </head>
 <body>
     
-    <div>
-        <div class="col-sm-1">
-
-            <li>@Html.ActionLink("Bulbasaur", "GetDetails", "Overview")</li>
-            
-        </div>
-        <div class="col-sm-1">
-            <li>@Html.ActionLink("Charmander", "GetDetails", "Overview", new {id = "2" },null)</li>
-        </div>
-         
+    <div>         
         @{ 
             foreach(Pokemon pok in Model)
             {

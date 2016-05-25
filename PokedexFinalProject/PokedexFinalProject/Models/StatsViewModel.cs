@@ -20,7 +20,7 @@ namespace PokedexFinalProject.Models
         //Stats Collection
         public IEnumerable<ActiveUsers_Month_Result> ActiveUsersMonth { get; set; }
         public IEnumerable<ActiveUsers_Week_Result> ActiveUsersWeek { get; set; }
-        public IEnumerable<SP_ConexionesActivas_Result> ActiveConnections { get; set; }
+        //public IEnumerable<SP_ConexionesActivas_Result> ActiveConnections { get; set; }
 
 
 

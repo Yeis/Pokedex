@@ -10,9 +10,8 @@
 namespace PokedexFinalProject
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Move
+    public partial class GetMoveRelation_Result
     {
         public int MoveID { get; set; }
         public Nullable<int> TpMovID { get; set; }
@@ -21,5 +20,8 @@ namespace PokedexFinalProject
         public Nullable<int> Power { get; set; }
         public Nullable<int> PowerPoints { get; set; }
         public Nullable<int> Generacion { get; set; }
+        public int MovRelID { get; set; }
+        public Nullable<int> PokeID { get; set; }
+        public Nullable<int> MvID { get; set; }
     }
 }
