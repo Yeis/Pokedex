@@ -23,8 +23,22 @@ namespace PokedexFinalProject.Controllers
         [HttpGet]
         public ActionResult GetDetails(int id)
         {
-            var pokemon = context.GetPokemonDetail(id).First();
+            var pokemon = context.GetPokemonDetail(id).FirstOrDefault();
             return View(pokemon);
+        }
+
+ 
+        public ActionResult GetTypes()
+        {
+            var tipos = context.Tipoes.ToList();
+            return View(tipos);
+        }
+
+        [HttpGet]
+        public ActionResult GetByType(int id)
+        {
+            var pokemon = context.GetPokemonByType(id).ToList();
+            return View(pokemon.ToList());
         }
     }
 }

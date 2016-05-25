@@ -1,0 +1,43 @@
+﻿@model  List<Tipo>
+
+@{
+    ViewBag.Title = "GetTypes";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GetTypes</title>
+    <style>
+        li{
+            font-family:Arial;
+            font-size:large;
+        }
+    </style>
+</head>
+<body>
+    <center><<h2>Get Pokémon by their type</h2></center> 
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-9">
+            @{
+
+                foreach (Tipo tipo in Model)
+                {
+                   
+                    <div class="col-sm-4">
+                        
+                        <li>@Html.ActionLink(tipo.Nombre, "GetByType", "Overview", new { id = tipo.TipoID }, null)</li>
+                    </div>
+                }
+            }
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+</body>
+</html>
+
+
+

@@ -1,0 +1,34 @@
+﻿@model List< GetPokemonByType_Result>
+@{
+    ViewBag.Title = "GetByType";
+    string imgpath = "";    
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GetByTypes</title>
+</head>
+<body>
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-9">
+            @{
+
+                foreach (GetPokemonByType_Result pok in Model)
+                {
+                    imgpath = pok.pathImg;
+                    <div class="col-sm-4">
+                        <img src="@Url.Content(imgpath)" height="150" width="150" />
+                        <li>@Html.ActionLink(pok.Nombre, "GetDetails", "Overview", new { id = pok.PokemonID }, null)</li>
+                    </div>
+                }
+            }
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+</body>
+</html>
+
