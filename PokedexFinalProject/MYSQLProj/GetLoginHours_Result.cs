@@ -13,5 +13,7 @@ namespace MYSQLProj
     
     public partial class GetLoginHours_Result
     {
+        public long Cantidad { get; set; }
+        public string Hora { get; set; }
     }
 }

@@ -11,10 +11,14 @@ namespace MYSQLProj
 {
     using System;
     
-    public partial class SPByUser_Result
+    public partial class GetTypeRelations_Result
     {
-        public string nombre { get; set; }
-        public System.DateTime fecha { get; set; }
-        public int exec_time { get; set; }
+        public int TipoID { get; set; }
+        public string Nombre { get; set; }
+        public int TpRelID { get; set; }
+        public string Ventaja { get; set; }
+        public string DetailVentaja { get; set; }
+        public string Debilidad { get; set; }
+        public string DetailDebilidad { get; set; }
     }
 }

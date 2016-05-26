@@ -22,7 +22,7 @@ namespace PokedexFinalProject.BusinessLayer
             Starttime = DateTime.Now.Millisecond;
             List<MYSQLProj.ActiveUsers_Month_Result> result = context.ActiveUsers_Month().ToList();
             Endtime = DateTime.Now.Millisecond;
-            AddLog(new logdata() { nombre = "ActiveUsers_Month", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
+            AddLog(new logdata() { nombre = "ActiveUsers_Month", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserId, exec_time = (Endtime - Starttime) });
   
             return result;
         }
@@ -37,7 +37,7 @@ namespace PokedexFinalProject.BusinessLayer
 
         public void LogOut()
         {
-            AddLog(new logdata() { nombre = SharedInstance.AppUser.Username, tipo = "Logout", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
+            AddLog(new logdata() { nombre = SharedInstance.AppUser.Username, tipo = "Logout", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserId, exec_time = (Endtime - Starttime) });
             SharedInstance.AppUser = null;
         }
         public void AddLog(logdata log)

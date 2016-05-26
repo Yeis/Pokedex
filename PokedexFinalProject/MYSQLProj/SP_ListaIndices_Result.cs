@@ -11,10 +11,12 @@ namespace MYSQLProj
 {
     using System;
     
-    public partial class SPByUser_Result
+    public partial class SP_ListaIndices_Result
     {
-        public string nombre { get; set; }
-        public System.DateTime fecha { get; set; }
-        public int exec_time { get; set; }
+        public string Database_Name { get; set; }
+        public string INDEX_SCHEMA { get; set; }
+        public string TABLE_NAME { get; set; }
+        public string INDEX_NAME { get; set; }
+        public string INDEX_TYPE { get; set; }
     }
 }

@@ -13,5 +13,13 @@ namespace MYSQLProj
     
     public partial class InactiveUsers_Month_Result
     {
+        public string Nombre { get; set; }
+        public int Admin { get; set; }
+        public string Apellido { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public int UserId { get; set; }
+        public string email { get; set; }
+        public System.DateTime DoB { get; set; }
     }
 }

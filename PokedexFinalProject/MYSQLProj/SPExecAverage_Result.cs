@@ -13,5 +13,7 @@ namespace MYSQLProj
     
     public partial class SPExecAverage_Result
     {
+        public float nombre { get; set; }
+        public int AVG_ExecTime { get; set; }
     }
 }
