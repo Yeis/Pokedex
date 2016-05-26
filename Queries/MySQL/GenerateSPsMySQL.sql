@@ -27,7 +27,7 @@ CREATE PROCEDURE `CreateEvolution` (
 )
 BEGIN
 Insert into Evolucion(
-	PokemonID,
+	PokeID,
 	AntID,
 	SigId,
 	status,
@@ -101,7 +101,7 @@ CREATE PROCEDURE `CreateMove` (
 )
 BEGIN
 	insert into Moves(
-		TipoID,
+		TpMovID,
 		Nombre,
 		Accuracy,
 		Power, 
@@ -131,8 +131,8 @@ CREATE PROCEDURE `CreateMoveRelation` (
 )
 BEGIN
 	insert into MovesRelacion(
-		PokemonID,
-        MoveID
+		PokeID,
+        MvID
     )
     values (
 		PokeID,
@@ -171,9 +171,9 @@ insert into Pokemon(
 	Peso, 
 	Altura, 
 	Generacion, 
-	TipoID, 
-	TipoID2, 
-	HabilidadID) 
+	TpID, 
+	TpID2, 
+	HabID) 
 values
 	(Nombre,
 	Peso,
@@ -184,7 +184,7 @@ values
 	HabilidadID
 );
 insert into Stat(
-	PokemonID,
+	PokeID,
 	HP,
 	Attack,
 	Defense,
@@ -238,7 +238,7 @@ CREATE PROCEDURE `CreateTypeRelation` (
 )
 BEGIN
 insert into TipoRelacion (
-	TipoID, 
+	TpRelID, 
 	Ventaja, 
 	DetailVentaja, 
 	Debilidad, 
@@ -291,8 +291,22 @@ END$$
 
 DELIMITER ;
 
-CALL CreateUser('Hernan', 'Medina', '1995-06-05', 'Alexyz656', 'test', 'HASUD@BDIFG.COM');
+USE `pokedex`;
+DROP procedure IF EXISTS `GetMoveRelation`;
 
+DELIMITER $$
+
+USE `pokedex`$$
+CREATE PROCEDURE `GetMoveRelation`(
+	IN PokeID int
+)
+BEGIN
+	select * from Moves m
+	inner join MovesRelacion mvrel on MoveID = MvId
+	where mvrel.PokeID = PokeID;
+END$$
+
+DELIMITER $$
 
 USE `pokedex`;
 DROP procedure IF EXISTS `GetPokemonByGame`;
@@ -304,8 +318,8 @@ CREATE PROCEDURE `GetPokemonByGame` (
 )
 BEGIN
 	select * from Juegos J 
-	inner join JuegosRelacion on J.JuegoID = JuegosRelacion.JuegoID
-	inner join Pokemon p on p.PokemonID = JuegosRelacion.PokemonID
+	inner join JuegosRelacion on J.JuegoID = JuegosRelacion.GameID
+	inner join Pokemon p on p.PokemonID = JuegosRelacion.PokeID
 	where J.JuegoID = GameID;
 END$$
 
@@ -318,11 +332,11 @@ DROP procedure IF EXISTS `GetPokemonById`;
 DELIMITER $$
 USE `pokedex`$$
 CREATE PROCEDURE `GetPokemonById` (
-	IN PokeID int
+	IN Id int
 )
 BEGIN
 	Select * from Pokemon p
-	where p.PokemonID = PokeID;
+	where p.PokemonID = Id;
 END$$
 
 DELIMITER ;
@@ -351,13 +365,13 @@ DROP procedure IF EXISTS `GetPokemonDetail`;
 DELIMITER $$
 USE `pokedex`$$
 CREATE PROCEDURE `GetPokemonDetail` (
-	IN PokeID int
+	IN Id int
 )
 BEGIN
 	select * from Pokemon p
 	inner join Stat s
-	on p.PokemonID = s.PokemonID
-	where p.PokemonID = PokeID;
+	on p.PokemonID = s.PokeID
+	where p.PokemonID = Id;
 END$$
 
 DELIMITER ;
@@ -374,7 +388,7 @@ CREATE PROCEDURE `GetPokemonEvolutions` (
 )
 BEGIN
 	select * from Evolucion
-	where PokemonID = PokeID;
+	where PokeID = PokeID;
 END$$
 
 DELIMITER ;
@@ -385,15 +399,29 @@ DROP procedure IF EXISTS `GetTypeRelations`;
 DELIMITER $$
 USE `pokedex`$$
 CREATE PROCEDURE `GetTypeRelations` (
-	IN TypeID int
+	IN Id int
 )
 BEGIN
 	Select * from Tipo
 	inner join TipoRelacion 
-    on TypeID = TipoRelacion.TipoID;
+    on Id = TipoRelacion.TpRelID;
 END$$
 
 DELIMITER ;
+
+USE `pokedex`;
+DROP procedure IF EXISTS `GetPokemonByType`;
+
+DELIMITER $$
+USE `pokedex` $$
+CREATE PROCEDURE `GetPokemonByType` (
+	IN TID int
+)
+BEGIN
+	select * from Pokemon p 
+	where p.TpID = TID OR P.TpID2 = TID;
+END$$
+
 
 
 #QUERIES DEL YEIS 

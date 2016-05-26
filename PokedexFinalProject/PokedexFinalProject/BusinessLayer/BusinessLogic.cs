@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PokedexFinalProject.Models;
+using System.Diagnostics;
 
 namespace PokedexFinalProject
 {
@@ -13,9 +14,12 @@ namespace PokedexFinalProject
         int Starttime;
         int Endtime;
         PokedexEntities context;
+        Stopwatch watch;
         public BusinessLogic()
         {
             context = new PokedexEntities();
+             watch = new Stopwatch();
+
         }
 
         public LocalUser Login(string username, string password)
