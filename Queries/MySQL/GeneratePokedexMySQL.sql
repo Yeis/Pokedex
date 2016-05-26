@@ -9,7 +9,7 @@ create table Pokemon(
 	TipoID int not null,
 	TipoID2 int,
 	HabilidadID int,
-    PathImg varchar(500)
+    pathImg varchar(500)
 );
 
 create table Stat(

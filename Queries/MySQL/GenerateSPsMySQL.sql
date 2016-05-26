@@ -303,6 +303,18 @@ CREATE PROCEDURE `GetMoveRelation`(
 BEGIN
 	select * from Moves m
 	inner join MovesRelacion mvrel on MoveID = MvId
+	where mvrel.PokeID = @PokeID
+END$$
+
+DELIMITER $$
+
+USE `pokedex`$$
+CREATE PROCEDURE `GetMoveRelation`(
+	IN PokeID int
+)
+BEGIN
+	select * from Moves m
+	inner join MovesRelacion mvrel on MoveID = MvId
 	where mvrel.PokeID = PokeID;
 END$$
 
@@ -423,187 +435,17 @@ BEGIN
 END$$
 
 
+USE `pokedex`;
+DROP procedure IF EXISTS `GetPokemonByType`;
 
-#QUERIES DEL YEIS 
-
-
-
-
-#1
 DELIMITER $$
-USE `pokedex`$$
-CREATE PROCEDURE `GetSPByHour`(
-	IN 	date1 DATETIME,
-    IN date2 DATETIME
+USE `pokedex`;
+CREATE PROCEDURE `GetPokemonByType` (
+	INT TID int
 )
 BEGIN
-Select * from LogData 
-Where LogData.tipo = 'SP' and  DatePart(HOUR,fecha) between date1 and date2;
+	select * from Pokemon p 
+	where p.TpID = @TID OR P.TpID2 = @TID;
 END$$
-
-
- -- 10 SP que no han sido usados 
-CREATE PROCEDURE UnusedSP 
-AS
-SELECT SPECIFIC_NAME as Name 
-  FROM Pokedex.information_schema.routines 
- WHERE SPECIFIC_NAME   NOT IN 
- (SELECT DISTINCT nombre FROM LogData WHERE tipo = 'SP')
-GO
-
-
-
-#9
-DELIMITER $$
-USE `pokedex`$$
-CREATE PROCEDURE `SPInRange`(
-	IN 	lowlimit INT,
-    IN highlimit INT
-)
-BEGIN
-SELECT nombre , COUNT(nombre) as TimesRunned from LogData 
-GROUP BY nombre 
-HAVING COUNT(nombre) BETWEEN lowlimit AND highlimit ;
-END$$
-
-#10
-DELIMITER $$
-USE `pokedex`$$
-CREATE PROCEDURE `UnusedSP`()
-BEGIN
-SELECT SPECIFIC_NAME as Name 
-  FROM information_schema.ROUTINES
- WHERE SPECIFIC_NAME   NOT IN 
- (SELECT DISTINCT nombre FROM LogData WHERE tipo = 'SP');
-END$$
-
-
-
-# 11.1
-DELIMITER $$
-USE `pokedex`$$
-CREATE PROCEDURE `SPExecAverage`()
-BEGIN
- SELECT nombre , AVG(exec_time) as AVG_ExecTime FROM LogData
- WHERE tipo = 'SP'
- GROUP BY nombre;
-END$$
-
-#11.2
-DELIMITER $$
-USE `pokedex`$$
-CREATE PROCEDURE `SPCount`()
-BEGIN
- SELECT nombre , COUNT(nombre) as TimesRunned from LogData
-  WHERE tipo = 'SP'
- GROUP BY nombre;
-END$$
-
-
-
-
-# 12.1
-DELIMITER $$
-USE `pokedex`$$
-CREATE PROCEDURE `ActiveUsers_Week`()
-BEGIN
-DECLARE currentdate DATETIME;
-DECLARE lastweek DATETIME;
-
-SET currentdate = NOW();
-SET lastweek =  DATE_ADD(currentdate, INTERVAL -7 DAY);
-
-SELECT * FROM Usuario WHERE UserId IN 
-(SELECT DISTINCT UserId FROM LogData WHERE Tipo = 'Login' AND fecha BETWEEN lastweek AND currentdate );
-END$$
-
-#12.2
-DELIMITER $$
-USE `pokedex`$$
-CREATE PROCEDURE `ActiveUsers_Month`()
-BEGIN
-DECLARE currentdate DATETIME ; 
-DECLARE lastmonth DATETIME;
-SET currentdate = NOW();
-SET lastmonth =  DATE_ADD(currentdate, INTERVAL -1 MONTH);
-
-SELECT * FROM Usuario WHERE UserId IN 
-(SELECT DISTINCT UserId FROM LogData WHERE Tipo = 'Login' AND fecha BETWEEN lastmonth AND currentdate );
-END$$
-
-# 12.3
-DELIMITER $$
-CREATE PROCEDURE `InactiveUsers_Month`()
-BEGIN
-DECLARE curdate DATETIME;
-DECLARE lastmonth DATETIME;
-SET curdate = NOW();
-SET lastmonth =  DATE_ADD(curdate, INTERVAL -1 MONTH);
-
-SELECT * FROM Usuario WHERE UserId NOT IN 
-(SELECT DISTINCT UserId FROM LogData WHERE Tipo = 'Login' AND fecha BETWEEN lastmonth AND curdate );
-END$$
-
-#12.4
-DELIMITER $$
-USE `pokedex`$$
-CREATE PROCEDURE `GetLoginDays`()
-BEGIN 
-SELECT DAYNAME(fecha) AS Dia , COUNT(UserId) as Cantidad FROM LogData
- WHERE Tipo = 'Login'
- GROUP BY DAYNAME(fecha);
-END$$
-
-#12.5
-DELIMITER $$
-CREATE PROCEDURE `GetLoginHours`()
-BEGIN 
-SELECT EXTRACT(HOUR FROM fecha) AS Hora , COUNT(UserId) as Cantidad FROM LogData
- WHERE Tipo = 'Login'
- GROUP BY EXTRACT(HOUR FROM fecha);
-END$$
-
-#12.6
-DELIMITER $$
-USE `pokedex`$$
-CREATE PROCEDURE `SPByUser`(
-	IN Userid INT
-)
-BEGIN
-SELECT nombre, fecha ,exec_time FROM LogData WHERE tipo = 'SP' AND UserId = Userid;
-END$$
-
-#12.7
-DELIMITER $$
-USE `pokedex`$$
-CREATE PROCEDURE `GetUserSubtotals`()
-BEGIN
-
-SELECT	IFNULL(Username,'Subtotal') as nombre , Admin   , COUNT(Admin) as Cantidad  FROM Usuario
-GROUP BY   Admin ,    Username WITH ROLLUP ;  
-END$$
-#13
-
-DELIMITER $$
-USE `pokedex`$$
-CREATE PROCEDURE `GetUserContains`(
-	IN patron VARCHAR(25)
-)
-BEGIN
-SELECT * FROM Usuario WHERE Username LIKE CONCAT('%',patron,'%');
-END$$
-
-
-
-
-
-
-
-
-#FIN DE QUERIES DEL YEIS 
-
-
-
-
 
 

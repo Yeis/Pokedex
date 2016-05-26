@@ -28,7 +28,7 @@
                     imgpath = pok.pathImg;
                     <div class="col-sm-4">
                         <img src="@Url.Content(imgpath)" height="150" width="150" />
-                        <li>@Html.ActionLink(pok.Nombre, "GetDetails", "Overview", new { id = pok.PokemonID }, null)</li>
+                        <li>@Html.ActionLink(pok.Nombre, "GetDetails", "Overview", new { SearchString = pok.PokemonID.ToString() }, null)</li>
                     </div>
                 }
             }

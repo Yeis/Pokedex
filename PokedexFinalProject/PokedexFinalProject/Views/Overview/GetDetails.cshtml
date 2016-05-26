@@ -11,49 +11,75 @@
     <meta name="viewport" content="width=device-width" />
     <title>GetDetails</title>
 </head>
+
 <body>
-    <div class="col-sm-2"></div>
-    <div class="col-sm-8"> 
-        <div class="row">
-            <div class="col-sm-3">
-                <img src="http://cdn.bulbagarden.net/upload/thumb/2/21/001Bulbasaur.png/250px-001Bulbasaur.png" />
+    <br />
+    <br />
+    <br />
+    @if (Model.detail != null)
+    {
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="col-sm-3">
+                    <img src="@Url.Content(@Model.detail.pathImg)" height="250" width="250" />
 
-            </div>
-            
-            <div class="col-sm-3"></div>
-            <div class="col-sm-3">
+                </div>
 
-                <h3># @Model.detail.PokemonID</h3>
-                <h3>Nombre: @Model.detail.Nombre</h3>
-                <h3>Peso: @Model.detail.Peso kg</h3>
-                <h3>Altura: @Model.detail.Altura m</h3>
-            </div>
-            <div class="col-sm-3">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-3">
 
-                <h3>Tipo1: @Model.nameTipo1</h3>
-                @if (Model.nameTipo2 != null) { 
-                    <h3>Tipo2: @Model.nameTipo2</h3>
-                }
-                else { 
-                    <h3>  </h3>
-                }
-                <h3>Generacion: @Model.detail.Generacion</h3>
-                <h3>Habilidad: @Model.nameHab</h3>
-            </div>
-            <div>
-                @if (Model.ant != null)
+                    <h3># @Model.detail.PokemonID</h3>
+                    <h3>Nombre: @Model.detail.Nombre</h3>
+                    <h3>Peso: @Model.detail.Peso kg</h3>
+                    <h3>Altura: @Model.detail.Altura m</h3>
+                </div>
+                <div class="col-sm-3">
+
+                    <h3>Tipo1: @Model.nameTipo1</h3>
+                    @if (Model.nameTipo2 != null)
+                    {
+                        <h3>Tipo2: @Model.nameTipo2</h3>
+                    }
+                    else {
+                        <h3>  </h3>
+                    }
+                    <h3>Generacion: @Model.detail.Generacion</h3>
+                    <h3>Habilidad: @Model.nameHab</h3>
+                </div>
+                <div>
+                    @if (Model.ant != null)
                 {
-                    <h3> Evolucion anterior: @Html.ActionLink(Model.ant.Nombre, "GetDetails", "Overview", new { id = Model.ant.PokemonID }, null)</h3>
-                }
-                @if (Model.sig != null)
+                        <h3> Evolucion anterior: @Html.ActionLink(Model.ant.Nombre, "GetDetails", "Overview", new { id = Model.ant.PokemonID }, null)</h3>
+                    }
+                    @if (Model.sig != null)
                 {
-                    <h3> Evolucion siguiente: @Html.ActionLink(Model.sig.Nombre,"GetDetails", "Overview", new { id = Model.sig.PokemonID }, null)</h3>
-                }
+                        <h3> Evolucion siguiente: @Html.ActionLink(Model.sig.Nombre, "GetDetails", "Overview", new { id = Model.sig.PokemonID }, null)</h3>
+                    }
 
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col-sm-2"></div>
+        <div class="col-sm-2"></div>
+    }
+    else
+    {
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="col-sm-3">
+                    <img src="http://cdn.bulbagarden.net/upload/thumb/f/f5/399Bidoof.png/250px-399Bidoof.png" />
+                </div>
+                <div class="col-sm-3"></div>
+                <div class="col-sm-3">
+                    <h3>Vale Bidoof la Pokevida</h3>
+                    <p>We are sorry, but the Pokémon yout tried to search doesn't exists.</p>
+                    </div>
+                </div>
+            
+        </div>
+    }
+
 </body>
 </html>
 
