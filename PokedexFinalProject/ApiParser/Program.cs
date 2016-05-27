@@ -13,20 +13,15 @@ namespace ApiParser
 {
     class Program
     {
-                            Regex regex = new Regex(@"/\d+/");
 
         static void Main(string[] args)
         {
-            Regex regex = new Regex(@"/\d+/");
-            Match match = regex.Match("http://pokeapi.co/api/v2/type/12/");
-            if (match.Success)
+            for (int i = 0; i < 700; i++)
             {
-                Console.WriteLine(match.Value);
-                string tipo1 = match.Value.Replace('/', ' ');
-                int conversion = int.Parse(tipo1);
-
+                RunAsyncPokemon(i.ToString()).Wait();
             }
             Console.ReadLine();
+            
         }
 
 
@@ -57,12 +52,12 @@ namespace ApiParser
                         //POKEMON DE  2 TIPOS 
                         match = regex.Match(poke.types[1].type.url);
                         tipo2 = int.Parse(match.Value.Replace('/', ' '));
-                        context.CreatePokemon(poke.name, poke.weight, poke.height, 1, tipo1, tipo2, habilidad, poke.stats[5].base_stat, poke.stats[4].base_stat, poke.stats[3].base_stat, poke.stats[0].base_stat, poke.stats[2].base_stat, poke.stats[1].base_stat);
+                     //   context.CreatePokemon(poke.name, poke.weight, poke.height, 1, tipo1, tipo2, habilidad, poke.stats[5].base_stat, poke.stats[4].base_stat, poke.stats[3].base_stat, poke.stats[0].base_stat, poke.stats[2].base_stat, poke.stats[1].base_stat);
                     }
                     else
                     {
                         //POKEMON DE UN SOLO TIPO
-                        context.CreatePokemon(poke.name, poke.weight, poke.height, 1, tipo1, null, habilidad, poke.stats[5].base_stat, poke.stats[4].base_stat, poke.stats[3].base_stat, poke.stats[0].base_stat, poke.stats[2].base_stat, poke.stats[1].base_stat);
+                    //    context.CreatePokemon(poke.name, poke.weight, poke.height, 1, tipo1, null, habilidad, poke.stats[5].base_stat, poke.stats[4].base_stat, poke.stats[3].base_stat, poke.stats[0].base_stat, poke.stats[2].base_stat, poke.stats[1].base_stat);
                     }      
                     Console.WriteLine("{0} ha sido agregado", poke.name );
                 }
