@@ -1,4 +1,5 @@
-﻿@using PokedexFinalProject.Models
+﻿@using PokedexFinalProject
+@using PokedexFinalProject.Models
 @model PokemonViewModel
 @{
     //Model.TipoID2 = 2;
@@ -30,31 +31,50 @@
                 <div class="col-sm-3">
 
                     <h3># @Model.detail.PokemonID</h3>
-                    <h3>Nombre: @Model.detail.Nombre</h3>
-                    <h3>Peso: @Model.detail.Peso kg</h3>
-                    <h3>Altura: @Model.detail.Altura m</h3>
+                    <h3>Name: @Model.detail.Nombre</h3>
+                    <h3>Weight: @Model.detail.Peso kg</h3>
+                    <h3>Height: @Model.detail.Altura m</h3>
                 </div>
                 <div class="col-sm-3">
 
-                    <h3>Tipo1: @Model.nameTipo1</h3>
+                    <h3>Type 1: @Model.nameTipo1</h3>
                     @if (Model.nameTipo2 != null)
                     {
-                        <h3>Tipo2: @Model.nameTipo2</h3>
+                        <h3>Type 2: @Model.nameTipo2</h3>
                     }
                     else {
                         <h3>  </h3>
                     }
-                    <h3>Generacion: @Model.detail.Generacion</h3>
-                    <h3>Habilidad: @Model.nameHab</h3>
+                    <h3>Generation: @Model.detail.Generacion</h3>
+                    <h3>Abbility: @Model.nameHab</h3>
+
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                    Moves
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    @{
+                                        foreach (GetMoveRelation_Result mov in Model.moves)
+                                        {
+                                            <li style="font-size:medium">@Html.ActionLink(mov.Nombre, "GetMoveDetail", "Overview", new { id = mov.MoveID }, null)</li>
+                                        }
+                                    }
+                                    
+                                </ul>
+                            </div>
+                           
+                        
+                    
                 </div>
                 <div>
                     @if (Model.ant != null)
                 {
-                        <h3> Evolucion anterior: @Html.ActionLink(Model.ant.Nombre, "GetDetails", "Overview", new { id = Model.ant.PokemonID }, null)</h3>
+                        <h3> Previous Evolution: @Html.ActionLink(Model.ant.Nombre, "GetDetails", "Overview", new { id = Model.ant.PokemonID }, null)</h3>
                     }
                     @if (Model.sig != null)
                 {
-                        <h3> Evolucion siguiente: @Html.ActionLink(Model.sig.Nombre, "GetDetails", "Overview", new { id = Model.sig.PokemonID }, null)</h3>
+                        <h3> Next Evolution: @Html.ActionLink(Model.sig.Nombre, "GetDetails", "Overview", new { id = Model.sig.PokemonID }, null)</h3>
                     }
 
                 </div>

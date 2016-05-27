@@ -1,11 +1,8 @@
 ﻿@using Microsoft.AspNet.Identity
-@*@using PokedexFinalProject.Models*@
+@using PokedexFinalProject
 @*@model PokemonViewModel*@
-@{ 
-//bool _login = true;
-//int admon = 1;
 
-}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,8 +20,18 @@
     </style>
 </head>
 <body>
+    @*<div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+            Database
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li class="@(SharedInstance.AppUser.Connection == false)"><a href="#">MS-SQL Server</a></li>
+            <li class="@(SharedInstance.AppUser.Connection == true)"><a href="#">MySQL</a></li>
+        </ul>
+    </div>*@
     <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+        <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
@@ -35,61 +42,43 @@
             </div>
             <div class="navbar-collapse collapse">
                 @{
-                    if (SharedInstance.AppUser != null)
-                    {
-                        <ul class="nav navbar-nav">
-                            <li>@Html.ActionLink("Home", "Index", "Overview")</li>
-                            <li>@Html.ActionLink("Pokémon", "GetPokemon", "Overview")</li>
-                            <li>@Html.ActionLink("Types", "GetTypes", "Overview")</li>
-                            <li>@Html.ActionLink("Moves", "GetMoves", "Overview")</li>
-                           
-                            @{
-                                if (SharedInstance.AppUser.Admin == 1)
-                                {
-                                    <li>@Html.ActionLink("STATS", "Index", "Stats")</li>
-                                }
-                                
+                    if(SharedInstance.AppUser != null) { 
+                        if (SharedInstance.AppUser.logeoCorrecto == true)
+                         {
+                                <ul class="nav navbar-nav">
+                                 <li>@Html.ActionLink("Home", "Index", "Overview")</li>
+                                 <li>@Html.ActionLink("Pokémon", "GetPokemon", "Overview")</li>
+                                 <li>@Html.ActionLink("Types", "GetTypes", "Overview")</li>
+                                 <li>@Html.ActionLink("Moves", "GetMoves", "Overview")</li>
+                                 <li>@Html.ActionLink("MS-SQL", "Index", "Overview", new { searchBar = "MS-SQL"}, null)</li>
+                                 <li>@Html.ActionLink("MySQL", "Index", "Overview", new { searchBar = "MySQL" }, null)</li>
+ 
+                                @{
+                                    if (SharedInstance.AppUser.Admin == 1)
+                                    {
+                                        <li>@Html.ActionLink("STATS", "Index", "Stats")</li>
+                                    }
                                     @Html.Partial("_LoginPartial")
-                                
-                            }
-                        
-                           
-                        </ul>
+                                }
+                                </ul>
                         @(Html.BeginForm("GetDetails", "Overview", FormMethod.Get))
-                        {
+                                    {
                             <p>
-                                Find by id: @Html.TextBox("SearchString")
+                               @Html.TextBox("SearchString")
                                 <input type="submit" value="Search" />
                             </p>
-                        }
 
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                         @Html.Partial("_LoginPartial")
 
-                        @*<div class="col-sm-3 col-md-3 pull-right">
-                            <form class="navbar-form " role="search" style="width: 15em; margin: 0.3em 2em;">
-                                <div class="form-group input-group">
-                                    <input type="text" class="form-control" placeholder="Search.. " name="searchBar" id="searchBar">
-                                    <span class="input-group-btn">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-default" type="submit">
-                                            <span class="glyphicon glyphicon-search"></span>
-                                        </button>
-                                        </div>
-                                        </span>
-                                    </div>
-                            </form>
-                            </div>*@
+                     }
+               }
 
-                            }
-                            else
-                            {
-                            @Html.Partial("_LoginPartial")
-                            }
-
-                            }
-
-
-                        </div>
-
+            </div>
         </div>
     </div>
     <div class="container body-content">
@@ -99,6 +88,10 @@
             <div class="col-sm-4">
                 <p>Property of The Pokemon Company.</p>
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/The_Pok%C3%A9mon_Company_International_logo.svg/255px-The_Pok%C3%A9mon_Company_International_logo.svg.png">
+            </div>
+            <div class="col-sm-4">
+                @*<li class="@(SharedInstance.AppUser.Connection == false)">@Html.ActionLink("MS-SQL", "Index", "Overview")</li>
+                <li class="@(SharedInstance.AppUser.Connection == true)">@Html.ActionLink("MySQL", "Index", "Overview")</li>*@
             </div>
         </footer>
     </div>

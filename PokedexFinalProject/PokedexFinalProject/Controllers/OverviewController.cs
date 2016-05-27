@@ -11,17 +11,26 @@ namespace PokedexFinalProject.Controllers
     {
         PokedexEntities context = new PokedexEntities();
         BusinessLogic BL = new BusinessLogic();
+
         int Starttime, Endtime;
         // GET: Overview
         public ActionResult Index()
         {
+            
             return View();
         }
-        [HttpPost]
+
+        [HttpGet]
         public  ActionResult Index(string searchBar)
         {
+            if (searchBar == "MySQL")
+                SharedInstance.AppUser.Connection = true;
+            else if (searchBar == "MS-SQL")
+                SharedInstance.AppUser.Connection = false;
             return View();
         }
+
+ 
 
         public ActionResult GetPokemon()
         {
@@ -82,6 +91,15 @@ namespace PokedexFinalProject.Controllers
         public ActionResult searchbar()
         {
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult GetMoveDetail(int id)
+        {
+            var move = (from t in context.Moves
+                        where t.MoveID == id
+                        select t).FirstOrDefault();
+            return View(move);
         }
     }
 }

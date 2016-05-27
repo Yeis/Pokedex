@@ -294,6 +294,24 @@ namespace PokedexFinalProject
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetLoginHours_Result>("GetLoginHours");
         }
     
+        public virtual ObjectResult<GetMoveRelation_Result> GetMoveRelation(Nullable<int> pokeID)
+        {
+            var pokeIDParameter = pokeID.HasValue ?
+                new ObjectParameter("PokeID", pokeID) :
+                new ObjectParameter("PokeID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetMoveRelation_Result>("GetMoveRelation", pokeIDParameter);
+        }
+    
+        public virtual ObjectResult<GetPokemonByGame_Result> GetPokemonByGame(Nullable<int> gameID)
+        {
+            var gameIDParameter = gameID.HasValue ?
+                new ObjectParameter("GameID", gameID) :
+                new ObjectParameter("GameID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetPokemonByGame_Result>("GetPokemonByGame", gameIDParameter);
+        }
+    
         public virtual ObjectResult<GetPokemonById_Result> GetPokemonById(Nullable<int> id)
         {
             var idParameter = id.HasValue ?
@@ -310,6 +328,24 @@ namespace PokedexFinalProject
                 new ObjectParameter("Name", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetPokemonByName_Result>("GetPokemonByName", nameParameter);
+        }
+    
+        public virtual ObjectResult<GetPokemonByType_Result> GetPokemonByType(Nullable<int> tID)
+        {
+            var tIDParameter = tID.HasValue ?
+                new ObjectParameter("TID", tID) :
+                new ObjectParameter("TID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetPokemonByType_Result>("GetPokemonByType", tIDParameter);
+        }
+    
+        public virtual ObjectResult<GetPokemonDetail_Result> GetPokemonDetail(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetPokemonDetail_Result>("GetPokemonDetail", idParameter);
         }
     
         public virtual ObjectResult<GetPokemonEvolutions_Result> GetPokemonEvolutions(Nullable<int> pokeID)

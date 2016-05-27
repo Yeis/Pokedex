@@ -1,7 +1,4 @@
-﻿
-@{
-   
-}
+﻿@using PokedexFinalProject
 
 <!DOCTYPE html>
 
@@ -63,10 +60,16 @@
                 <img src="http://vignette4.wikia.nocookie.net/nintendo/images/b/b7/Pok%C3%A9dex_GenI_Kanto.png/revision/latest?cb=20121227083448&path-prefix=es" class="img-responsive" style="width:100%" alt="Pokedex">
                 <p>The original Pokédex</p>
             </div>
-            <div class="col-sm-4">
-                <iframe width="380" height="315" src="https://www.youtube.com/embed/23yThbsyHQE" frameborder="0" allowfullscreen></iframe>
-                <p>Pokérap - Fisrt Generation (150 Pokémons)</p>
-            </div>
+            @{
+                if (SharedInstance.AppUser.Connection == true)
+                {
+                    <div class="col-sm-4">
+                        <iframe width="380" height="315" src="https://www.youtube.com/embed/23yThbsyHQE" frameborder="0" allowfullscreen></iframe>
+                        <p>Pokérap - Fisrt Generation (150 Pokémons)</p>
+                    </div>
+                    }
+                }
+
             <div class="col-sm-4">
                 <div class="well">
                     <img src="http://veekun.com/static/pokedex/downloads/diamond-pearl-back.png" class="img-responsive" style="width:100%" alt="Varios Pokemon">
@@ -77,6 +80,6 @@
                 </div>
             </div>
         </div>
-    </div><br>
+    </div>
 </body>
 </html>
