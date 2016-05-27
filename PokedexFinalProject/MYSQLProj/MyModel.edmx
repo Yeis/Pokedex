@@ -532,6 +532,7 @@
           <FunctionImport Name="SP_ListaViews" ReturnType="Collection(pokedexModel.SP_ListaViews_Result)" />
           <FunctionImport Name="SP_Lista_Mil_Registros" ReturnType="Collection(pokedexModel.SP_Lista_Mil_Registros_Result)" />
           <FunctionImport Name="SP_Lista_Tablas" ReturnType="Collection(pokedexModel.SP_Lista_Tablas_Result)" />
+          <FunctionImport Name="UnusedSP" ReturnType="Collection(String)" />
         </EntityContainer>
         <ComplexType Name="ActiveUsers_Month_Result" >
           <Property Type="Int32" Name="UserId" Nullable="false" />
@@ -539,12 +540,13 @@
           <Property Type="String" Name="Apellido" Nullable="false" />
           <Property Type="String" Name="email" Nullable="false" />
           <Property Type="DateTime" Name="DoB" Nullable="false" />
-          <Property Type="Single" Name="Username" Nullable="false" />
           <Property Type="String" Name="Password" Nullable="false" />
           <Property Type="Int32" Name="Admin" Nullable="false" />
+          <Property Type="String" Name="Username" Nullable="false" />
         </ComplexType>
         <ComplexType Name="ActiveUsers_Week_Result" >
-          <Property Type="Int64" Name="UserId" Nullable="false" />
+          <!--cambio-->
+          <Property Type="Int32" Name="UserId" Nullable="false" />
           <Property Type="String" Name="Username" Nullable="false" />
           <Property Type="String" Name="Password" Nullable="false" />
           <Property Type="Int32" Name="Admin" Nullable="false" />
@@ -889,7 +891,6 @@
                 <ScalarProperty Name="Apellido" ColumnName="Apellido" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="DoB" ColumnName="DoB" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Admin" ColumnName="Admin" />
               </ComplexTypeMapping>
@@ -1051,6 +1052,7 @@
               <ComplexTypeMapping TypeName="pokedexModel.SP_Lista_Tablas_Result" />
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UnusedSP" FunctionName="pokedexModel.Store.UnusedSP" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -46,6 +46,12 @@ namespace PokedexFinalProject.Models
         //Stats de MYSQL
         public IEnumerable<MYSQLProj.ActiveUsers_Month_Result> MyActiveUsersMonth { get; set; }
         public IEnumerable<MYSQLProj.ActiveUsers_Week_Result> MyActiveUsersWeek { get; set; }
+        public IEnumerable<MYSQLProj.SP_ConexionesActivas_Result> MyActiveConnections { get; set; }
+        public IEnumerable<MYSQLProj.SP_ListaIndices_Result> MyIndexes { get; set; }
+        public IEnumerable<MYSQLProj.SP_Lista_Tablas_Result> MyTablas { get; set; }
+        public IEnumerable<MYSQLProj.SP_Lista_Mil_Registros_Result> MyTablasMil { get; set; }
+        public IEnumerable<MYSQLProj.SP_InfoSP_Result> MyMaxMinSP { get; set; }
+        public IEnumerable<MYSQLProj.SP_ListaViews_Result> MyVistas { get; set; }
         public IEnumerable<MYSQLProj.SPExecAverage_Result> MyExecAverage { get; set; }
         public IEnumerable<MYSQLProj.GetLoginDays_Result> MyDias { get; set; }
         public IEnumerable<MYSQLProj.GetLoginHours_Result> MyHoras { get; set; }
@@ -53,6 +59,8 @@ namespace PokedexFinalProject.Models
         public IEnumerable<MYSQLProj.SPCount_Result> MySPCounts { get; set; }
         public IEnumerable<MYSQLProj.GetUserSubtotals_Result> MySubtotals { get; set; }
         public IEnumerable<string> MyUnused { get; set; }
+
+    
 
         public StatsViewModel()
         {

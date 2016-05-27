@@ -13,6 +13,11 @@
         Html.RenderPartial("~/Views/Shared/GetUserContainsList.cshtml", Model.users);
 
     }
+    else if (Model.Myusers != null )
+    {
+        Html.RenderPartial("~/Views/Shared/MyGetUserContainsList.cshtml", Model.Myusers);
+
+    }
 
 
 }

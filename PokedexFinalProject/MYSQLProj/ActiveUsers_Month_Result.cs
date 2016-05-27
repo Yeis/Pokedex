@@ -18,8 +18,8 @@ namespace MYSQLProj
         public string Apellido { get; set; }
         public string email { get; set; }
         public System.DateTime DoB { get; set; }
-        public float Username { get; set; }
         public string Password { get; set; }
         public int Admin { get; set; }
+        public string Username { get; set; }
     }
 }

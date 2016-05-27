@@ -1,0 +1,39 @@
+﻿@model IEnumerable<MYSQLProj.SP_ConexionesActivas_Result>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HOST)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.STATE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.USER)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DB)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HOST)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.STATE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.USER)
+        </td>
+
+    </tr>
+}
+
+</table>

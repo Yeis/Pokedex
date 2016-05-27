@@ -314,10 +314,12 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BackupViewModel.cs" />
     <Compile Include="Models\ColumnsViewModel.cs" />
+    <Compile Include="Models\GetTypesViewModel.cs" />
     <Compile Include="Models\GetUserContains.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LoginViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PokemonViewModel.cs" />
     <Compile Include="Models\RegisterViewModels.cs" />
     <Compile Include="Models\SPbyHourViewModel.cs" />
     <Compile Include="Models\SPByUserViewModel.cs" />
@@ -750,6 +752,23 @@
     <Content Include="Views\Stats\Index.cshtml" />
     <Content Include="Views\Backup\Index.cshtml" />
     <Content Include="Views\Shared\MyActiveUsersMonth.cshtml" />
+    <Content Include="Views\Shared\MyActiveUsersWeek.cshtml" />
+    <Content Include="Views\Shared\MyConexionesActivas.cshtml" />
+    <Content Include="Views\Shared\MyDBIndexes.cshtml" />
+    <Content Include="Views\Shared\MyTablas.cshtml" />
+    <Content Include="Views\Shared\MyTablas1000.cshtml" />
+    <Content Include="Views\Shared\MyViews.cshtml" />
+    <Content Include="Views\Shared\MySP_Info.cshtml" />
+    <Content Include="Views\Shared\MySPExecAverage.cshtml" />
+    <Content Include="Views\Shared\MySPCount.cshtml" />
+    <Content Include="Views\Shared\MyInactiveUsers.cshtml" />
+    <Content Include="Views\Shared\MyHotDays.cshtml" />
+    <Content Include="Views\Shared\MyHotHours.cshtml" />
+    <Content Include="Views\Shared\MyGetUserSubtotals.cshtml" />
+    <Content Include="Views\Shared\MyGetUserContainsList.cshtml" />
+    <Content Include="Views\Shared\MyColumnsList.cshtml" />
+    <Content Include="Views\Shared\MySPByUserList.cshtml" />
+    <Content Include="Views\Shared\MySPInRangeList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

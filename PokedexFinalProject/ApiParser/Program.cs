@@ -16,18 +16,18 @@ namespace ApiParser
 
         static void Main(string[] args)
         {
-            for (int i = 0; i < 700; i++)
+            for (int i = 192; i < 1500; i++)
             {
-                RunAsyncPokemon(i.ToString()).Wait();
+                RunAsyncAbility(i.ToString()).Wait();
             }
             Console.ReadLine();
             
         }
 
 
-        static async Task RunAsyncPokemon(string parameter)
+        static async Task RunAsyncPokemon(string parameter, int param)
         {
-            PokedexEntities context = new PokedexEntities();
+            
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://pokeapi.co/api/v2/pokemon/");
@@ -39,30 +39,30 @@ namespace ApiParser
                 if (response.IsSuccessStatusCode)
                 {
                     ParserPokemon poke = await response.Content.ReadAsAsync<ParserPokemon>();
-
-                    //sacar los ID de los tipos y de habilidad
-                    Regex regex = new Regex(@"/\d+/");
-                    Match match = regex.Match(poke.types[0].type.url);
-                    int tipo1 = int.Parse(match.Value.Replace('/', ' '));
-                    int tipo2;
-                    match = regex.Match(poke.abilities[0].ability.url);
-                    int habilidad = int.Parse(match.Value.Replace('/', ' '));
-                    if (poke.types.Count == 2)
+                    Pokemon temp;
+                    using (PokedexEntities context = new PokedexEntities())
                     {
-                        //POKEMON DE  2 TIPOS 
-                        match = regex.Match(poke.types[1].type.url);
-                        tipo2 = int.Parse(match.Value.Replace('/', ' '));
-                     //   context.CreatePokemon(poke.name, poke.weight, poke.height, 1, tipo1, tipo2, habilidad, poke.stats[5].base_stat, poke.stats[4].base_stat, poke.stats[3].base_stat, poke.stats[0].base_stat, poke.stats[2].base_stat, poke.stats[1].base_stat);
+                        
+                         temp = context.Pokemons.Where(p => p.PokemonID == param).FirstOrDefault();
                     }
-                    else
+                    if (temp != null)
                     {
-                        //POKEMON DE UN SOLO TIPO
-                    //    context.CreatePokemon(poke.name, poke.weight, poke.height, 1, tipo1, null, habilidad, poke.stats[5].base_stat, poke.stats[4].base_stat, poke.stats[3].base_stat, poke.stats[0].base_stat, poke.stats[2].base_stat, poke.stats[1].base_stat);
-                    }      
-                    Console.WriteLine("{0} ha sido agregado", poke.name );
+                        temp.pathImg = poke.sprites.front_default;
+                    }
+                    using (PokedexEntities pkcontext = new PokedexEntities())
+                    {
+                        pkcontext.Entry(temp).State = System.Data.Entity.EntityState.Modified;
+                        pkcontext.SaveChanges();
+                    }
+
+
+
+                    Console.WriteLine("foto agregada {0} ha sido agregado", poke.name );
+                    
                 }
                 
             }
+            
         }
 
 
@@ -103,7 +103,7 @@ namespace ApiParser
             PokedexEntities context = new PokedexEntities();
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://pokeapi.co/api/v2/moves/");
+                client.BaseAddress = new Uri("http://pokeapi.co/api/v2/move/");
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 

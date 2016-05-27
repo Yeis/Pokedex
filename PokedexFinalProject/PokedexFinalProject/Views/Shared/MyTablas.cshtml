@@ -1,0 +1,25 @@
+﻿@model IEnumerable<MYSQLProj.SP_Lista_Tablas_Result>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TABLE_NAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.numero_de_registros)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TABLE_NAME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.numero_de_registros)
+        </td>
+    </tr>
+}
+
+</table>

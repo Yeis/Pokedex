@@ -1,0 +1,26 @@
+﻿@model IEnumerable<MYSQLProj.SP_ListaViews_Result>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Tables_in_Pokedex)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Table_type)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tables_in_Pokedex)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Table_type)
+        </td>
+    
+    </tr>
+}
+
+</table>

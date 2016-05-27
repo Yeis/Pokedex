@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-
 namespace PokedexFinalProject.Models
 {
     public class PokemonViewModel
@@ -11,7 +9,7 @@ namespace PokedexFinalProject.Models
         public Pokemon ant { get; set; }
         public Pokemon sig { get; set; }
         public GetPokemonDetail_Result detail { get; set; }
-        public List<GetMoveRelation_Result> moves { get; set; }
+        //public List<GetMoveRelation_Result> moves { get; set; }
         public string nameTipo1 { get; set; }
         public string nameTipo2 { get; set; }
         public string nameHab { get; set; }
@@ -45,7 +43,7 @@ namespace PokedexFinalProject.Models
                            select a).FirstOrDefault();
                 }
                 Starttime = DateTime.Now.Millisecond;
-                moves = context.GetMoveRelation(id).ToList();
+                //moves = context.GetMoveRelation(id).ToList();
                 Endtime = DateTime.Now.Millisecond;
                 BL.AddLog(new LogData() { nombre = "GetMoveRelation", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserId, exec_time = (Endtime - Starttime) });
                 nameTipo1 = (from t in context.Tipoes

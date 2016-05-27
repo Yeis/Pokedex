@@ -94,9 +94,9 @@ namespace ApiParser
     public class ParserMoves
     {
         public string name { get; set; }
-        public int accuracy { get; set; }
-        public int pp { get; set; }
-        public int power { get; set; }
+        public int? accuracy { get; set; }
+        public int? pp { get; set; }
+        public int? power { get; set; }
         public commonParser type { get; set; }
         public commonParser generation { get; set; }
 

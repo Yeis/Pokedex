@@ -9,5 +9,7 @@ namespace PokedexFinalProject.Models
     {
         public string patron { get; set; }
         public IEnumerable<GetUserContains_Result> users { get; set; }
+        public IEnumerable<MYSQLProj.GetUserContains_Result> Myusers { get; set; }
+
     }
 }
