@@ -18,8 +18,6 @@ namespace PokedexFinalProject.Controllers
                 var model = new StatsViewModel();
                   model.Options = BL.GetOptions();
                 return View(model);
-            //ListItem item = new ListItem();
-            //List<ActiveUsers_Month_Result> temp = BL.Acitve_Users_Month();
         }
     
         [HttpPost]
