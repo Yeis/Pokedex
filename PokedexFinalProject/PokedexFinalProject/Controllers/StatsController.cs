@@ -16,15 +16,12 @@ namespace PokedexFinalProject.Controllers
         public ActionResult Index( )
         {
                 var model = new StatsViewModel();
-                  model.Options = BL.GetOptions();
                 return View(model);
         }
     
         [HttpPost]
         public ActionResult Index(StatsViewModel model)
         {
-            model.Options = BL.GetOptions();
-
             switch (model.Selectedid)
             {
                 case 1:
@@ -139,7 +136,6 @@ namespace PokedexFinalProject.Controllers
             model.SPByHour = BL.GetSPbyHour(int.Parse(model.Hour1),int.Parse(model.Hour2));
             StatsViewModel temp = new StatsViewModel();
             temp._SPbyHourViewModel = model;
-            temp.Options = BL.GetOptions();
             temp.partialName = "SPRangeHours";
             return View("Index", temp);        
         }
@@ -148,7 +144,6 @@ namespace PokedexFinalProject.Controllers
             model.Columnas = BL.GetColumns(model.NombreTabla);
             StatsViewModel temp = new StatsViewModel();
             temp._ColumnsViewModel = model;
-            temp.Options = BL.GetOptions();
             temp.partialName = "TableColumns";
             return View("Index",temp);
         }
@@ -157,7 +152,6 @@ namespace PokedexFinalProject.Controllers
             model._SPRange = BL.SPInRange(int.Parse(model.limite_inferior), int.Parse(model.limite_superior));
             StatsViewModel temp = new StatsViewModel();
             temp._SPRangeViewModel = model;
-            temp.Options = BL.GetOptions();
             temp.partialName = "SPRange";
             return View("Index", temp);
         }
@@ -166,7 +160,6 @@ namespace PokedexFinalProject.Controllers
             model.Procedures = BL.SPByUser(int.Parse(model.UserID));
             StatsViewModel temp = new StatsViewModel();
             temp._SPByUserViewModel = model;
-            temp.Options = BL.GetOptions();
             temp.partialName = "SPByUser";
             return View("Index", temp);
         }
@@ -175,7 +168,6 @@ namespace PokedexFinalProject.Controllers
             model.users = BL.GetUserContains(model.patron);
             StatsViewModel temp = new StatsViewModel();
             temp._GetUserContains = model;
-            temp.Options = BL.GetOptions();
             temp.partialName = "GetUserContains";
             return View("Index", temp);
         }

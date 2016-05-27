@@ -2,7 +2,7 @@
 
 @using (Html.BeginForm("GetUserContains", "Stats", FormMethod.Post))
 {
-    <p>Patron de Busqueda:</p>
+    <p>Patron de Busqueda  (numerico busca por id , alfanumerico busca por Username):</p>
     <p> @Html.TextBoxFor(x => x.patron)</p>
 
     <input type="submit" value="Buscar" />

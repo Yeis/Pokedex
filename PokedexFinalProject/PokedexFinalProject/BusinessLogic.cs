@@ -65,7 +65,7 @@ namespace PokedexFinalProject
         {
             Starttime = DateTime.Now.Millisecond;
             List<SP_ListaIndices_Result> result = context.SP_ListaIndices().ToList();
-            Endtime = DateTime.Now.Millisecond; new NotImplementedException();
+            Endtime = DateTime.Now.Millisecond; 
             AddLog(new LogData() { nombre = "SP_ListaIndices", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
             return result;
 
@@ -75,7 +75,7 @@ namespace PokedexFinalProject
         {
             Starttime = DateTime.Now.Millisecond;
             List<SP_Lista_Tablas_Result> result = context.SP_Lista_Tablas().ToList();
-            Endtime = DateTime.Now.Millisecond; new NotImplementedException();
+            Endtime = DateTime.Now.Millisecond; 
             AddLog(new LogData() { nombre = "SP_Lista_Tablas", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
             return result;
         }
@@ -83,7 +83,7 @@ namespace PokedexFinalProject
         {
             Starttime = DateTime.Now.Millisecond;
             List<SP_Lista_Mil_Registros_Result> result = context.SP_Lista_Mil_Registros().ToList();
-            Endtime = DateTime.Now.Millisecond; new NotImplementedException();
+            Endtime = DateTime.Now.Millisecond; 
             AddLog(new LogData() { nombre = "SP_Lista_Mil_Registros", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
             return result;
         }
@@ -92,7 +92,7 @@ namespace PokedexFinalProject
         {
             Starttime = DateTime.Now.Millisecond;
             List<string> result = context.UnusedSP().ToList();
-            Endtime = DateTime.Now.Millisecond; new NotImplementedException();
+            Endtime = DateTime.Now.Millisecond; 
             AddLog(new LogData() { nombre = "UnusedSP", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
             return result;
         }
@@ -101,7 +101,7 @@ namespace PokedexFinalProject
         {
             Starttime = DateTime.Now.Millisecond;
             List<SP_ListaColumnas_Result> result = context.SP_ListaColumnas(name).ToList();
-            Endtime = DateTime.Now.Millisecond; new NotImplementedException();
+            Endtime = DateTime.Now.Millisecond; 
             AddLog(new LogData() { nombre = "SP_ListaColumnas", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
             return result;
 
@@ -111,7 +111,7 @@ namespace PokedexFinalProject
         {
             Starttime = DateTime.Now.Millisecond;
             List<SPCount_Result> result = context.SPCount().ToList();
-            Endtime = DateTime.Now.Millisecond; new NotImplementedException();
+            Endtime = DateTime.Now.Millisecond; 
             AddLog(new LogData() { nombre = "SPCount", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
             return result;
         }
@@ -120,7 +120,7 @@ namespace PokedexFinalProject
         {
             Starttime = DateTime.Now.Millisecond;
             List<SPExecAverage_Result> result = context.SPExecAverage().ToList();
-            Endtime = DateTime.Now.Millisecond; new NotImplementedException();
+            Endtime = DateTime.Now.Millisecond; 
             AddLog(new LogData() { nombre = "SPExecAverage", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
             return result;
         }
@@ -129,15 +129,31 @@ namespace PokedexFinalProject
         {
             Starttime = DateTime.Now.Millisecond;
             List<GetUserSubtotals_Result> result = context.GetUserSubtotals().ToList();
-            Endtime = DateTime.Now.Millisecond; new NotImplementedException();
+            Endtime = DateTime.Now.Millisecond; 
             AddLog(new LogData() { nombre = "GetUserSubtotals", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
             return result;
         }
         internal IEnumerable<GetUserContains_Result> GetUserContains(string patron)
         {
-            Starttime = DateTime.Now.Millisecond;
-            List<GetUserContains_Result> result = context.GetUserContains(patron).ToList();
-            Endtime = DateTime.Now.Millisecond; new NotImplementedException();
+            int prueba;
+            List<GetUserContains_Result> result = new List<GetUserContains_Result>();
+
+            if (int.TryParse(patron, out prueba))
+            {
+                Starttime = DateTime.Now.Millisecond;
+                var query = from st in context.Usuarios where st.UserId == prueba select st;
+                var user = query.FirstOrDefault<Usuario>();
+                Endtime = DateTime.Now.Millisecond;
+                 result = new List<GetUserContains_Result>();
+                result.Add(new GetUserContains_Result() { UserId = user.UserId, Admin = user.Admin, Apellido = user.Apellido, DoB = user.DoB, email = user.email, Nombre = user.Nombre, Password = user.Password, Username = user.Username });
+
+            }
+            else
+            {
+                Starttime = DateTime.Now.Millisecond;
+                result = context.GetUserContains(patron).ToList();
+                Endtime = DateTime.Now.Millisecond;
+            }
             AddLog(new LogData() { nombre = "GetUserContains", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
             return result;
         }
@@ -146,7 +162,7 @@ namespace PokedexFinalProject
         {
             Starttime = DateTime.Now.Millisecond;
             List<SPByUser_Result> result = context.SPByUser(id).ToList();
-            Endtime = DateTime.Now.Millisecond; new NotImplementedException();
+            Endtime = DateTime.Now.Millisecond; 
             AddLog(new LogData() { nombre = "SPByUser", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
             return result;
         }
@@ -155,7 +171,7 @@ namespace PokedexFinalProject
         {
             Starttime = DateTime.Now.Millisecond;
             List<InactiveUsers_Month_Result> result = context.InactiveUsers_Month().ToList();
-            Endtime = DateTime.Now.Millisecond; new NotImplementedException();
+            Endtime = DateTime.Now.Millisecond; 
             AddLog(new LogData() { nombre = "InactiveUsers_Month", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
             return result;
         }
@@ -165,7 +181,7 @@ namespace PokedexFinalProject
         {
             Starttime = DateTime.Now.Millisecond;
             List<GetLoginDays_Result> result = context.GetLoginDays().ToList();
-            Endtime = DateTime.Now.Millisecond; new NotImplementedException();
+            Endtime = DateTime.Now.Millisecond; 
             AddLog(new LogData() { nombre = "GetLoginDays", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
             return result;
         }
@@ -173,7 +189,7 @@ namespace PokedexFinalProject
         {
             Starttime = DateTime.Now.Millisecond;
             List<GetLoginHours_Result> result = context.GetLoginHours().ToList();
-            Endtime = DateTime.Now.Millisecond; new NotImplementedException();
+            Endtime = DateTime.Now.Millisecond; 
             AddLog(new LogData() { nombre = "GetLoginHours", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
             return result;
         }
@@ -183,7 +199,7 @@ namespace PokedexFinalProject
         {
             Starttime = DateTime.Now.Millisecond;
             List<SP_ListaViews_Result> result = context.SP_ListaViews().ToList();
-            Endtime = DateTime.Now.Millisecond; new NotImplementedException();
+            Endtime = DateTime.Now.Millisecond; 
             AddLog(new LogData() { nombre = "SP_ListaViews", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
             return result;
 
@@ -298,39 +314,7 @@ namespace PokedexFinalProject
             return null;
         }
        
-        public IEnumerable<SelectListItem> GetOptions()
-        {
-            IEnumerable<SelectListItem> options = new[]
-                {
-                new SelectListItem { Value = "0" , Text= ""},
-                new SelectListItem {Value = "1" , Text = "Active Users Week" },
-                new SelectListItem {Value = "2" , Text = "Active Users Month" },
-                new SelectListItem {Value = "3" , Text = "DB Indexes" },
-                new SelectListItem { Value = "4" , Text= "SP Range By Hours"},
-                new SelectListItem {Value = "5" , Text = "Active DB Connections" },
-                new SelectListItem {Value = "6" , Text = "DB Tables with Count" },
-                new SelectListItem {Value = "7" , Text = "Table Columns" },
-                new SelectListItem {Value = "8" , Text = "Table Over 100 Rows" },
-               new SelectListItem {Value = "9" , Text = "DB Views" },
-                new SelectListItem {Value = "10" , Text = "Most Used SP" },
-                 new SelectListItem {Value = "11" , Text = "SP in Range" },
-                new SelectListItem {Value = "12" , Text = " Unused SP" },
-                  new SelectListItem {Value = "13" , Text = "Average SP Execution" },
-                new SelectListItem {Value = "14" , Text = "SP Executions" },
-                 new SelectListItem {Value = "15" , Text = "Inactive Users Month " },
-                new SelectListItem {Value = "16" , Text = " Most Visited Days" },
-                new SelectListItem {Value = "17" , Text = " Most Visited Hours" },
-                new SelectListItem {Value = "18" , Text = "SP by User" },
-                new SelectListItem {Value = "19" , Text = " User Subtotal" },
-                new SelectListItem {Value = "20" , Text = " Search users" }
-
-
-
-
-
-            };
-
-            return options;}
+       
         static void CreateMongo(string FirstName, string LastName, string pass, int Admin, string Username, string mail, DateTime DOB , int userid)
         {
             var mongo = new MongoClient("mongodb://localhost:27017");
