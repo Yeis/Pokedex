@@ -15,7 +15,7 @@ namespace PokedexFinalProject.Controllers
         public ActionResult Index(string mensaje)
         {
 
-            var poke = BL.GetPokemonDetails(2);
+            //var poke = BL.GetPokemonDetails(2);
             ViewBag.Message = mensaje;
             return View();
         }
@@ -34,6 +34,7 @@ namespace PokedexFinalProject.Controllers
             else
             {
                 //el usuario fue correcto 
+                SharedInstance.AppUser.conectado = true;
                 return RedirectToAction("Index","Overview");
             }
           
@@ -45,7 +46,7 @@ namespace PokedexFinalProject.Controllers
         //    ViewBag.Message = mensaje;
         //    return View();
         //}
-
+        [HttpGet]
         public ActionResult Register()
         {
             return View();
@@ -53,7 +54,7 @@ namespace PokedexFinalProject.Controllers
         [HttpPost]
         public ActionResult Register(RegisterViewModels model)
         {
-            //logica de registro 
+            BL.CreateMongo(model.Name, model.LastName, model.Password, 0, model.Username, model.Email, model.DoB,23456);
             return View();
         }
 

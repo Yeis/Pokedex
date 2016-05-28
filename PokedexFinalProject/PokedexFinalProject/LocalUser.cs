@@ -10,15 +10,16 @@ namespace PokedexFinalProject
     {
 
         
-        public int UserID { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public DateTime? DOB { get; set; }
+        public int UserId { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
+        public DateTime? DoB { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-        public string Email { get; set; }
+        public string email { get; set; }
         public int? Admin { get; set; }
         public ObjectId Id { get; set; }
+        public bool conectado { get; set; }
         // FALSE IGUAL MS-SQLSERVER   TRUE = MYSQL 
         public bool Connection { get; set; }
 
@@ -28,15 +29,16 @@ namespace PokedexFinalProject
         }
         public LocalUser(int id, string firstname , string lastname, DateTime? dob , string username , string password , string email , int? admin , bool connection)
         {
-            this.UserID = id;
-            this.FirstName = firstname;
-            this.LastName = lastname;
-            this.DOB = dob;
+            this.UserId = id;
+            this.Nombre = firstname;
+            this.Apellido = lastname;
+            this.DoB = dob;
             this.Username = username;
             this.Password = password;
-            this.Email = email;
+            this.email = email;
             this.Admin = admin;
             this.Connection = connection;
+            conectado = false;
         }
     }
 }

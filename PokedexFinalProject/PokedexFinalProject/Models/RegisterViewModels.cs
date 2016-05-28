@@ -20,7 +20,7 @@ namespace PokedexFinalProject.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
         [Required]
-        public string DoB { get; set; }
+        public DateTime DoB { get; set; }
         [Required]
         public string Username { get; set; }
     }

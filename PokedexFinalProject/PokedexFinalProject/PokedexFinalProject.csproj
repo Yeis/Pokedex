@@ -281,6 +281,7 @@
       <DependentUpon>PokedexEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\GetTypesViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LoginViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -533,6 +534,8 @@
     <Content Include="Views\Overview\GetPokemon.cshtml" />
     <Content Include="Views\Overview\GetMoves.cshtml" />
     <Content Include="Views\Overview\GetMoveDetail.cshtml" />
+    <Content Include="Views\Overview\GetByType.cshtml" />
+    <Content Include="Views\Overview\GetTypes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

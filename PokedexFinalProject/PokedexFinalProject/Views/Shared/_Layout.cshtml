@@ -1,6 +1,10 @@
-﻿@{ 
-    bool _login = true;
-    int admon = 1;
+﻿@using Microsoft.AspNet.Identity
+@*@using PokedexFinalProject.Models*@
+@*@model PokemonViewModel*@
+@{ 
+//bool _login = true;
+//int admon = 1;
+
 }
 <!DOCTYPE html>
 <html>
@@ -31,25 +35,61 @@
             </div>
             <div class="navbar-collapse collapse">
                 @{
-                    if (_login == true)
+                    if (SharedInstance.AppUser != null)
                     {
                         <ul class="nav navbar-nav">
                             <li>@Html.ActionLink("Home", "Index", "Overview")</li>
                             <li>@Html.ActionLink("Pokémon", "GetPokemon", "Overview")</li>
                             <li>@Html.ActionLink("Types", "GetTypes", "Overview")</li>
+                            <li>@Html.ActionLink("Moves", "GetMoves", "Overview")</li>
+                           
                             @{
-                                if (admon == 1)
+                                if (SharedInstance.AppUser.Admin == 1)
                                 {
-                                    <li>@Html.ActionLink("STATS", "Index    ", "Stats")</li>
+                                    <li>@Html.ActionLink("STATS", "Index", "Stats")</li>
                                 }
+                                
+                                    @Html.Partial("_LoginPartial")
+                                
                             }
+                        
                            
                         </ul>
-                        @Html.Partial("_LoginPartial")
-                    }
-                }
-                
-            </div>
+                        @(Html.BeginForm("GetDetails", "Overview", FormMethod.Get))
+                        {
+                            <p>
+                                Find by id: @Html.TextBox("SearchString")
+                                <input type="submit" value="Search" />
+                            </p>
+                        }
+
+
+                        @*<div class="col-sm-3 col-md-3 pull-right">
+                            <form class="navbar-form " role="search" style="width: 15em; margin: 0.3em 2em;">
+                                <div class="form-group input-group">
+                                    <input type="text" class="form-control" placeholder="Search.. " name="searchBar" id="searchBar">
+                                    <span class="input-group-btn">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-default" type="submit">
+                                            <span class="glyphicon glyphicon-search"></span>
+                                        </button>
+                                        </div>
+                                        </span>
+                                    </div>
+                            </form>
+                            </div>*@
+
+                            }
+                            else
+                            {
+                            @Html.Partial("_LoginPartial")
+                            }
+
+                            }
+
+
+                        </div>
+
         </div>
     </div>
     <div class="container body-content">

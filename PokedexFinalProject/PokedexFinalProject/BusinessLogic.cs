@@ -43,7 +43,7 @@ namespace PokedexFinalProject
             else
             {
                 //Si se encuentra en mongo 
-                AddLog(new LogData() { nombre = mongousuario.Username, tipo = "Login", fecha = DateTime.Now, UserId = mongousuario.UserID, exec_time = (Endtime - Starttime) });
+                AddLog(new LogData() { nombre = mongousuario.Username, tipo = "Login", fecha = DateTime.Now, UserId = mongousuario.UserId, exec_time = (Endtime - Starttime) });
 
                 return mongousuario;
             }
@@ -68,7 +68,7 @@ namespace PokedexFinalProject
                 List<ActiveUsers_Month_Result> result = context.ActiveUsers_Month().ToList();
                 Endtime = DateTime.Now.Millisecond;
                
-                AddLog(new LogData() {   nombre = "ActiveUsers_Month", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
+                AddLog(new LogData() {   nombre = "ActiveUsers_Month", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserId, exec_time = (Endtime - Starttime) });
                 return result;
         }
         public List<ActiveUsers_Week_Result> Acitve_Users_Week()
@@ -77,7 +77,7 @@ namespace PokedexFinalProject
                 List<ActiveUsers_Week_Result> result = context.ActiveUsers_Week().ToList();
                 Endtime = DateTime.Now.Millisecond;
 
-                AddLog(new LogData() { nombre = "ActiveUsers_Week", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
+                AddLog(new LogData() { nombre = "ActiveUsers_Week", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserId, exec_time = (Endtime - Starttime) });
                 return result;
         }
         public GetPokemonDetail_Result GetPokemonDetails(int id)
@@ -86,27 +86,30 @@ namespace PokedexFinalProject
             GetPokemonDetail_Result result = context.GetPokemonDetail(id).FirstOrDefault();
             Endtime = DateTime.Now.Millisecond;
 
-            AddLog(new LogData() { nombre = "GetPokemonDetail", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
+            AddLog(new LogData() { nombre = "GetPokemonDetail", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserId, exec_time = (Endtime - Starttime) });
             return result;
 
         }
 
         public void LogOut()
         {
-            AddLog(new LogData() { nombre = SharedInstance.AppUser.Username, tipo = "Logout", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
+            AddLog(new LogData() { nombre = SharedInstance.AppUser.Username, tipo = "Logout", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserId, exec_time = (Endtime - Starttime) });
             SharedInstance.AppUser = null;
         }
+
         public void AddLog(LogData log )
         {
             log.id = context.LogDatas.Count() + 1;
                context.LogDatas.Add(log);
                 context.SaveChanges();
         }
- public Usuario FindSQL(string username, string password) 
+
+        public Usuario FindSQL(string username, string password) 
         {
             Usuario user = context.Usuarios.Where(u => u.Username == username && u.Password == password).FirstOrDefault(); 
             return user;
         }
+
         public LocalUser FindMongo(string username, string pass)
         {
             var mongo = new MongoClient("mongodb://localhost:27017");
@@ -117,10 +120,11 @@ namespace PokedexFinalProject
                         select u;
             if (users.Count() != 0)
             {
-                return users.ToList<LocalUser>().First();
+                return users.ToList<LocalUser>().FirstOrDefault();
             }
             return null;
         }
+
         public IEnumerable<SelectListItem> GetOptions()
         {
             IEnumerable<SelectListItem> options = new[]
@@ -138,11 +142,14 @@ namespace PokedexFinalProject
             };
 
             return options;}
-        static void CreateMongo(string FirstName, string LastName, string pass, int Admin, string Username, string mail, DateTime DOB , int userid)
-        {
+
+        public void CreateMongo(string FirstName, string LastName, string pass, int Admin, string Username, string mail, DateTime DOB , int userid)
+        { 
             var mongo = new MongoClient("mongodb://localhost:27017");
             var db = mongo.GetDatabase("users");
-            var user = new Usuario
+            var collections = db.GetCollection<LocalUser>("users");
+            var x = collections.Find(UserId => true).Sort("{UserId:-1}").Limit(1).FirstOrDefault();
+            var user = new LocalUser
             {
                 Nombre = FirstName,
                 Apellido = LastName,
@@ -151,10 +158,10 @@ namespace PokedexFinalProject
                 Admin = Admin,
                 Username = Username,
                 DoB = DOB,
-                UserId = userid
+                UserId = x.UserId
+                
             };
-            var collections = db.GetCollection<Usuario>("users");
-            collections.InsertOne(user);
+              collections.InsertOne(user);
         }
     }
 }
