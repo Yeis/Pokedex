@@ -1,0 +1,18 @@
+﻿@model PokedexFinalProject.Models.GetUserContains
+
+@using (Html.BeginForm("GetUserContains", "Stats", FormMethod.Post))
+{
+    <p>Patron de Busqueda  (numerico busca por id , alfanumerico busca por Username):</p>
+    <p> @Html.TextBoxFor(x => x.patron)</p>
+
+    <input type="submit" value="Buscar" />
+}
+@{
+    if (Model.users != null)
+    {
+        Html.RenderPartial("~/Views/Shared/GetUserContainsList.cshtml", Model.users);
+
+    }
+
+
+}

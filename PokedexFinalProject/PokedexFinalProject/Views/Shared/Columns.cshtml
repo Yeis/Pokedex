@@ -1,0 +1,18 @@
+﻿@model PokedexFinalProject.Models.ColumnsViewModel
+
+@using (Html.BeginForm("Columns", "Stats", FormMethod.Post))
+{
+    <p>Nombre Tabla:</p>
+    <p> @Html.TextBoxFor(x => x.NombreTabla)</p>
+
+                    <input type="submit" value="Login" />
+}
+@{
+    if (Model.Columnas != null)
+    {
+        Html.RenderPartial("~/Views/Shared/ColumnsList.cshtml", Model.Columnas);
+
+    }
+
+
+ }

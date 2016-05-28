@@ -220,6 +220,10 @@ select * from Moves m
 inner join MovesRelacion mvrel on MoveID = MvId
 where mvrel.PokeID = @PokeID
 
+GO
+
+
+
 CREATE Procedure GetPokemonByGame
 @GameID int
 as
@@ -252,6 +256,7 @@ create procedure GetPokemonByType
 as
 select * from Pokemon p 
 where p.TpID = @TID OR P.TpID2 = @TID;
+GO
 
 CREATE Procedure GetPokemonDetail
 @Id int
@@ -283,13 +288,13 @@ GO
 -- STATISTICS 
 
 --1  sp in range by hour 
-Create Procedure GetSPByHour
-@date1 datetime,
-@date2 datetime
+CREATE Procedure GetSPByHour
+@date1 int,
+@date2 int
 as
 Select * from LogData 
-Where LogData.tipo = 'SP' and LogData.fecha between @date1 and @date2
-
+Where LogData.tipo = 'SP' and  DatePart(HOUR,fecha) between @date1 and @date2
+GO
 -- SP (2)
 
 CREATE PROCEDURE SP_ConexionesActivas
@@ -341,35 +346,18 @@ GO
  SELECT name AS View_Name, create_date
  FROM sys.views
  GO
+
+
+
  --SP (7)
 
 CREATE PROCEDURE SP_InfoSp
 AS
- SELECT top 1 * FROM
-    (SELECT OBJECT_NAME(s2.objectid) AS ProcName,
-        MAX(execution_count) AS execution_count,s2.objectid,
-        MAX(last_execution_time) AS last_execution_time
-FROM sys.dm_exec_query_stats AS s1
-CROSS APPLY sys.dm_exec_sql_text(sql_handle) AS s2
-GROUP BY OBJECT_NAME(s2.objectid),s2.objectid) x
-WHERE OBJECTPROPERTYEX(x.objectid,'IsProcedure') = 1
-AND EXISTS (SELECT 1 FROM sys.procedures s
-            WHERE s.is_ms_shipped = 0
-            AND s.name = x.ProcName )
-ORDER BY execution_count DESC
+SELECT  nombre , count(nombre) as Cantidad FROM LogData
+WHERE tipo = 'SP'
+GROUP BY nombre
+ORDER BY count(nombre) DESC
 
-SELECT TOP 1* FROM(SELECT OBJECT_NAME(s2.objectid) AS ProcName,
-        MAX(execution_count) AS execution_count,s2.objectid,
-        MAX(last_execution_time) AS last_execution_time
-FROM sys.dm_exec_query_stats AS s1
-CROSS APPLY sys.dm_exec_sql_text(sql_handle) AS s2
-GROUP BY OBJECT_NAME(s2.objectid),s2.objectid) x
-WHERE OBJECTPROPERTYEX(x.objectid,'IsProcedure') = 1
-AND EXISTS (SELECT 1 FROM sys.procedures s
-            WHERE s.is_ms_shipped = 0
-            AND s.name = x.ProcName )
-          
-ORDER BY execution_count DESC 
 GO
  
 --SP (8)
@@ -409,7 +397,8 @@ GO
 CREATE PROCEDURE SPExecAverage
  AS
 
- SELECT nombre , AVG(exec_time) FROM LogData
+ SELECT nombre , AVG(exec_time) as AVG_ExecTime FROM LogData
+ WHERE tipo = 'SP'
  GROUP BY nombre
 GO
 
@@ -418,6 +407,7 @@ GO
  CREATE PROCEDURE SPCount 
  AS
  SELECT nombre , COUNT(nombre) as TimesRunned from LogData
+  WHERE tipo = 'SP'
  GROUP BY nombre
  GO
 
@@ -483,7 +473,7 @@ GO
 
 CREATE PROCEDURE GetLoginHours
 AS
-SELECT DATENAME(HOUR,fecha) AS Hora , COUNT(UserId) FROM LogData WHERE Tipo = 'Login'
+SELECT DATENAME(HOUR,fecha) AS Hora , COUNT(UserId) as Cantidad FROM LogData WHERE Tipo = 'Login'
 GROUP BY DATENAME(HOUR,fecha)
 GO
 
@@ -498,7 +488,7 @@ GO
 CREATE PROCEDURE GetUserSubtotals
 AS
 
-SELECT Username , Admin   , COUNT(Admin) FROM Usuario
+SELECT	ISNULL(Username,'Subtotal') as nombre , Admin   , COUNT(Admin) as Cantidad  FROM Usuario
 GROUP BY   Admin ,    Username WITH ROLLUP   
 
 
@@ -513,3 +503,11 @@ AS
 SELECT * FROM Usuario WHERE Username LIKE '%'+@patron+'%'
 
 GO
+
+
+--Create Procedure GetSPByHour
+--@date1 datetime,
+--@date2 datetime
+--as
+--Select * from LogData 
+--Where LogData.tipo = 'SP' and LogData.fecha between @date1 and @date2

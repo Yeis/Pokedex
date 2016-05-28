@@ -14,6 +14,6 @@ namespace PokedexFinalProject
     public partial class SPExecAverage_Result
     {
         public string nombre { get; set; }
-        public Nullable<int> Column1 { get; set; }
+        public Nullable<int> AVG_ExecTime { get; set; }
     }
 }
