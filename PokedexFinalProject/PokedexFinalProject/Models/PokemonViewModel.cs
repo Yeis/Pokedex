@@ -22,8 +22,12 @@ namespace PokedexFinalProject.Models
         }
         public PokemonViewModel(int id)
         {
+            BusinessLogic BL = new BusinessLogic();
             PokedexEntities context = new PokedexEntities();
+            int Starttime = DateTime.Now.Millisecond;
             detail = context.GetPokemonDetail(id).First();
+            int Endtime = DateTime.Now.Millisecond;
+            BL.AddLog(new LogData() { nombre = "GetPokemonDetail", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
             evo = (from e in context.Evolucions
                   where e.PokeID == id
                   select e).FirstOrDefault();
@@ -36,7 +40,10 @@ namespace PokedexFinalProject.Models
                        where a.PokemonID == evo.SigId
                        select a).FirstOrDefault();
             }
+            Starttime = DateTime.Now.Millisecond;
             moves = context.GetMoveRelation(id).ToList();
+            Endtime = DateTime.Now.Millisecond;
+            BL.AddLog(new LogData() { nombre = "GetMoveRelation", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
             nameTipo1 = (from t in context.Tipoes
                         where t.TipoID == detail.TpID
                         select t.Nombre).FirstOrDefault();

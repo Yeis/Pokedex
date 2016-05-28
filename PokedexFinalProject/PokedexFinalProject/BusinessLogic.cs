@@ -142,6 +142,8 @@ namespace PokedexFinalProject
         {
             var mongo = new MongoClient("mongodb://localhost:27017");
             var db = mongo.GetDatabase("users");
+            var collections = db.GetCollection<Usuario>("users");
+            var x = collections.Find(_id => true).Sort("{UserId:-1}").Limit(1);
             var user = new Usuario
             {
                 Nombre = FirstName,
@@ -153,7 +155,6 @@ namespace PokedexFinalProject
                 DoB = DOB,
                 UserId = userid
             };
-            var collections = db.GetCollection<Usuario>("users");
             collections.InsertOne(user);
         }
     }

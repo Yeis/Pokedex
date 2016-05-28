@@ -24,7 +24,7 @@ namespace PokedexFinalProject.Controllers
         [HttpGet]
         public ActionResult GetDetails(int id)
         {
-            var pokemon = context.GetPokemonDetail(id).FirstOrDefault();
+            var pokemon = new PokemonViewModel(id);
             return View(pokemon);
         }
 
@@ -41,6 +41,12 @@ namespace PokedexFinalProject.Controllers
             //var pokemon = context.GetPokemonByType(id).ToList();
             var tipos = new GetTypesViewModel(id);
             return View(tipos);
+        }
+        [HttpGet]
+        public ActionResult GetMoves()
+        {
+            var moves = context.Moves.ToList();
+            return View(moves);
         }
     }
 }

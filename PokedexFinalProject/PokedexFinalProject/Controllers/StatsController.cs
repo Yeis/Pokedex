@@ -47,7 +47,7 @@ namespace PokedexFinalProject.Controllers
                     break;
                 case 5:
                     model.partialName = "SP_ConexionesActivas";
-                    model.ActiveConnections = BL.GetActiveConnections();
+                    //model.ActiveConnections = BL.GetActiveConnections();
                     break;
                 case 6:
                     model.partialName = "ActiveUsersMonth";
