@@ -10,8 +10,15 @@ namespace PokedexFinalProject.Controllers
     public class OverviewController : Controller
     {
         PokedexEntities context = new PokedexEntities();
+        BusinessLogic BL = new BusinessLogic();
+        int Starttime, Endtime;
         // GET: Overview
         public ActionResult Index()
+        {
+            return View();
+        }
+        [HttpPost]
+        public  ActionResult Index(string searchBar)
         {
             return View();
         }
@@ -19,13 +26,35 @@ namespace PokedexFinalProject.Controllers
         public ActionResult GetPokemon()
         {
             var lista = context.Pokemons.ToList();
-            return View(lista);
+          
+            return View(lista.ToList());
         }
         [HttpGet]
-        public ActionResult GetDetails(int id)
+        public ActionResult GetDetails(string SearchString)
         {
-     //      var pokemon = context.GetPokemonDetail(id).FirstOrDefault();
-            return View();
+            int id;
+            if(Int32.TryParse(SearchString, out id))
+            {
+                var pokemon = new PokemonViewModel(id);
+                return View(pokemon);
+            }
+            else
+            {
+                Starttime = DateTime.Now.Millisecond;
+                var pokemon = context.GetPokemonByName(SearchString).FirstOrDefault();
+                Endtime = DateTime.Now.Millisecond;
+                BL.AddLog(new LogData() { nombre = "GetPokemonByName", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserId, exec_time = (Endtime - Starttime) });
+                if (pokemon != null)
+                {
+                    var det = new PokemonViewModel(pokemon.PokemonID);
+                    return View(det);
+                }
+                else
+                {
+
+                    return View(new PokemonViewModel());
+                }
+            }
         }
 
  
@@ -39,7 +68,19 @@ namespace PokedexFinalProject.Controllers
         public ActionResult GetByType(int id)
         {
             //var pokemon = context.GetPokemonByType(id).ToList();
-         // var tipos = new GetTypesViewModel(id);
+            var tipos = new GetTypesViewModel(id);
+            return View(tipos);
+        }
+
+        [HttpGet]
+        public ActionResult GetMoves()
+        {
+            var moves = context.Moves.ToList();
+            return View(moves);
+        }
+        [HttpGet]
+        public ActionResult searchbar()
+        {
             return View();
         }
     }

@@ -1,0 +1,619 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="pokedexModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="evolucion">
+          <Key>
+            <PropertyRef Name="EvolucionID" />
+          </Key>
+          <Property Name="EvolucionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PokeID" Type="int" Nullable="false" />
+          <Property Name="AntID" Type="int" />
+          <Property Name="SigId" Type="int" />
+          <Property Name="status" Type="longtext" />
+          <Property Name="descripcion" Type="longtext" />
+        </EntityType>
+        <EntityType Name="habilidad">
+          <Key>
+            <PropertyRef Name="HabilidadID" />
+          </Key>
+          <Property Name="HabilidadID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="15" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="juegos">
+          <Key>
+            <PropertyRef Name="JuegoID" />
+          </Key>
+          <Property Name="JuegoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="Año" Type="datetime" Precision="6" />
+          <Property Name="Generacion" Type="varchar" MaxLength="10" />
+          <Property Name="Region" Type="varchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="juegosrelacion">
+          <Key>
+            <PropertyRef Name="JuegoRelID" />
+          </Key>
+          <Property Name="JuegoRelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PokeID" Type="int" />
+          <Property Name="GameID" Type="int" />
+        </EntityType>
+        <EntityType Name="logdata">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" />
+          <Property Name="tipo" Type="varchar" MaxLength="50" />
+          <Property Name="fecha" Type="datetime" Precision="6" />
+          <Property Name="exec_time" Type="int" />
+          <Property Name="UserId" Type="int" />
+        </EntityType>
+        <EntityType Name="moves">
+          <Key>
+            <PropertyRef Name="MoveID" />
+          </Key>
+          <Property Name="MoveID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TpMovID" Type="int" />
+          <Property Name="Nombre" Type="varchar" MaxLength="25" />
+          <Property Name="Accuracy" Type="int" />
+          <Property Name="Power" Type="int" />
+          <Property Name="PowerPoints" Type="int" />
+          <Property Name="Generacion" Type="int" />
+        </EntityType>
+        <EntityType Name="movesrelacion">
+          <Key>
+            <PropertyRef Name="MovRelID" />
+          </Key>
+          <Property Name="MovRelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PokeID" Type="int" />
+          <Property Name="MvID" Type="int" />
+        </EntityType>
+        <EntityType Name="pokemon">
+          <Key>
+            <PropertyRef Name="PokemonID" />
+          </Key>
+          <Property Name="PokemonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Peso" Type="int" Nullable="false" />
+          <Property Name="Altura" Type="double" Nullable="false" />
+          <Property Name="Generacion" Type="int" Nullable="false" />
+          <Property Name="TpID" Type="int" Nullable="false" />
+          <Property Name="TpID2" Type="int" />
+          <Property Name="HabID" Type="int" />
+          <Property Name="pathImg" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="stat">
+          <Key>
+            <PropertyRef Name="StatID" />
+          </Key>
+          <Property Name="StatID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PokeID" Type="int" Nullable="false" />
+          <Property Name="HP" Type="int" />
+          <Property Name="Attack" Type="int" />
+          <Property Name="Defense" Type="int" />
+          <Property Name="Speed" Type="int" />
+          <Property Name="SplAttack" Type="int" />
+          <Property Name="SplDefense" Type="int" />
+        </EntityType>
+        <EntityType Name="tipo">
+          <Key>
+            <PropertyRef Name="TipoID" />
+          </Key>
+          <Property Name="TipoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="tiporelacion">
+          <Key>
+            <PropertyRef Name="TpRelID" />
+          </Key>
+          <Property Name="TpRelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ventaja" Type="varchar" MaxLength="25" />
+          <Property Name="DetailVentaja" Type="longtext" />
+          <Property Name="Debilidad" Type="varchar" MaxLength="25" />
+          <Property Name="DetailDebilidad" Type="longtext" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="Apellido" Type="varchar" MaxLength="100" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
+          <Property Name="DoB" Type="datetime" Precision="6" />
+          <Property Name="Username" Type="varchar" MaxLength="100" />
+          <Property Name="Password" Type="varchar" MaxLength="25" />
+          <Property Name="Admin" Type="int" />
+        </EntityType>
+        <Function Name="ActiveUsers_Month" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="pokedex" />
+        <Function Name="ActiveUsers_Week" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="pokedex" />
+        <Function Name="CreateAbility" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="pokedex">
+          <Parameter Name="Name" Type="varchar" Mode="In" />
+          <Parameter Name="Description" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="CreateEvolution" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="pokedex">
+          <Parameter Name="PokeID" Type="int" Mode="In" />
+          <Parameter Name="SigID" Type="int" Mode="In" />
+          <Parameter Name="AntID" Type="int" Mode="In" />
+          <Parameter Name="status" Type="varchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetLoginDays" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="pokedex" />
+        <Function Name="GetLoginHours" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="pokedex" />
+        <Function Name="GetSPByHour" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="pokedex">
+          <Parameter Name="date1" Type="datetime" Mode="In" />
+          <Parameter Name="date2" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="GetUserContains" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="pokedex">
+          <Parameter Name="patron" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetUserSubtotals" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="pokedex" />
+        <Function Name="InactiveUsers_Month" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="pokedex" />
+        <Function Name="MyActiveUsers_Month" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="pokedex" />
+        <Function Name="SPByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="pokedex">
+          <Parameter Name="Userid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SPCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="pokedex" />
+        <Function Name="SPExecAverage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="pokedex" />
+        <Function Name="SPInRange" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="pokedex">
+          <Parameter Name="lowlimit" Type="int" Mode="In" />
+          <Parameter Name="highlimit" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UnusedSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="pokedex" />
+        <EntityContainer Name="pokedexModelStoreContainer">
+          <EntitySet Name="evolucion" EntityType="Self.evolucion" Schema="pokedex" store:Type="Tables" />
+          <EntitySet Name="habilidad" EntityType="Self.habilidad" Schema="pokedex" store:Type="Tables" />
+          <EntitySet Name="juegos" EntityType="Self.juegos" Schema="pokedex" store:Type="Tables" />
+          <EntitySet Name="juegosrelacion" EntityType="Self.juegosrelacion" Schema="pokedex" store:Type="Tables" />
+          <EntitySet Name="logdata" EntityType="Self.logdata" Schema="pokedex" store:Type="Tables" />
+          <EntitySet Name="moves" EntityType="Self.moves" Schema="pokedex" store:Type="Tables" />
+          <EntitySet Name="movesrelacion" EntityType="Self.movesrelacion" Schema="pokedex" store:Type="Tables" />
+          <EntitySet Name="pokemon" EntityType="Self.pokemon" Schema="pokedex" store:Type="Tables" />
+          <EntitySet Name="stat" EntityType="Self.stat" Schema="pokedex" store:Type="Tables" />
+          <EntitySet Name="tipo" EntityType="Self.tipo" Schema="pokedex" store:Type="Tables" />
+          <EntitySet Name="tiporelacion" EntityType="Self.tiporelacion" Schema="pokedex" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="pokedex" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="pokedexModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="evolucion">
+          <Key>
+            <PropertyRef Name="EvolucionID" />
+          </Key>
+          <Property Name="EvolucionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PokeID" Type="Int32" Nullable="false" />
+          <Property Name="AntID" Type="Int32" />
+          <Property Name="SigId" Type="Int32" />
+          <Property Name="status" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="habilidad">
+          <Key>
+            <PropertyRef Name="HabilidadID" />
+          </Key>
+          <Property Name="HabilidadID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="juego">
+          <Key>
+            <PropertyRef Name="JuegoID" />
+          </Key>
+          <Property Name="JuegoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Año" Type="DateTime" />
+          <Property Name="Generacion" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Region" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="juegosrelacion">
+          <Key>
+            <PropertyRef Name="JuegoRelID" />
+          </Key>
+          <Property Name="JuegoRelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PokeID" Type="Int32" />
+          <Property Name="GameID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="logdata">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fecha" Type="DateTime" />
+          <Property Name="exec_time" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="move">
+          <Key>
+            <PropertyRef Name="MoveID" />
+          </Key>
+          <Property Name="MoveID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TpMovID" Type="Int32" />
+          <Property Name="Nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Accuracy" Type="Int32" />
+          <Property Name="Power" Type="Int32" />
+          <Property Name="PowerPoints" Type="Int32" />
+          <Property Name="Generacion" Type="Int32" />
+        </EntityType>
+        <EntityType Name="movesrelacion">
+          <Key>
+            <PropertyRef Name="MovRelID" />
+          </Key>
+          <Property Name="MovRelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PokeID" Type="Int32" />
+          <Property Name="MvID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="pokemon">
+          <Key>
+            <PropertyRef Name="PokemonID" />
+          </Key>
+          <Property Name="PokemonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Peso" Type="Int32" Nullable="false" />
+          <Property Name="Altura" Type="Double" Nullable="false" />
+          <Property Name="Generacion" Type="Int32" Nullable="false" />
+          <Property Name="TpID" Type="Int32" Nullable="false" />
+          <Property Name="TpID2" Type="Int32" />
+          <Property Name="HabID" Type="Int32" />
+          <Property Name="pathImg" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="stat">
+          <Key>
+            <PropertyRef Name="StatID" />
+          </Key>
+          <Property Name="StatID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PokeID" Type="Int32" Nullable="false" />
+          <Property Name="HP" Type="Int32" />
+          <Property Name="Attack" Type="Int32" />
+          <Property Name="Defense" Type="Int32" />
+          <Property Name="Speed" Type="Int32" />
+          <Property Name="SplAttack" Type="Int32" />
+          <Property Name="SplDefense" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tipo">
+          <Key>
+            <PropertyRef Name="TipoID" />
+          </Key>
+          <Property Name="TipoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tiporelacion">
+          <Key>
+            <PropertyRef Name="TpRelID" />
+          </Key>
+          <Property Name="TpRelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ventaja" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="DetailVentaja" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Debilidad" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="DetailDebilidad" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DoB" Type="DateTime" />
+          <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Admin" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="MyPokedexEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="evolucions" EntityType="Self.evolucion" />
+          <EntitySet Name="habilidads" EntityType="Self.habilidad" />
+          <EntitySet Name="juegos" EntityType="Self.juego" />
+          <EntitySet Name="juegosrelacions" EntityType="Self.juegosrelacion" />
+          <EntitySet Name="logdatas" EntityType="Self.logdata" />
+          <EntitySet Name="moves" EntityType="Self.move" />
+          <EntitySet Name="movesrelacions" EntityType="Self.movesrelacion" />
+          <EntitySet Name="pokemons" EntityType="Self.pokemon" />
+          <EntitySet Name="stats" EntityType="Self.stat" />
+          <EntitySet Name="tipoes" EntityType="Self.tipo" />
+          <EntitySet Name="tiporelacions" EntityType="Self.tiporelacion" />
+          <EntitySet Name="usuarios" EntityType="Self.usuario" />
+          <FunctionImport Name="ActiveUsers_Month" ReturnType="Collection(pokedexModel.ActiveUsers_Month_Result)" />
+          <FunctionImport Name="ActiveUsers_Week" ReturnType="Collection(pokedexModel.ActiveUsers_Week_Result)" />
+          <FunctionImport Name="CreateAbility">
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CreateEvolution">
+            <Parameter Name="PokeID" Mode="In" Type="Int32" />
+            <Parameter Name="SigID" Mode="In" Type="Int32" />
+            <Parameter Name="AntID" Mode="In" Type="Int32" />
+            <Parameter Name="status" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetLoginDays" ReturnType="Collection(pokedexModel.GetLoginDays_Result)" />
+          <FunctionImport Name="GetLoginHours" ReturnType="Collection(pokedexModel.GetLoginHours_Result)" />
+          <FunctionImport Name="GetSPByHour">
+            <Parameter Name="date1" Mode="In" Type="DateTime" />
+            <Parameter Name="date2" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="GetUserContains" ReturnType="Collection(pokedexModel.GetUserContains_Result)">
+            <Parameter Name="patron" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetUserSubtotals" ReturnType="Collection(pokedexModel.GetUserSubtotals_Result)" />
+          <FunctionImport Name="InactiveUsers_Month" ReturnType="Collection(pokedexModel.InactiveUsers_Month_Result)" />
+          <FunctionImport Name="MyActiveUsers_Month" ReturnType="Collection(pokedexModel.MyActiveUsers_Month_Result)" />
+          <FunctionImport Name="SPByUser" ReturnType="Collection(pokedexModel.SPByUser_Result)">
+            <Parameter Name="Userid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SPCount" ReturnType="Collection(pokedexModel.SPCount_Result)" />
+          <FunctionImport Name="SPExecAverage" ReturnType="Collection(pokedexModel.SPExecAverage_Result)" />
+          <FunctionImport Name="SPInRange" ReturnType="Collection(pokedexModel.SPInRange_Result)">
+            <Parameter Name="lowlimit" Mode="In" Type="Int32" />
+            <Parameter Name="highlimit" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="ActiveUsers_Month_Result" >
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="Single" Name="Nombre" Nullable="false" />
+          <Property Type="Single" Name="Apellido" Nullable="false" />
+          <Property Type="String" Name="email" Nullable="false" />
+          <Property Type="DateTime" Name="DoB" Nullable="false" />
+          <Property Type="Single" Name="Username" Nullable="false" />
+          <Property Type="String" Name="Password" Nullable="false" />
+          <Property Type="Int32" Name="Admin" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="ActiveUsers_Week_Result" />
+        <ComplexType Name="GetLoginDays_Result" />
+        <ComplexType Name="GetLoginHours_Result" />
+        <ComplexType Name="GetUserContains_Result" />
+        <ComplexType Name="GetUserSubtotals_Result" />
+        <ComplexType Name="InactiveUsers_Month_Result" />
+        <ComplexType Name="MyActiveUsers_Month_Result" />
+        <ComplexType Name="SPByUser_Result" />
+        <ComplexType Name="SPCount_Result" />
+        <ComplexType Name="SPExecAverage_Result" />
+        <ComplexType Name="SPInRange_Result" />
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="pokedexModelStoreContainer" CdmEntityContainer="MyPokedexEntities">
+          <EntitySetMapping Name="evolucions">
+            <EntityTypeMapping TypeName="pokedexModel.evolucion">
+              <MappingFragment StoreEntitySet="evolucion">
+                <ScalarProperty Name="EvolucionID" ColumnName="EvolucionID" />
+                <ScalarProperty Name="PokeID" ColumnName="PokeID" />
+                <ScalarProperty Name="AntID" ColumnName="AntID" />
+                <ScalarProperty Name="SigId" ColumnName="SigId" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="habilidads">
+            <EntityTypeMapping TypeName="pokedexModel.habilidad">
+              <MappingFragment StoreEntitySet="habilidad">
+                <ScalarProperty Name="HabilidadID" ColumnName="HabilidadID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="juegos">
+            <EntityTypeMapping TypeName="pokedexModel.juego">
+              <MappingFragment StoreEntitySet="juegos">
+                <ScalarProperty Name="JuegoID" ColumnName="JuegoID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Año" ColumnName="Año" />
+                <ScalarProperty Name="Generacion" ColumnName="Generacion" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="juegosrelacions">
+            <EntityTypeMapping TypeName="pokedexModel.juegosrelacion">
+              <MappingFragment StoreEntitySet="juegosrelacion">
+                <ScalarProperty Name="JuegoRelID" ColumnName="JuegoRelID" />
+                <ScalarProperty Name="PokeID" ColumnName="PokeID" />
+                <ScalarProperty Name="GameID" ColumnName="GameID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="logdatas">
+            <EntityTypeMapping TypeName="pokedexModel.logdata">
+              <MappingFragment StoreEntitySet="logdata">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="exec_time" ColumnName="exec_time" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="moves">
+            <EntityTypeMapping TypeName="pokedexModel.move">
+              <MappingFragment StoreEntitySet="moves">
+                <ScalarProperty Name="MoveID" ColumnName="MoveID" />
+                <ScalarProperty Name="TpMovID" ColumnName="TpMovID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Accuracy" ColumnName="Accuracy" />
+                <ScalarProperty Name="Power" ColumnName="Power" />
+                <ScalarProperty Name="PowerPoints" ColumnName="PowerPoints" />
+                <ScalarProperty Name="Generacion" ColumnName="Generacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="movesrelacions">
+            <EntityTypeMapping TypeName="pokedexModel.movesrelacion">
+              <MappingFragment StoreEntitySet="movesrelacion">
+                <ScalarProperty Name="MovRelID" ColumnName="MovRelID" />
+                <ScalarProperty Name="PokeID" ColumnName="PokeID" />
+                <ScalarProperty Name="MvID" ColumnName="MvID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pokemons">
+            <EntityTypeMapping TypeName="pokedexModel.pokemon">
+              <MappingFragment StoreEntitySet="pokemon">
+                <ScalarProperty Name="PokemonID" ColumnName="PokemonID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Peso" ColumnName="Peso" />
+                <ScalarProperty Name="Altura" ColumnName="Altura" />
+                <ScalarProperty Name="Generacion" ColumnName="Generacion" />
+                <ScalarProperty Name="TpID" ColumnName="TpID" />
+                <ScalarProperty Name="TpID2" ColumnName="TpID2" />
+                <ScalarProperty Name="HabID" ColumnName="HabID" />
+                <ScalarProperty Name="pathImg" ColumnName="pathImg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="stats">
+            <EntityTypeMapping TypeName="pokedexModel.stat">
+              <MappingFragment StoreEntitySet="stat">
+                <ScalarProperty Name="StatID" ColumnName="StatID" />
+                <ScalarProperty Name="PokeID" ColumnName="PokeID" />
+                <ScalarProperty Name="HP" ColumnName="HP" />
+                <ScalarProperty Name="Attack" ColumnName="Attack" />
+                <ScalarProperty Name="Defense" ColumnName="Defense" />
+                <ScalarProperty Name="Speed" ColumnName="Speed" />
+                <ScalarProperty Name="SplAttack" ColumnName="SplAttack" />
+                <ScalarProperty Name="SplDefense" ColumnName="SplDefense" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipoes">
+            <EntityTypeMapping TypeName="pokedexModel.tipo">
+              <MappingFragment StoreEntitySet="tipo">
+                <ScalarProperty Name="TipoID" ColumnName="TipoID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tiporelacions">
+            <EntityTypeMapping TypeName="pokedexModel.tiporelacion">
+              <MappingFragment StoreEntitySet="tiporelacion">
+                <ScalarProperty Name="TpRelID" ColumnName="TpRelID" />
+                <ScalarProperty Name="Ventaja" ColumnName="Ventaja" />
+                <ScalarProperty Name="DetailVentaja" ColumnName="DetailVentaja" />
+                <ScalarProperty Name="Debilidad" ColumnName="Debilidad" />
+                <ScalarProperty Name="DetailDebilidad" ColumnName="DetailDebilidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuarios">
+            <EntityTypeMapping TypeName="pokedexModel.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="DoB" ColumnName="DoB" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Admin" ColumnName="Admin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ActiveUsers_Month" FunctionName="pokedexModel.Store.ActiveUsers_Month">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="pokedexModel.ActiveUsers_Month_Result" >
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="DoB" ColumnName="DoB" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Admin" ColumnName="Admin" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ActiveUsers_Week" FunctionName="pokedexModel.Store.ActiveUsers_Week">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="pokedexModel.ActiveUsers_Week_Result" />
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CreateAbility" FunctionName="pokedexModel.Store.CreateAbility" />
+          <FunctionImportMapping FunctionImportName="CreateEvolution" FunctionName="pokedexModel.Store.CreateEvolution" />
+          <FunctionImportMapping FunctionImportName="GetLoginDays" FunctionName="pokedexModel.Store.GetLoginDays">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="pokedexModel.GetLoginDays_Result" />
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetLoginHours" FunctionName="pokedexModel.Store.GetLoginHours">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="pokedexModel.GetLoginHours_Result" />
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetSPByHour" FunctionName="pokedexModel.Store.GetSPByHour" />
+          <FunctionImportMapping FunctionImportName="GetUserContains" FunctionName="pokedexModel.Store.GetUserContains">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="pokedexModel.GetUserContains_Result" />
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetUserSubtotals" FunctionName="pokedexModel.Store.GetUserSubtotals">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="pokedexModel.GetUserSubtotals_Result" />
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="InactiveUsers_Month" FunctionName="pokedexModel.Store.InactiveUsers_Month">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="pokedexModel.InactiveUsers_Month_Result" />
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="MyActiveUsers_Month" FunctionName="pokedexModel.Store.MyActiveUsers_Month">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="pokedexModel.MyActiveUsers_Month_Result" />
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPByUser" FunctionName="pokedexModel.Store.SPByUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="pokedexModel.SPByUser_Result" />
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPCount" FunctionName="pokedexModel.Store.SPCount">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="pokedexModel.SPCount_Result" />
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPExecAverage" FunctionName="pokedexModel.Store.SPExecAverage">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="pokedexModel.SPExecAverage_Result" />
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPInRange" FunctionName="pokedexModel.Store.SPInRange">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="pokedexModel.SPInRange_Result" />
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

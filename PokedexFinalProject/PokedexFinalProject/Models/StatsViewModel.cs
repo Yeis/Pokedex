@@ -43,6 +43,16 @@ namespace PokedexFinalProject.Models
         public SPbyHourViewModel _SPbyHourViewModel { get; set; }
         public  ColumnsViewModel _ColumnsViewModel { get; set; }
 
+        //Stats de MYSQL
+        public IEnumerable<MYSQLProj.ActiveUsers_Month_Result> MyActiveUsersMonth { get; set; }
+        public IEnumerable<MYSQLProj.ActiveUsers_Week_Result> MyActiveUsersWeek { get; set; }
+        public IEnumerable<MYSQLProj.SPExecAverage_Result> MyExecAverage { get; set; }
+        public IEnumerable<MYSQLProj.GetLoginDays_Result> MyDias { get; set; }
+        public IEnumerable<MYSQLProj.GetLoginHours_Result> MyHoras { get; set; }
+        public IEnumerable<MYSQLProj.InactiveUsers_Month_Result> MyInactive { get; set; }
+        public IEnumerable<MYSQLProj.SPCount_Result> MySPCounts { get; set; }
+        public IEnumerable<MYSQLProj.GetUserSubtotals_Result> MySubtotals { get; set; }
+        public IEnumerable<string> MyUnused { get; set; }
 
         public StatsViewModel()
         {
