@@ -11,10 +11,16 @@ namespace MYSQLProj
 {
     using System;
     
-    public partial class SPByUser_Result
+    public partial class GetPokemonByName_Result
     {
-        public string nombre { get; set; }
-        public System.DateTime fecha { get; set; }
-        public int exec_time { get; set; }
+        public float Nombre { get; set; }
+        public int PokemonID { get; set; }
+        public int Peso { get; set; }
+        public long Altura { get; set; }
+        public int Generacion { get; set; }
+        public int TpID { get; set; }
+        public int TpID2 { get; set; }
+        public int HabID { get; set; }
+        public string pathImg { get; set; }
     }
 }

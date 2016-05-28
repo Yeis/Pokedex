@@ -11,10 +11,17 @@ namespace MYSQLProj
 {
     using System;
     
-    public partial class SPByUser_Result
+    public partial class GetMoveRelation_Result
     {
-        public string nombre { get; set; }
-        public System.DateTime fecha { get; set; }
-        public int exec_time { get; set; }
+        public float Nombre { get; set; }
+        public int MoveID { get; set; }
+        public int TpMovID { get; set; }
+        public int Accuracy { get; set; }
+        public int Power { get; set; }
+        public int PowerPoints { get; set; }
+        public int Generacion { get; set; }
+        public int MovRelID { get; set; }
+        public int PokeID { get; set; }
+        public int MvID { get; set; }
     }
 }

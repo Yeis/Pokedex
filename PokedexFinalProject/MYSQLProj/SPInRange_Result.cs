@@ -13,5 +13,7 @@ namespace MYSQLProj
     
     public partial class SPInRange_Result
     {
+        public string nombre { get; set; }
+        public int TimesRunned { get; set; }
     }
 }

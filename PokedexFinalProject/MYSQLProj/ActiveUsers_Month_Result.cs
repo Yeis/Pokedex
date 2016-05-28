@@ -14,8 +14,8 @@ namespace MYSQLProj
     public partial class ActiveUsers_Month_Result
     {
         public int UserId { get; set; }
-        public float Nombre { get; set; }
-        public float Apellido { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
         public string email { get; set; }
         public System.DateTime DoB { get; set; }
         public float Username { get; set; }

@@ -11,10 +11,9 @@ namespace MYSQLProj
 {
     using System;
     
-    public partial class SPByUser_Result
+    public partial class SP_Lista_Tablas_Result
     {
-        public string nombre { get; set; }
-        public System.DateTime fecha { get; set; }
-        public int exec_time { get; set; }
+        public string TABLE_NAME { get; set; }
+        public int numero_de_registros { get; set; }
     }
 }

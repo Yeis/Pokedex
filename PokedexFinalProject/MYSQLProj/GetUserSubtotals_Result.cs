@@ -13,5 +13,8 @@ namespace MYSQLProj
     
     public partial class GetUserSubtotals_Result
     {
+        public string nombre { get; set; }
+        public int Admin { get; set; }
+        public int Cantidad { get; set; }
     }
 }

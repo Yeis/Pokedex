@@ -11,10 +11,13 @@ namespace MYSQLProj
 {
     using System;
     
-    public partial class SPByUser_Result
+    public partial class GetPokemonEvolutions_Result
     {
-        public string nombre { get; set; }
-        public System.DateTime fecha { get; set; }
-        public int exec_time { get; set; }
+        public int EvolucionID { get; set; }
+        public int PokeID { get; set; }
+        public long AntID { get; set; }
+        public int SigId { get; set; }
+        public string status { get; set; }
+        public string descripcion { get; set; }
     }
 }

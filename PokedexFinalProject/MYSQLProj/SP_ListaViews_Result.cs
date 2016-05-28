@@ -11,10 +11,9 @@ namespace MYSQLProj
 {
     using System;
     
-    public partial class SPByUser_Result
+    public partial class SP_ListaViews_Result
     {
-        public string nombre { get; set; }
-        public System.DateTime fecha { get; set; }
-        public int exec_time { get; set; }
+        public string Tables_in_Pokedex { get; set; }
+        public string Table_type { get; set; }
     }
 }

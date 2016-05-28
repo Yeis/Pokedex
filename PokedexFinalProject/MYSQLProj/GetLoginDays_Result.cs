@@ -13,5 +13,7 @@ namespace MYSQLProj
     
     public partial class GetLoginDays_Result
     {
+        public string Dia { get; set; }
+        public int Cantidad { get; set; }
     }
 }
