@@ -48,7 +48,7 @@ namespace PokedexFinalProject
             else
             {
                 //Si se encuentra en mongo 
-                AddLog(new LogData() { nombre = mongousuario.Username, tipo = "Login", fecha = DateTime.Now, UserId = mongousuario.UserID, exec_time = (Endtime - Starttime) });
+                AddLog(new LogData() { nombre = mongousuario.Username, tipo = "Login", fecha = DateTime.Now, UserId = mongousuario.UserId, exec_time = (Endtime - Starttime) });
 
                 return mongousuario;
             }
@@ -61,7 +61,7 @@ namespace PokedexFinalProject
             Starttime = DateTime.Now.Millisecond;
             List<SP_ConexionesActivas_Result> result = context.SP_ConexionesActivas().ToList();
             Endtime = DateTime.Now.Millisecond;
-            AddLog(new LogData() { nombre = "SP_ConexionesActivas", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
+            AddLog(new LogData() { nombre = "SP_ConexionesActivas", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserId, exec_time = (Endtime - Starttime) });
             return result;
 
         }
@@ -70,7 +70,7 @@ namespace PokedexFinalProject
             Starttime = DateTime.Now.Millisecond;
             List<SP_ListaIndices_Result> result = context.SP_ListaIndices().ToList();
             Endtime = DateTime.Now.Millisecond; 
-            AddLog(new LogData() { nombre = "SP_ListaIndices", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
+            AddLog(new LogData() { nombre = "SP_ListaIndices", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserId, exec_time = (Endtime - Starttime) });
             return result;
 
         }
@@ -80,7 +80,7 @@ namespace PokedexFinalProject
             Starttime = DateTime.Now.Millisecond;
             List<SP_Lista_Tablas_Result> result = context.SP_Lista_Tablas().ToList();
             Endtime = DateTime.Now.Millisecond; 
-            AddLog(new LogData() { nombre = "SP_Lista_Tablas", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
+            AddLog(new LogData() { nombre = "SP_Lista_Tablas", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserId, exec_time = (Endtime - Starttime) });
             return result;
         }
         internal IEnumerable<SP_Lista_Mil_Registros_Result> Table1000()
@@ -88,7 +88,7 @@ namespace PokedexFinalProject
             Starttime = DateTime.Now.Millisecond;
             List<SP_Lista_Mil_Registros_Result> result = context.SP_Lista_Mil_Registros().ToList();
             Endtime = DateTime.Now.Millisecond; 
-            AddLog(new LogData() { nombre = "SP_Lista_Mil_Registros", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
+            AddLog(new LogData() { nombre = "SP_Lista_Mil_Registros", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserId, exec_time = (Endtime - Starttime) });
             return result;
         }
 
@@ -97,7 +97,7 @@ namespace PokedexFinalProject
             Starttime = DateTime.Now.Millisecond;
             List<string> result = context.UnusedSP().ToList();
             Endtime = DateTime.Now.Millisecond; 
-            AddLog(new LogData() { nombre = "UnusedSP", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
+            AddLog(new LogData() { nombre = "UnusedSP", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserId, exec_time = (Endtime - Starttime) });
             return result;
         }
 
@@ -106,7 +106,7 @@ namespace PokedexFinalProject
             Starttime = DateTime.Now.Millisecond;
             List<SP_ListaColumnas_Result> result = context.SP_ListaColumnas(name).ToList();
             Endtime = DateTime.Now.Millisecond; 
-            AddLog(new LogData() { nombre = "SP_ListaColumnas", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
+            AddLog(new LogData() { nombre = "SP_ListaColumnas", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserId, exec_time = (Endtime - Starttime) });
             return result;
 
         }
@@ -116,7 +116,7 @@ namespace PokedexFinalProject
             Starttime = DateTime.Now.Millisecond;
             List<SPCount_Result> result = context.SPCount().ToList();
             Endtime = DateTime.Now.Millisecond; 
-            AddLog(new LogData() { nombre = "SPCount", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
+            AddLog(new LogData() { nombre = "SPCount", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserId, exec_time = (Endtime - Starttime) });
             return result;
         }
 
@@ -125,7 +125,7 @@ namespace PokedexFinalProject
             Starttime = DateTime.Now.Millisecond;
             List<SPExecAverage_Result> result = context.SPExecAverage().ToList();
             Endtime = DateTime.Now.Millisecond; 
-            AddLog(new LogData() { nombre = "SPExecAverage", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
+            AddLog(new LogData() { nombre = "SPExecAverage", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserId, exec_time = (Endtime - Starttime) });
             return result;
         }
 
@@ -134,7 +134,7 @@ namespace PokedexFinalProject
             Starttime = DateTime.Now.Millisecond;
             List<GetUserSubtotals_Result> result = context.GetUserSubtotals().ToList();
             Endtime = DateTime.Now.Millisecond; 
-            AddLog(new LogData() { nombre = "GetUserSubtotals", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
+            AddLog(new LogData() { nombre = "GetUserSubtotals", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserId, exec_time = (Endtime - Starttime) });
             return result;
         }
         internal IEnumerable<GetUserContains_Result> GetUserContains(string patron)
@@ -158,7 +158,7 @@ namespace PokedexFinalProject
                 result = context.GetUserContains(patron).ToList();
                 Endtime = DateTime.Now.Millisecond;
             }
-            AddLog(new LogData() { nombre = "GetUserContains", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
+            AddLog(new LogData() { nombre = "GetUserContains", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserId, exec_time = (Endtime - Starttime) });
             return result;
         }
 
@@ -167,7 +167,7 @@ namespace PokedexFinalProject
             Starttime = DateTime.Now.Millisecond;
             List<SPByUser_Result> result = context.SPByUser(id).ToList();
             Endtime = DateTime.Now.Millisecond; 
-            AddLog(new LogData() { nombre = "SPByUser", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
+            AddLog(new LogData() { nombre = "SPByUser", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserId, exec_time = (Endtime - Starttime) });
             return result;
         }
 
@@ -176,7 +176,7 @@ namespace PokedexFinalProject
             Starttime = DateTime.Now.Millisecond;
             List<InactiveUsers_Month_Result> result = context.InactiveUsers_Month().ToList();
             Endtime = DateTime.Now.Millisecond; 
-            AddLog(new LogData() { nombre = "InactiveUsers_Month", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
+            AddLog(new LogData() { nombre = "InactiveUsers_Month", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserId, exec_time = (Endtime - Starttime) });
             return result;
         }
     
@@ -186,7 +186,7 @@ namespace PokedexFinalProject
             Starttime = DateTime.Now.Millisecond;
             List<GetLoginDays_Result> result = context.GetLoginDays().ToList();
             Endtime = DateTime.Now.Millisecond; 
-            AddLog(new LogData() { nombre = "GetLoginDays", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
+            AddLog(new LogData() { nombre = "GetLoginDays", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserId, exec_time = (Endtime - Starttime) });
             return result;
         }
         internal IEnumerable<GetLoginHours_Result> HotHours()
@@ -194,7 +194,7 @@ namespace PokedexFinalProject
             Starttime = DateTime.Now.Millisecond;
             List<GetLoginHours_Result> result = context.GetLoginHours().ToList();
             Endtime = DateTime.Now.Millisecond; 
-            AddLog(new LogData() { nombre = "GetLoginHours", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
+            AddLog(new LogData() { nombre = "GetLoginHours", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserId, exec_time = (Endtime - Starttime) });
             return result;
         }
 
@@ -204,13 +204,13 @@ namespace PokedexFinalProject
             Starttime = DateTime.Now.Millisecond;
             List<SP_ListaViews_Result> result = context.SP_ListaViews().ToList();
             Endtime = DateTime.Now.Millisecond; 
-            AddLog(new LogData() { nombre = "SP_ListaViews", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
+            AddLog(new LogData() { nombre = "SP_ListaViews", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserId, exec_time = (Endtime - Starttime) });
             return result;
 
         }
 
 
-        //    AddLog(new LogData() { nombre = "SP_ConexionesActivas", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
+        //    AddLog(new LogData() { nombre = "SP_ConexionesActivas", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserId, exec_time = (Endtime - Starttime) });
         //    return result;
 
 
@@ -221,7 +221,7 @@ namespace PokedexFinalProject
                 List<ActiveUsers_Month_Result> result = context.ActiveUsers_Month().ToList();
                 Endtime = DateTime.Now.Millisecond;
                
-                AddLog(new LogData() {   nombre = "ActiveUsers_Month", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
+                AddLog(new LogData() {   nombre = "ActiveUsers_Month", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserId, exec_time = (Endtime - Starttime) });
                 return result;
         }
         public List<ActiveUsers_Week_Result> Acitve_Users_Week()
@@ -230,7 +230,7 @@ namespace PokedexFinalProject
                 List<ActiveUsers_Week_Result> result = context.ActiveUsers_Week().ToList();
                 Endtime = DateTime.Now.Millisecond;
 
-                AddLog(new LogData() { nombre = "ActiveUsers_Week", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
+                AddLog(new LogData() { nombre = "ActiveUsers_Week", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserId, exec_time = (Endtime - Starttime) });
                 return result;
         }
         public List<GetSPByHour_Result> GetSPbyHour(int a , int b )
@@ -239,7 +239,7 @@ namespace PokedexFinalProject
             List<GetSPByHour_Result> result = context.GetSPByHour(a , b).ToList();
             Endtime = DateTime.Now.Millisecond;
 
-            AddLog(new LogData() { nombre = "GetSPByHour", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
+            AddLog(new LogData() { nombre = "GetSPByHour", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserId, exec_time = (Endtime - Starttime) });
             return result;
         }
 
@@ -249,7 +249,7 @@ namespace PokedexFinalProject
             List<SP_ListaViews_Result> result = context.SP_ListaViews().ToList();
             Endtime = DateTime.Now.Millisecond;
 
-            AddLog(new LogData() { nombre = "SP_ListaViews", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
+            AddLog(new LogData() { nombre = "SP_ListaViews", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserId, exec_time = (Endtime - Starttime) });
             return result;
         }
         public List<SP_InfoSp_Result> MaxMinSP()
@@ -258,7 +258,7 @@ namespace PokedexFinalProject
             List<SP_InfoSp_Result> result = context.SP_InfoSp().ToList();
             Endtime = DateTime.Now.Millisecond;
 
-            AddLog(new LogData() { nombre = "SP_InfoSp", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
+            AddLog(new LogData() { nombre = "SP_InfoSp", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserId, exec_time = (Endtime - Starttime) });
             return result;
         }
 
@@ -269,7 +269,7 @@ namespace PokedexFinalProject
             List<SPInRange_Result> result = context.SPInRange(low , high).ToList();
             Endtime = DateTime.Now.Millisecond;
 
-            AddLog(new LogData() { nombre = "SPInRange", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
+            AddLog(new LogData() { nombre = "SPInRange", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserId, exec_time = (Endtime - Starttime) });
             return result;
         }
 
@@ -282,14 +282,14 @@ namespace PokedexFinalProject
         //    GetPokemonDetail_Result result = context.getpo(id).FirstOrDefault();
         //    Endtime = DateTime.Now.Millisecond;
 
-        //    AddLog(new LogData() { nombre = "GetPokemonDetail", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
+        //    AddLog(new LogData() { nombre = "GetPokemonDetail", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserId, exec_time = (Endtime - Starttime) });
         //    return result;
 
         //}
 
         public void LogOut()
         {
-            AddLog(new LogData() { nombre = SharedInstance.AppUser.Username, tipo = "Logout", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserID, exec_time = (Endtime - Starttime) });
+            AddLog(new LogData() { nombre = SharedInstance.AppUser.Username, tipo = "Logout", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserId, exec_time = (Endtime - Starttime) });
             SharedInstance.AppUser = null;
         }
         public void AddLog(LogData log )
@@ -298,7 +298,7 @@ namespace PokedexFinalProject
                context.LogDatas.Add(log);
                 context.SaveChanges();
         }
- public Usuario FindSQL(string username, string password) 
+        public Usuario FindSQL(string username, string password) 
         {
             Usuario user = context.Usuarios.Where(u => u.Username == username && u.Password == password).FirstOrDefault(); 
             return user;
@@ -319,12 +319,13 @@ namespace PokedexFinalProject
         }
        
        
-        static void CreateMongo(string FirstName, string LastName, string pass, int Admin, string Username, string mail, DateTime DOB , int userid)
+        public void CreateMongo(string FirstName, string LastName, string pass, int Admin, string Username, string mail, DateTime DOB , int userid)
         {
             var mongo = new MongoClient("mongodb://localhost:27017");
             var db = mongo.GetDatabase("users");
             var collections = db.GetCollection<Usuario>("users");
-            var x = collections.Find(_id => true).Sort("{UserId:-1}").Limit(1);
+            var x = collections.Find(_id => true).Sort("{UserId:-1}").Limit(1).ToList();
+            int z = x[0].UserId + 1;
             var user = new Usuario
             {
                 Nombre = FirstName,
