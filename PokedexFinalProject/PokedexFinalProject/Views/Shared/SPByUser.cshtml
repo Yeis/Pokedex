@@ -1,0 +1,18 @@
+﻿@model PokedexFinalProject.Models.SPByUserViewModel
+
+@using (Html.BeginForm("SPByUser", "Stats", FormMethod.Post))
+{
+    <p>Nombre Tabla:</p>
+    <p> @Html.TextBoxFor(x => x.UserID)</p>
+
+    <input type="submit" value="Buscar" />
+}
+@{
+    if (Model.Procedures != null)
+    {
+        Html.RenderPartial("~/Views/Shared/SPByUserList.cshtml", Model.Procedures);
+
+    }
+
+
+}

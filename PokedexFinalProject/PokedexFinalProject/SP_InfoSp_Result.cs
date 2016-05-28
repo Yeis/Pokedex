@@ -13,9 +13,7 @@ namespace PokedexFinalProject
     
     public partial class SP_InfoSp_Result
     {
-        public string ProcName { get; set; }
-        public Nullable<long> execution_count { get; set; }
-        public Nullable<int> objectid { get; set; }
-        public Nullable<System.DateTime> last_execution_time { get; set; }
+        public string nombre { get; set; }
+        public Nullable<int> Cantidad { get; set; }
     }
 }

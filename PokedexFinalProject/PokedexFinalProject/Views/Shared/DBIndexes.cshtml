@@ -1,0 +1,44 @@
+﻿@model IEnumerable<PokedexFinalProject.SP_ListaIndices_Result>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Database_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Schema_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Table_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Index_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Index_Type)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Database_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Schema_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Table_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Index_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Index_Type)
+        </td>
+
+    </tr>
+}
+
+</table>

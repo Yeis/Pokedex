@@ -200,30 +200,18 @@
         </Function>
         <Function Name="GetLoginDays" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetLoginHours" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="GetMoveRelation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="PokeID" Type="int" Mode="In" />
-        </Function>
-        <Function Name="GetPokemonByGame" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="GameID" Type="int" Mode="In" />
-        </Function>
         <Function Name="GetPokemonById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
         </Function>
         <Function Name="GetPokemonByName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Name" Type="varchar" Mode="In" />
         </Function>
-        <Function Name="GetPokemonByType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="TID" Type="int" Mode="In" />
-        </Function>
-        <Function Name="GetPokemonDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Id" Type="int" Mode="In" />
-        </Function>
         <Function Name="GetPokemonEvolutions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PokeID" Type="int" Mode="In" />
         </Function>
         <Function Name="GetSPByHour" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="date1" Type="datetime" Mode="In" />
-          <Parameter Name="date2" Type="datetime" Mode="In" />
+          <Parameter Name="date1" Type="int" Mode="In" />
+          <Parameter Name="date2" Type="int" Mode="In" />
         </Function>
         <Function Name="GetTypeRelations" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
@@ -479,30 +467,18 @@
           </FunctionImport>
           <FunctionImport Name="GetLoginDays" ReturnType="Collection(PokedexModel.GetLoginDays_Result)" />
           <FunctionImport Name="GetLoginHours" ReturnType="Collection(PokedexModel.GetLoginHours_Result)" />
-          <FunctionImport Name="GetMoveRelation" ReturnType="Collection(PokedexModel.GetMoveRelation_Result)">
-            <Parameter Name="PokeID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="GetPokemonByGame" ReturnType="Collection(PokedexModel.GetPokemonByGame_Result)">
-            <Parameter Name="GameID" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="GetPokemonById" ReturnType="Collection(PokedexModel.GetPokemonById_Result)">
             <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetPokemonByName" ReturnType="Collection(PokedexModel.GetPokemonByName_Result)">
             <Parameter Name="Name" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="GetPokemonByType" ReturnType="Collection(PokedexModel.GetPokemonByType_Result)">
-            <Parameter Name="TID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="GetPokemonDetail" ReturnType="Collection(PokedexModel.GetPokemonDetail_Result)">
-            <Parameter Name="Id" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="GetPokemonEvolutions" ReturnType="Collection(PokedexModel.GetPokemonEvolutions_Result)">
             <Parameter Name="PokeID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetSPByHour" ReturnType="Collection(PokedexModel.GetSPByHour_Result)">
-            <Parameter Name="date1" Mode="In" Type="DateTime" />
-            <Parameter Name="date2" Mode="In" Type="DateTime" />
+            <Parameter Name="date1" Mode="In" Type="Int32" />
+            <Parameter Name="date2" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetTypeRelations" ReturnType="Collection(PokedexModel.GetTypeRelations_Result)">
             <Parameter Name="Id" Mode="In" Type="Int32" />
@@ -558,38 +534,7 @@
         </ComplexType>
         <ComplexType Name="GetLoginHours_Result">
           <Property Type="String" Name="Hora" Nullable="true" MaxLength="30" />
-          <Property Type="Int32" Name="Column1" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="GetMoveRelation_Result">
-          <Property Type="Int32" Name="MoveID" Nullable="false" />
-          <Property Type="Int32" Name="TpMovID" Nullable="true" />
-          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="25" />
-          <Property Type="Int32" Name="Accuracy" Nullable="true" />
-          <Property Type="Int32" Name="Power" Nullable="true" />
-          <Property Type="Int32" Name="PowerPoints" Nullable="true" />
-          <Property Type="Int32" Name="Generacion" Nullable="true" />
-          <Property Type="Int32" Name="MovRelID" Nullable="false" />
-          <Property Type="Int32" Name="PokeID" Nullable="true" />
-          <Property Type="Int32" Name="MvID" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="GetPokemonByGame_Result">
-          <Property Type="Int32" Name="JuegoID" Nullable="false" />
-          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="100" />
-          <Property Type="DateTime" Name="Año" Nullable="true" Precision="23" />
-          <Property Type="String" Name="Generacion" Nullable="true" MaxLength="10" />
-          <Property Type="String" Name="Region" Nullable="true" MaxLength="25" />
-          <Property Type="Int32" Name="JuegoRelID" Nullable="false" />
-          <Property Type="Int32" Name="PokeID" Nullable="true" />
-          <Property Type="Int32" Name="GameID" Nullable="true" />
-          <Property Type="Int32" Name="PokemonID" Nullable="false" />
-          <Property Type="String" Name="Nombre1" Nullable="false" MaxLength="20" />
-          <Property Type="Int32" Name="Peso" Nullable="false" />
-          <Property Type="Double" Name="Altura" Nullable="false" />
-          <Property Type="Int32" Name="Generacion1" Nullable="false" />
-          <Property Type="Int32" Name="TpID" Nullable="false" />
-          <Property Type="Int32" Name="TpID2" Nullable="true" />
-          <Property Type="Int32" Name="HabID" Nullable="true" />
-          <Property Type="String" Name="pathImg" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="Cantidad" Nullable="true" />
         </ComplexType>
         <ComplexType Name="GetPokemonById_Result">
           <Property Type="Int32" Name="PokemonID" Nullable="false" />
@@ -612,36 +557,6 @@
           <Property Type="Int32" Name="TpID2" Nullable="true" />
           <Property Type="Int32" Name="HabID" Nullable="true" />
           <Property Type="String" Name="pathImg" Nullable="true" MaxLength="500" />
-        </ComplexType>
-        <ComplexType Name="GetPokemonByType_Result">
-          <Property Type="Int32" Name="PokemonID" Nullable="false" />
-          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="20" />
-          <Property Type="Int32" Name="Peso" Nullable="false" />
-          <Property Type="Double" Name="Altura" Nullable="false" />
-          <Property Type="Int32" Name="Generacion" Nullable="false" />
-          <Property Type="Int32" Name="TpID" Nullable="false" />
-          <Property Type="Int32" Name="TpID2" Nullable="true" />
-          <Property Type="Int32" Name="HabID" Nullable="true" />
-          <Property Type="String" Name="pathImg" Nullable="true" MaxLength="500" />
-        </ComplexType>
-        <ComplexType Name="GetPokemonDetail_Result">
-          <Property Type="Int32" Name="PokemonID" Nullable="false" />
-          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="20" />
-          <Property Type="Int32" Name="Peso" Nullable="false" />
-          <Property Type="Double" Name="Altura" Nullable="false" />
-          <Property Type="Int32" Name="Generacion" Nullable="false" />
-          <Property Type="Int32" Name="TpID" Nullable="false" />
-          <Property Type="Int32" Name="TpID2" Nullable="true" />
-          <Property Type="Int32" Name="HabID" Nullable="true" />
-          <Property Type="String" Name="pathImg" Nullable="true" MaxLength="500" />
-          <Property Type="Int32" Name="StatID" Nullable="false" />
-          <Property Type="Int32" Name="PokeID" Nullable="false" />
-          <Property Type="Int32" Name="HP" Nullable="true" />
-          <Property Type="Int32" Name="Attack" Nullable="true" />
-          <Property Type="Int32" Name="Defense" Nullable="true" />
-          <Property Type="Int32" Name="Speed" Nullable="true" />
-          <Property Type="Int32" Name="SplAttack" Nullable="true" />
-          <Property Type="Int32" Name="SplDefense" Nullable="true" />
         </ComplexType>
         <ComplexType Name="GetPokemonEvolutions_Result">
           <Property Type="Int32" Name="EvolucionID" Nullable="false" />
@@ -679,9 +594,9 @@
           <Property Type="Int32" Name="Admin" Nullable="true" />
         </ComplexType>
         <ComplexType Name="GetUserSubtotals_Result">
-          <Property Type="String" Name="Username" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="100" />
           <Property Type="Int32" Name="Admin" Nullable="true" />
-          <Property Type="Int32" Name="Column1" Nullable="true" />
+          <Property Type="Int32" Name="Cantidad" Nullable="true" />
         </ComplexType>
         <ComplexType Name="InactiveUsers_Month_Result">
           <Property Type="Int32" Name="UserId" Nullable="false" />
@@ -702,10 +617,8 @@
           <Property Type="DateTime" Name="login_time" Nullable="false" Precision="23" />
         </ComplexType>
         <ComplexType Name="SP_InfoSp_Result">
-          <Property Type="String" Name="ProcName" Nullable="true" MaxLength="128" />
-          <Property Type="Int64" Name="execution_count" Nullable="true" />
-          <Property Type="Int32" Name="objectid" Nullable="true" />
-          <Property Type="DateTime" Name="last_execution_time" Nullable="true" Precision="23" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Cantidad" Nullable="true" />
         </ComplexType>
         <ComplexType Name="SP_Lista_Mil_Registros_Result">
           <Property Type="String" Name="name" Nullable="false" MaxLength="128" />
@@ -741,7 +654,7 @@
         </ComplexType>
         <ComplexType Name="SPExecAverage_Result">
           <Property Type="String" Name="nombre" Nullable="true" MaxLength="100" />
-          <Property Type="Int32" Name="Column1" Nullable="true" />
+          <Property Type="Int32" Name="AVG_ExecTime" Nullable="true" />
         </ComplexType>
         <ComplexType Name="SPInRange_Result">
           <Property Type="String" Name="nombre" Nullable="true" MaxLength="100" />
@@ -940,46 +853,7 @@
             <ResultMapping>
               <ComplexTypeMapping TypeName="PokedexModel.GetLoginHours_Result">
                 <ScalarProperty Name="Hora" ColumnName="Hora" />
-                <ScalarProperty Name="Column1" ColumnName="Column1" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetMoveRelation" FunctionName="PokedexModel.Store.GetMoveRelation">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="PokedexModel.GetMoveRelation_Result">
-                <ScalarProperty Name="MoveID" ColumnName="MoveID" />
-                <ScalarProperty Name="TpMovID" ColumnName="TpMovID" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Accuracy" ColumnName="Accuracy" />
-                <ScalarProperty Name="Power" ColumnName="Power" />
-                <ScalarProperty Name="PowerPoints" ColumnName="PowerPoints" />
-                <ScalarProperty Name="Generacion" ColumnName="Generacion" />
-                <ScalarProperty Name="MovRelID" ColumnName="MovRelID" />
-                <ScalarProperty Name="PokeID" ColumnName="PokeID" />
-                <ScalarProperty Name="MvID" ColumnName="MvID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetPokemonByGame" FunctionName="PokedexModel.Store.GetPokemonByGame">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="PokedexModel.GetPokemonByGame_Result">
-                <ScalarProperty Name="JuegoID" ColumnName="JuegoID" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Año" ColumnName="Año" />
-                <ScalarProperty Name="Generacion" ColumnName="Generacion" />
-                <ScalarProperty Name="Region" ColumnName="Region" />
-                <ScalarProperty Name="JuegoRelID" ColumnName="JuegoRelID" />
-                <ScalarProperty Name="PokeID" ColumnName="PokeID" />
-                <ScalarProperty Name="GameID" ColumnName="GameID" />
-                <ScalarProperty Name="PokemonID" ColumnName="PokemonID" />
-                <ScalarProperty Name="Nombre1" ColumnName="Nombre1" />
-                <ScalarProperty Name="Peso" ColumnName="Peso" />
-                <ScalarProperty Name="Altura" ColumnName="Altura" />
-                <ScalarProperty Name="Generacion1" ColumnName="Generacion1" />
-                <ScalarProperty Name="TpID" ColumnName="TpID" />
-                <ScalarProperty Name="TpID2" ColumnName="TpID2" />
-                <ScalarProperty Name="HabID" ColumnName="HabID" />
-                <ScalarProperty Name="pathImg" ColumnName="pathImg" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1010,44 +884,6 @@
                 <ScalarProperty Name="TpID2" ColumnName="TpID2" />
                 <ScalarProperty Name="HabID" ColumnName="HabID" />
                 <ScalarProperty Name="pathImg" ColumnName="pathImg" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetPokemonByType" FunctionName="PokedexModel.Store.GetPokemonByType">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="PokedexModel.GetPokemonByType_Result">
-                <ScalarProperty Name="PokemonID" ColumnName="PokemonID" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Peso" ColumnName="Peso" />
-                <ScalarProperty Name="Altura" ColumnName="Altura" />
-                <ScalarProperty Name="Generacion" ColumnName="Generacion" />
-                <ScalarProperty Name="TpID" ColumnName="TpID" />
-                <ScalarProperty Name="TpID2" ColumnName="TpID2" />
-                <ScalarProperty Name="HabID" ColumnName="HabID" />
-                <ScalarProperty Name="pathImg" ColumnName="pathImg" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetPokemonDetail" FunctionName="PokedexModel.Store.GetPokemonDetail">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="PokedexModel.GetPokemonDetail_Result">
-                <ScalarProperty Name="PokemonID" ColumnName="PokemonID" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Peso" ColumnName="Peso" />
-                <ScalarProperty Name="Altura" ColumnName="Altura" />
-                <ScalarProperty Name="Generacion" ColumnName="Generacion" />
-                <ScalarProperty Name="TpID" ColumnName="TpID" />
-                <ScalarProperty Name="TpID2" ColumnName="TpID2" />
-                <ScalarProperty Name="HabID" ColumnName="HabID" />
-                <ScalarProperty Name="pathImg" ColumnName="pathImg" />
-                <ScalarProperty Name="StatID" ColumnName="StatID" />
-                <ScalarProperty Name="PokeID" ColumnName="PokeID" />
-                <ScalarProperty Name="HP" ColumnName="HP" />
-                <ScalarProperty Name="Attack" ColumnName="Attack" />
-                <ScalarProperty Name="Defense" ColumnName="Defense" />
-                <ScalarProperty Name="Speed" ColumnName="Speed" />
-                <ScalarProperty Name="SplAttack" ColumnName="SplAttack" />
-                <ScalarProperty Name="SplDefense" ColumnName="SplDefense" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1105,9 +941,9 @@
           <FunctionImportMapping FunctionImportName="GetUserSubtotals" FunctionName="PokedexModel.Store.GetUserSubtotals">
             <ResultMapping>
               <ComplexTypeMapping TypeName="PokedexModel.GetUserSubtotals_Result">
-                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="Admin" ColumnName="Admin" />
-                <ScalarProperty Name="Column1" ColumnName="Column1" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1140,10 +976,8 @@
           <FunctionImportMapping FunctionImportName="SP_InfoSp" FunctionName="PokedexModel.Store.SP_InfoSp">
             <ResultMapping>
               <ComplexTypeMapping TypeName="PokedexModel.SP_InfoSp_Result">
-                <ScalarProperty Name="ProcName" ColumnName="ProcName" />
-                <ScalarProperty Name="execution_count" ColumnName="execution_count" />
-                <ScalarProperty Name="objectid" ColumnName="objectid" />
-                <ScalarProperty Name="last_execution_time" ColumnName="last_execution_time" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1211,7 +1045,7 @@
             <ResultMapping>
               <ComplexTypeMapping TypeName="PokedexModel.SPExecAverage_Result">
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="Column1" ColumnName="Column1" />
+                <ScalarProperty Name="AVG_ExecTime" ColumnName="AVG_ExecTime" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
