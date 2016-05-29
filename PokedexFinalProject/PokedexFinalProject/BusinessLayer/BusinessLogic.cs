@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using PokedexFinalProject.Models;
 using System.Diagnostics;
+using PokedexFinalProject;
 
 namespace PokedexFinalProject
 {
@@ -312,7 +313,7 @@ namespace PokedexFinalProject
         }
        
        
-        static void CreateMongo(string FirstName, string LastName, string pass, int Admin, string Username, string mail, DateTime DOB , int userid)
+        public void CreateMongo(string FirstName, string LastName, string pass, int Admin, string Username, string mail, DateTime DOB , int userid)
         {
             var mongo = new MongoClient("mongodb://localhost:27017");
             var db = mongo.GetDatabase("users");
@@ -329,6 +330,25 @@ namespace PokedexFinalProject
             };
             var collections = db.GetCollection<Usuario>("users");
             collections.InsertOne(user);
+        }
+
+        public void MongoASQL(LocalUser User)
+        {
+            var m = FindMongo(User.Username, User.Password);
+            Usuario u = new Usuario
+            {
+                Nombre = m.Nombre,
+                Password = m.Password,
+                Username = m.Username,
+                Apellido = m.Apellido,
+                DoB = m.DoB,
+                email = m.email,
+                Admin = m.Admin,
+                UserId = m.UserId,
+            };
+
+            context.Usuarios.Add(u);
+            context.SaveChanges();
         }
     }
 }

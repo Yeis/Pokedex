@@ -4,12 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PokedexFinalProject.Models;
+using MYSQLProj;
 
 namespace PokedexFinalProject.Controllers
 {
     public class OverviewController : Controller
     {
         PokedexEntities context = new PokedexEntities();
+        pokedexEntities myContext = new pokedexEntities();
         BusinessLogic BL = new BusinessLogic();
 
         int Starttime, Endtime;
@@ -34,10 +36,20 @@ namespace PokedexFinalProject.Controllers
 
         public ActionResult GetPokemon()
         {
-            var lista = context.Pokemons.ToList();
-          
-            return View(lista.ToList());
+
+            if (SharedInstance.AppUser.Connection == false)
+            {
+               var lista = context.Pokemons.ToList();
+                return View(lista.ToList());
+
+            }
+            else
+            {
+                var myLista = myContext.pokemons.ToList();
+                return View(myLista.ToList());
+            } 
         }
+
         [HttpGet]
         public ActionResult GetDetails(string SearchString)
         {

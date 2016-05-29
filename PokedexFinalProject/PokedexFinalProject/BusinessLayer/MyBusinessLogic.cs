@@ -11,10 +11,10 @@ namespace PokedexFinalProject.BusinessLayer
     {
         int Starttime;
         int Endtime;
-        MyPokedexEntities context;
+        pokedexEntities context;
         public MyBusinessLogic()
         {
-             context = new MyPokedexEntities();
+             context = new pokedexEntities();
 
         }
 
