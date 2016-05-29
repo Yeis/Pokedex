@@ -16,6 +16,11 @@
         Html.RenderPartial("~/Views/Shared/SPRangeList.cshtml", Model._SPRange);
 
     }
+    else if (Model._MySPRange != null)
+    {
+        Html.RenderPartial("~/Views/Shared/MySPRangeList.cshtml", Model._MySPRange);
+
+    }
 
 
 }

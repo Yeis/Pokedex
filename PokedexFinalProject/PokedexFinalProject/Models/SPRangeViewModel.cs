@@ -13,6 +13,7 @@ namespace PokedexFinalProject.Models
 
         public IEnumerable<SPInRange_Result> _SPRange { get; set; }
 
+        public IEnumerable<MYSQLProj.SPInRange_Result> _MySPRange { get; set; }
 
 
     }

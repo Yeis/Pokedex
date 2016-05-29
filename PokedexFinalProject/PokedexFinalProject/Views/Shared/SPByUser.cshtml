@@ -13,6 +13,11 @@
         Html.RenderPartial("~/Views/Shared/SPByUserList.cshtml", Model.Procedures);
 
     }
+    else if (Model.MyProcedures != null)
+    {
+        Html.RenderPartial("~/Views/Shared/MySPByUserList.cshtml", Model.MyProcedures);
+
+    }
 
 
 }

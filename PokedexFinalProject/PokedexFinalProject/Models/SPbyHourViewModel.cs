@@ -10,6 +10,8 @@ namespace PokedexFinalProject.Models
         public string  Hour1 { get; set; }
         public string Hour2 { get; set; }
         public IEnumerable<GetSPByHour_Result> SPByHour { get; set; }
+       // public IEnumerable<MYSQLProj.GetSPByHour_Result> MySPByHour { get; set; }
+
 
     }
 }

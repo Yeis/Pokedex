@@ -1,0 +1,44 @@
+﻿@model IEnumerable<MYSQLProj.SP_ListaIndices_Result>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Database_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.INDEX_SCHEMA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TABLE_NAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.INDEX_NAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.INDEX_TYPE)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Database_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.INDEX_SCHEMA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TABLE_NAME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.INDEX_NAME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.INDEX_TYPE)
+        </td>
+
+    </tr>
+}
+
+</table>

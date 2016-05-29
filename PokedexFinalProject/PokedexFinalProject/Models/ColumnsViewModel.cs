@@ -9,6 +9,8 @@ namespace PokedexFinalProject.Models
     {
         public string NombreTabla { get; set; }
         public IEnumerable<SP_ListaColumnas_Result> Columnas { get; set; }
+        public IEnumerable<MYSQLProj.SP_ListaColumnas_Result> MyColumnas { get; set; }
+
 
 
 

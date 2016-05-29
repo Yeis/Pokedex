@@ -13,7 +13,7 @@ namespace MYSQLProj
     
     public partial class ActiveUsers_Week_Result
     {
-        public long UserId { get; set; }
+        public int UserId { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public int Admin { get; set; }

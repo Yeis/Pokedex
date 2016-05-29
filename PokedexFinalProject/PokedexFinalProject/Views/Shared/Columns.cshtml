@@ -13,6 +13,11 @@
         Html.RenderPartial("~/Views/Shared/ColumnsList.cshtml", Model.Columnas);
 
     }
+    else if (Model.MyColumnas != null)
+    {
+        Html.RenderPartial("~/Views/Shared/MyColumnsList.cshtml", Model.MyColumnas);
+
+    }
 
 
  }

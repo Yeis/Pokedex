@@ -93,65 +93,72 @@
             case "GetUserContains":
                 Html.RenderPartial("~/Views/Shared/GetUserContains.cshtml", Model._GetUserContains);
                 break;
+            //EMPIEZAN LOS CASOS DE MYSQL
             case "MyActiveUsersMonth":
                 Html.RenderPartial("~/Views/Shared/MyActiveUsersMonth.cshtml", Model.MyActiveUsersMonth);
                 break;
             case "MyActiveUsersWeek":
-                Html.RenderPartial("~/Views/Shared/ActiveUsersWeek.cshtml", Model.ActiveUsersWeek);
+                Html.RenderPartial("~/Views/Shared/MyActiveUsersWeek.cshtml", Model.MyActiveUsersWeek);
                 break;
             case "MySP_ConexionesActivas":
-                Html.RenderPartial("~/Views/Shared/ConexionesActivas.cshtml", Model.ActiveConnections);
+                Html.RenderPartial("~/Views/Shared/MyConexionesActivas.cshtml", Model.MyActiveConnections);
                 break;
             case "MyDBIndexes":
-                Html.RenderPartial("~/Views/Shared/DBIndexes.cshtml", Model.Indexes);
+                Html.RenderPartial("~/Views/Shared/MyDBIndexes.cshtml", Model.MyIndexes);
                 break;
+            //1 ViewModel r
             case "MySPRangeHours":
                 Html.RenderPartial("~/Views/Shared/SPbyHour.cshtml", Model._SPbyHourViewModel);
                 break;
+            //2 ViewModel s
             case "MyTableColumns":
                 Html.RenderPartial("~/Views/Shared/Columns.cshtml", Model._ColumnsViewModel);
                 break;
             case "MyTablesWithCounts":
-                Html.RenderPartial("~/Views/Shared/Tablas.cshtml", Model.Tablas);
+                Html.RenderPartial("~/Views/Shared/MyTablas.cshtml", Model.MyTablas);
                 break;
             case "MyTables1000":
-                Html.RenderPartial("~/Views/Shared/Tablas1000.cshtml", Model.TablasMil);
+                Html.RenderPartial("~/Views/Shared/MyTablas1000.cshtml", Model.MyTablasMil);
                 break;
             case "MyViews":
-                Html.RenderPartial("~/Views/Shared/Views.cshtml", Model.Vistas);
+                Html.RenderPartial("~/Views/Shared/MyViews.cshtml", Model.MyVistas);
                 break;
             case "MyMaxMin_SP":
-                Html.RenderPartial("~/Views/Shared/SP_Info.cshtml", Model.MaxMinSP);
+                Html.RenderPartial("~/Views/Shared/MySP_Info.cshtml", Model.MyMaxMinSP);
                 break;
+                //ViewModel 3 
             case "MySPRange":
-                Html.RenderPartial("~/Views/Shared/SPInRange.cshtml", Model._SPRangeViewModel);
+                Html.RenderPartial("~/Views/Shared/MySPInRange.cshtml", Model._SPRangeViewModel);
                 break;
             case "MyUnusedSP":
-                Html.RenderPartial("~/Views/Shared/UnusedSP.cshtml", Model.Unused);
+                //ES lista de string se puede usar el mismo 
+                Html.RenderPartial("~/Views/Shared/UnusedSP.cshtml", Model.MyUnused);
                 break;
             case "MyExecAvg":
-                Html.RenderPartial("~/Views/Shared/SPExecAverage.cshtml", Model.ExecAverage);
+                Html.RenderPartial("~/Views/Shared/MySPExecAverage.cshtml", Model.MyExecAverage);
                 break;
             case "MyExecCount":
-                Html.RenderPartial("~/Views/Shared/SPCount.cshtml", Model.SPCounts);
+                Html.RenderPartial("~/Views/Shared/MySPCount.cshtml", Model.MySPCounts);
                 break;
             case "MyInactiveUsers":
-                Html.RenderPartial("~/Views/Shared/InactiveUsers.cshtml", Model.Inactive);
+                Html.RenderPartial("~/Views/Shared/MyInactiveUsers.cshtml", Model.MyInactive);
                 break;
             case "MyHotDays":
-                Html.RenderPartial("~/Views/Shared/HotDays.cshtml", Model.Dias);
+                Html.RenderPartial("~/Views/Shared/MyHotDays.cshtml", Model.MyDias);
                 break;
             case "MyHotHours":
-                Html.RenderPartial("~/Views/Shared/HotHours.cshtml", Model.Horas);
+                Html.RenderPartial("~/Views/Shared/MyHotHours.cshtml", Model.MyHoras);
                 break;
+            //viemodel 4 
             case "MySPByUser":
                 Html.RenderPartial("~/Views/Shared/SPByUser.cshtml", Model._SPByUserViewModel);
                 break;
             case "MyGetUserSubtotals":
-                Html.RenderPartial("~/Views/Shared/GetUserSubtotals.cshtml", Model.Subtotals);
+                Html.RenderPartial("~/Views/Shared/MyGetUserSubtotals.cshtml", Model.MySubtotals);
                 break;
+            //Viewmodel 5 
             case "MyGetUserContains":
-                Html.RenderPartial("~/Views/Shared/GetUserContains.cshtml", Model._GetUserContains);
+                Html.RenderPartial("~/Views/Shared/MyGetUserContains.cshtml", Model._GetUserContains);
                 break;
             default:
                 break;

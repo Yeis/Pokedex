@@ -17,9 +17,7 @@ namespace PokedexFinalProject.Controllers
         public ActionResult Index( )
         {
                 var model = new StatsViewModel();
-             model.Horas = BL.HotHours();
-            model.MaxMinSP = BL.MaxMinSP();
-            model.SPCounts = BL.ExecCount();
+            SharedInstance.AppUser.Connection = true;
             //model.MySPCo
             return View(model);
         }
@@ -40,8 +38,16 @@ namespace PokedexFinalProject.Controllers
             return View(model);
         }
         public ActionResult SPByHour(SPbyHourViewModel model)
-        { 
-            model.SPByHour = BL.GetSPbyHour(int.Parse(model.Hour1),int.Parse(model.Hour2));
+        {
+            if (SharedInstance.AppUser.Connection == true)
+            {
+                model.SPByHour = BL.GetSPbyHour(int.Parse(model.Hour1), int.Parse(model.Hour2));
+            }
+            else
+            {
+                model.SPByHour = BL.GetSPbyHour(int.Parse(model.Hour1), int.Parse(model.Hour2));
+
+            }
             StatsViewModel temp = new StatsViewModel();
             temp._SPbyHourViewModel = model;
             temp.partialName = "SPRangeHours";
@@ -49,7 +55,15 @@ namespace PokedexFinalProject.Controllers
         }
         public ActionResult Columns(ColumnsViewModel model)
         {
-            model.Columnas = BL.GetColumns(model.NombreTabla);
+            if (SharedInstance.AppUser.Connection == true)
+            {
+                model.MyColumnas = MyBL.MyGetColumns(model.NombreTabla);
+            }
+            else
+            {
+                model.Columnas = BL.GetColumns(model.NombreTabla);
+
+            }
             StatsViewModel temp = new StatsViewModel();
             temp._ColumnsViewModel = model;
             temp.partialName = "TableColumns";
@@ -57,7 +71,15 @@ namespace PokedexFinalProject.Controllers
         }
         public ActionResult SPRange(SPRangeViewModel model)
         {
-            model._SPRange = BL.SPInRange(int.Parse(model.limite_inferior), int.Parse(model.limite_superior));
+            if (SharedInstance.AppUser.Connection == true)
+            {
+                model._MySPRange = MyBL.SPInRange(int.Parse(model.limite_inferior), int.Parse(model.limite_superior));
+            }
+            else
+            {
+                model._SPRange = BL.SPInRange(int.Parse(model.limite_inferior), int.Parse(model.limite_superior));
+
+            }
             StatsViewModel temp = new StatsViewModel();
             temp._SPRangeViewModel = model;
             temp.partialName = "SPRange";
@@ -65,7 +87,15 @@ namespace PokedexFinalProject.Controllers
         }
         public ActionResult SPByUser(SPByUserViewModel model)
         {
-            model.Procedures = BL.SPByUser(int.Parse(model.UserID));
+            if (SharedInstance.AppUser.Connection == true)
+            {
+                model.MyProcedures = MyBL.SPByUser(int.Parse(model.UserID));
+            }
+            else
+            {
+                model.Procedures = BL.SPByUser(int.Parse(model.UserID));
+
+            }
             StatsViewModel temp = new StatsViewModel();
             temp._SPByUserViewModel = model;
             temp.partialName = "SPByUser";
@@ -73,7 +103,15 @@ namespace PokedexFinalProject.Controllers
         }
         public ActionResult GetUserContains(GetUserContains model)
         {
-            model.users = BL.GetUserContains(model.patron);
+            if (SharedInstance.AppUser.Connection == true)
+            {
+                model.Myusers = MyBL.GetUserContains(model.patron);
+            }
+            else
+            {
+                model.users = BL.GetUserContains(model.patron);
+
+            }
             StatsViewModel temp = new StatsViewModel();
             temp._GetUserContains = model;
             temp.partialName = "GetUserContains";
@@ -109,7 +147,7 @@ namespace PokedexFinalProject.Controllers
                 case 5:
                     //Estaditicas 2
                     model.partialName = "SP_ConexionesActivas";
-                    //model.ActiveConnections = BL.GetActiveConnections();
+                    model.ActiveConnections = BL.GetActiveConnections();
                     break;
                 case 6:
                     //Estadisticas 3 
@@ -199,7 +237,7 @@ namespace PokedexFinalProject.Controllers
                 case 1:
                     //Estadisticas 12.1
                     model.partialName = "MyActiveUsersWeek";
-                    model.ActiveUsersWeek = BL.Acitve_Users_Week();
+                    model.MyActiveUsersWeek = MyBL.Acitve_Users_Week();
                     break;
                 case 2:
                     //Estadisticas 12.2
@@ -209,7 +247,7 @@ namespace PokedexFinalProject.Controllers
                 case 3:
                     //Estadisticas 5
                     model.partialName = "MyDBIndexes";
-                    model.Indexes = BL.GetIndexes();
+                     model.MyIndexes = MyBL.GetIndexes();
                     break;
                 case 4:
                     //Estadisticas 1  
@@ -219,12 +257,12 @@ namespace PokedexFinalProject.Controllers
                 case 5:
                     //Estaditicas 2
                     model.partialName = "MySP_ConexionesActivas";
-                    model.ActiveConnections = BL.GetActiveConnections();
+                    model.MyActiveConnections = MyBL.GetActiveConnections();
                     break;
                 case 6:
                     //Estadisticas 3 
                     model.partialName = "MyTablesWithCounts";
-                    model.Tablas = BL.TableWithCounts();
+                     model.MyTablas = MyBL.TableWithCounts();
                     break;
                 case 7:
                     //Estadisticas 4 
@@ -234,17 +272,17 @@ namespace PokedexFinalProject.Controllers
                 case 8:
                     //Estadisticas 8
                     model.partialName = "MyTables1000";
-                    model.TablasMil = BL.Table1000();
+                       model.MyTablasMil = MyBL.Table1000();
                     break;
                 case 9:
                     //Estadisticas 6
                     model.partialName = "MyViews";
-                    model.Vistas = BL.GetViews();
+                     model.MyVistas = MyBL.GetViews();
                     break;
                 case 10:
                     //Estadisticas 7 NO PROBADO 
                     model.partialName = "MyMaxMin_SP";
-                    model.MaxMinSP = BL.MaxMinSP();
+                     model.MyMaxMinSP = MyBL.MaxMinSP();
                     break;
                 case 11:
                     //Estadisticas 9 
@@ -254,32 +292,32 @@ namespace PokedexFinalProject.Controllers
                 case 12:
                     //Estadisticas 10  
                     model.partialName = "MyUnusedSP";
-                    model.Unused = BL.UnusedSP();
+                    model.MyUnused = MyBL.UnusedSP();
                     break;
                 case 13:
                     //Estadisticas 11.1 
                     model.partialName = "MyExecAvg";
-                    model.ExecAverage = BL.ExecAvg();
+                     model.MyExecAverage = MyBL.ExecAvg();
                     break;
                 case 14:
                     //Estadisticas 11.2 
                     model.partialName = "MyExecCount";
-                    model.SPCounts = BL.ExecCount();
+                     model.MySPCounts = MyBL.ExecCount();
                     break;
                 case 15:
                     //Estadisticas 12.3
                     model.partialName = "MyInactiveUsers";
-                    model.Inactive = BL.InactiveUsers();
+                     model.MyInactive = MyBL.InactiveUsers();
                     break;
                 case 16:
                     //Estadisticas 12.4
                     model.partialName = "MyHotDays";
-                    model.Dias = BL.HotDays();
+                     model.MyDias = MyBL.HotDays();
                     break;
                 case 17:
                     //Estadisticas 12.4  
                     model.partialName = "MyHotHours";
-                    model.Horas = BL.HotHours();
+                     model.MyHoras = MyBL.HotHours();
                     break;
                 case 18:
                     //Estadisticas 12.6
@@ -289,7 +327,7 @@ namespace PokedexFinalProject.Controllers
                 case 19:
                     //Estadisticas 12.7  
                     model.partialName = "MyGetUserSubtotals";
-                    model.Subtotals = BL.GetUsersSubtotals();
+                     model.MySubtotals = MyBL.GetUsersSubtotals();
                     break;
                 case 20:
                     //Estadisticas 13

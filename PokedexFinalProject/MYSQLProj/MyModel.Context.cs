@@ -24,9 +24,9 @@ namespace MYSQLProj
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            throw new UnintentionalCodeFirstException();
+            modelBuilder.Entity<logdata>().ToTable("logdata");
         }
-    
+
         public virtual DbSet<evolucion> evolucions { get; set; }
         public virtual DbSet<habilidad> habilidads { get; set; }
         public virtual DbSet<juego> juegos { get; set; }
@@ -472,6 +472,11 @@ namespace MYSQLProj
         public virtual ObjectResult<SP_Lista_Tablas_Result> SP_Lista_Tablas()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_Lista_Tablas_Result>("SP_Lista_Tablas");
+        }
+    
+        public virtual ObjectResult<string> UnusedSP()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UnusedSP");
         }
     }
 }
