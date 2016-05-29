@@ -47,7 +47,7 @@ namespace ApiParser
                     int tipo2;
                     match = regex.Match(poke.abilities[0].ability.url);
                     int habilidad = int.Parse(match.Value.Replace('/', ' '));
-                    if (poke.types[1] != null)
+                    if (poke.types.Count == 2)
                     {
                         //POKEMON DE  2 TIPOS 
                         match = regex.Match(poke.types[1].type.url);
