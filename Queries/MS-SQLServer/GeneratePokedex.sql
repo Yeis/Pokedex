@@ -55,7 +55,7 @@ CREATE TABLE JuegosRelacion(
 )
 
 CREATE TABLE TipoRelacion(
-	TpRelID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	TpRelID INT  NOT NULL PRIMARY KEY,
 	Ventaja VARCHAR(25),
 	DetailVentaja VARCHAR(MAX),
 	Debilidad VARCHAR(25),
