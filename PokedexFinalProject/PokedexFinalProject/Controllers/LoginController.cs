@@ -14,7 +14,8 @@ namespace PokedexFinalProject.Controllers
         // GET: Login
         public ActionResult Index(string mensaje)
         {
-
+            SharedInstance.AppUser = new LocalUser();
+            SharedInstance.AppUser.logeoCorrecto = false;
             //var poke = BL.GetPokemonDetails(2);
             ViewBag.Message = mensaje;
             return View();
@@ -34,7 +35,7 @@ namespace PokedexFinalProject.Controllers
             else
             {
                 //el usuario fue correcto 
-                SharedInstance.AppUser.conectado = true;
+                SharedInstance.AppUser.logeoCorrecto = true;
                 return RedirectToAction("Index","Overview");
             }
           

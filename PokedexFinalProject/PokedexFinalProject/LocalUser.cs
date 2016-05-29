@@ -19,13 +19,15 @@ namespace PokedexFinalProject
         public string email { get; set; }
         public int? Admin { get; set; }
         public ObjectId Id { get; set; }
-        public bool conectado { get; set; }
+        public bool logeoCorrecto = false;
         // FALSE IGUAL MS-SQLSERVER   TRUE = MYSQL 
         public bool Connection { get; set; }
+        
 
         public LocalUser()
         {
-                //empty constructor
+            //empty constructor
+            logeoCorrecto = false;
         }
         public LocalUser(int id, string firstname , string lastname, DateTime? dob , string username , string password , string email , int? admin , bool connection)
         {
@@ -38,7 +40,7 @@ namespace PokedexFinalProject
             this.email = email;
             this.Admin = admin;
             this.Connection = connection;
-            conectado = false;
+            logeoCorrecto = false;
         }
     }
 }

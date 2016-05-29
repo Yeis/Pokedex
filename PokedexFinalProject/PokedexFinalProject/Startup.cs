@@ -8,6 +8,8 @@ namespace PokedexFinalProject
     {
         public void Configuration(IAppBuilder app)
         {
+            //LocalUser usuario = new LocalUser();
+            
             ConfigureAuth(app);
         }
     }

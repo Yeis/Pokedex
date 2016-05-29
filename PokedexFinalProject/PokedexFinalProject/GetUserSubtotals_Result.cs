@@ -13,8 +13,8 @@ namespace PokedexFinalProject
     
     public partial class GetUserSubtotals_Result
     {
-        public string nombre { get; set; }
+        public string Username { get; set; }
         public Nullable<int> Admin { get; set; }
-        public Nullable<int> Cantidad { get; set; }
+        public Nullable<int> Column1 { get; set; }
     }
 }
