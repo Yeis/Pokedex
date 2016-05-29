@@ -25,9 +25,9 @@ namespace PokedexFinalProject.Controllers
         [HttpGet]
         public  ActionResult Index(string searchBar)
         {
-            if (searchBar == "MySQL")
-                SharedInstance.AppUser.Connection = true;
-            else if (searchBar == "MS-SQL")
+            //if (searchBar == "MySQL")
+            //    SharedInstance.AppUser.Connection = true;
+           if (searchBar == "MS-SQL")
                 SharedInstance.AppUser.Connection = false;
             return View();
         }
@@ -37,17 +37,16 @@ namespace PokedexFinalProject.Controllers
         public ActionResult GetPokemon()
         {
 
-            if (SharedInstance.AppUser.Connection == false)
-            {
+            
                var lista = context.Pokemons.ToList();
                 return View(lista.ToList());
 
-            }
-            else
-            {
-                var myLista = myContext.pokemons.ToList();
-                return View(myLista.ToList());
-            } 
+            
+            //else
+            //{
+            //    var myLista = myContext.pokemons.ToList();
+            //    return View(myLista.ToList());
+            //} 
         }
 
         [HttpGet]
