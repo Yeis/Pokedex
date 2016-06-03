@@ -12,8 +12,8 @@
     <script src="../Scripts/jQuery-2.2.3.min.js"></script>
 </head>
 <body>
-
-@using (Html.BeginForm("Index", "Stats", FormMethod.Post))
+<div   id="Busqueda_Stats">
+@using (Html.BeginForm("Display", "Stats", FormMethod.Post))
 {
     <fieldset>
         <dl>
@@ -26,9 +26,9 @@
         </dl>
     </fieldset>
 
-    <input type="submit" value="Search" />
+    <input type="submit" value="Buscar" id="BotonStats" />
 }
-
+</div>
 <div id="Partial-view">
     @{
         switch (Model.partialName)

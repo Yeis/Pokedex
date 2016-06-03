@@ -770,6 +770,12 @@
     <Content Include="Views\Shared\MyColumnsList.cshtml" />
     <Content Include="Views\Shared\MySPByUserList.cshtml" />
     <Content Include="Views\Shared\MySPInRangeList.cshtml" />
+    <Content Include="Views\Overview\GetByType.cshtml" />
+    <Content Include="Views\Overview\GetDetails.cshtml" />
+    <Content Include="Views\Overview\GetMoveDetail.cshtml" />
+    <Content Include="Views\Overview\GetMoves.cshtml" />
+    <Content Include="Views\Overview\GetPokemon.cshtml" />
+    <Content Include="Views\Overview\GetTypes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -14,28 +14,34 @@ namespace PokedexFinalProject.Controllers
         BusinessLayer.MyBusinessLogic MyBL = new BusinessLayer.MyBusinessLogic();
         // GET: Stats
         [HttpGet]
-        public ActionResult Index( )
+        public ActionResult Index(StatsViewModel Modelo )
         {
-                var model = new StatsViewModel();
-            SharedInstance.AppUser.Connection = true;
-            //model.MySPCo
+            var model = new StatsViewModel();
+            if (Modelo != null)
+            {
+                model.Selectedid = Modelo.Selectedid;
+                //SQL_Server Case 
+                if (SharedInstance.AppUser.Connection == false)
+                {
+                    model = SQL_Action(model);
+                }
+                else
+                {
+                    model = MYSQL_Action(model);
+                }
+                return View(model);
+            }
+           
             return View(model);
         }
     
-        [HttpPost]
-        public ActionResult Index(StatsViewModel model)
+        //[HttpPost]
+        public ActionResult Display(StatsViewModel model)
         {
-            //SQL_Server Case 
-            if (SharedInstance.AppUser.Connection == false)
-            {
-                model = SQL_Action(model);
-            }
-            else
-            {
-                model = MYSQL_Action(model);
-            }
 
-            return View(model);
+
+
+            return RedirectToAction("Index", model);
         }
         public ActionResult SPByHour(SPbyHourViewModel model)
         {

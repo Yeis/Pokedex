@@ -50,34 +50,43 @@ namespace PokedexFinalProject.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetDetails(string SearchString)
+        public ActionResult GetDetails(string SearchString, string Selectedid)
         {
-            int id;
-            if(Int32.TryParse(SearchString, out id))
+            if (SearchString != "")
             {
-                var pokemon = new PokemonViewModel(id);
-                return View(pokemon);
-            }
-            else
-            {
-                Starttime = DateTime.Now.Millisecond;
-                var pokemon = context.GetPokemonByName(SearchString).FirstOrDefault();
-                Endtime = DateTime.Now.Millisecond;
-                BL.AddLog(new LogData() { nombre = "GetPokemonByName", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserId, exec_time = (Endtime - Starttime) });
-                if (pokemon != null)
+                int id;
+                if (Int32.TryParse(SearchString, out id))
                 {
-                    var det = new PokemonViewModel(pokemon.PokemonID);
-                    return View(det);
+                    var pokemon = new PokemonViewModel(id);
+                    return View(pokemon);
                 }
                 else
                 {
+                    Starttime = DateTime.Now.Millisecond;
+                    var pokemon = context.GetPokemonByName(SearchString).FirstOrDefault();
+                    Endtime = DateTime.Now.Millisecond;
+                    BL.AddLog(new LogData() { nombre = "GetPokemonByName", tipo = "SP", fecha = DateTime.Now, UserId = SharedInstance.AppUser.UserId, exec_time = (Endtime - Starttime) });
+                    if (pokemon != null)
+                    {
+                        var det = new PokemonViewModel(pokemon.PokemonID);
+                        return View(det);
+                    }
+                    else
+                    {
 
-                    return View(new PokemonViewModel());
+                        return View(new PokemonViewModel());
+                    }
                 }
+            }
+            else 
+            {
+                StatsViewModel temp = new StatsViewModel();
+                temp.Selectedid = int.Parse(Selectedid);
+                return RedirectToAction("Index", "Stats", temp );
             }
         }
 
- 
+
         public ActionResult GetTypes()
         {
             var tipos = context.Tipoes.ToList();
